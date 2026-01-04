@@ -4,92 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Timothy Dunn</title>
-    <style>
-        /* PASTE THE FULL CSS FROM THE INDEX.HTML HERE */
-        /* ... styles ... */
-        
-        /* Ensure there is top padding so content doesn't hide behind nav */
-        body { padding-top: 0; }
-        
-        /* COPY ALL CSS FROM INDEX.HTML AND PUT IT HERE */
-         :root { --bg-primary: #f0fdfa; --bg-secondary: #ffffff; --text-primary: #134e4a; --text-secondary: #4b6a66; --accent-primary: #0d9488; --accent-glow: rgba(13, 148, 136, 0.25); --accent-comp: #f97316; --card-bg: rgba(255, 255, 255, 0.9); --card-border: rgba(13, 148, 136, 0.15); --nav-bg: rgba(240, 253, 250, 0.95); } [data-theme="dark"] { --bg-primary: #111827; --bg-secondary: #1f2937; --text-primary: #f0fdfa; --text-secondary: #9ca3af; --accent-primary: #2dd4bf; --accent-glow: rgba(45, 212, 191, 0.2); --accent-comp: #fb923c; --card-bg: rgba(31, 41, 55, 0.7); --card-border: rgba(45, 212, 191, 0.15); --nav-bg: rgba(17, 24, 39, 0.95); } * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; } html { scroll-behavior: smooth; } body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; } .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center; color: var(--accent-primary); letter-spacing: -0.02em; text-transform: uppercase; } .btn { display: inline-block; padding: 0.8rem 1.5rem; background-color: var(--accent-primary); color: #111827; text-decoration: none; border-radius: 4px; font-weight: 700; border: 1px solid transparent; transition: all 0.2s ease; } [data-theme="dark"] .btn { color: #000; } [data-theme="light"] .btn { color: #fff; } .btn:hover { transform: translateY(-2px); background-color: var(--accent-comp); color: #fff; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); } nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 2px solid var(--card-border); padding: 1rem 0; } .nav-container { display: flex; justify-content: space-between; align-items: center; } .logo { font-size: 1.5rem; font-weight: 900; color: var(--text-primary); text-decoration: none; letter-spacing: -0.05em; display: flex; align-items: center; gap: 5px; } .logo span { color: var(--accent-primary); } .logo-dot { height: 8px; width: 8px; background-color: var(--accent-comp); border-radius: 50%; display: inline-block; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; } .nav-links a:hover { color: var(--accent-primary); } .theme-toggle { background: none; border: 1px solid var(--card-border); cursor: pointer; color: var(--accent-primary); font-size: 1.2rem; padding: 0.5rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; } .theme-toggle:hover { background-color: var(--accent-glow); border-color: var(--accent-primary); } .hero { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; } .hero::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%); z-index: -1; pointer-events: none; } .hero-content h1 { font-size: 4.5rem; font-weight: 900; margin-bottom: 0.5rem; line-height: 1.1; color: var(--text-primary); } .hero-content h2 { font-size: 1.5rem; color: var(--accent-primary); margin-bottom: 2rem; font-weight: 600; } .profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-primary); outline: 4px solid var(--accent-primary); margin-bottom: 2rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); } .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; } .card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; border-radius: 8px; position: relative; overflow: hidden; } .card::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--accent-primary); transition: background-color 0.3s; } .card:hover::after { background-color: var(--accent-comp); } .card:hover { border-color: var(--accent-comp); transform: translateY(-5px); } .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; } .card p, .card li { color: var(--text-secondary); font-size: 1rem; } .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; } .skill-tag { background: var(--bg-secondary); border: 1px solid var(--card-border); color: var(--text-primary); padding: 1.5rem; min-width: 140px; border-radius: 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; transition: all 0.3s; } .skill-tag span { font-weight: 700; font-size: 1.1rem; } .skill-tag small { color: var(--accent-primary); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; } .skill-tag:hover { border-color: var(--accent-primary); box-shadow: 0 5px 15px var(--accent-glow); transform: translateY(-3px); } .timeline-item { position: relative; padding-left: 2.5rem; margin-bottom: 2.5rem; border-left: 2px solid var(--card-border); } .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--accent-comp); transform: rotate(45deg); } .timeline-date { font-size: 0.85rem; color: var(--accent-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; } .contact-methods { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; } .contact-btn { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem; background: var(--bg-secondary); border: 1px solid var(--card-border); color: var(--text-primary); text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.2s; } .contact-btn svg { color: var(--accent-primary); } .contact-btn:hover { border-color: var(--accent-comp); color: var(--accent-comp); } .contact-btn:hover svg { color: var(--accent-comp); } footer { text-align: center; padding: 4rem 0; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--card-border); margin-top: 6rem; background-color: var(--bg-secondary); } .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); } .reveal.active { opacity: 1; transform: translateY(0); } @media (max-width: 768px) { .hero-content h1 { font-size: 3rem; } .nav-links { display: none; } }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <nav>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">TD<div class="logo-dot"></div><span>Dev</span></a>
-            <ul class="nav-links">
-                <li><a href="about.html" style="color:var(--accent-primary)">About</a></li>
-                <li><a href="stack.html">Stack</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
-        </div>
-    </nav>
-
-    <main style="min-height: 60vh; padding-top: 4rem;">
+    <main class="page-content">
         <section class="container reveal active">
-            <h2 class="section-title">About Me</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>The Developer</h3>
-                    <p>I am a self-taught game developer based in Auckland, New Zealand. I love Game Development because it allows me the freedom to create anything I want by combining my artistic creativity, programming aptitude, and imagination.</p>
-                    <br>
-                    <p>I've worked on 15+ projects alone and with others in: 2D, 3D, Puzzle, Platformer, FPS, RTS, and many more.</p>
-                </div>
-                <div class="card">
-                    <h3>The Journey</h3>
-                    <p>My journey began in high school with HTML and CSS. I later delved into Android Studio and Java/Kotlin to build apps for NGOs.</p>
-                    <br>
-                    <p>Fascinated by creating applications, I transitioned into Unity Game Development, learning 3D modeling and C# to bring my own characters and worlds to life.</p>
-                </div>
-            </div>
-        </section>
+             </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Timothy Dunn Game Development. All rights reserved.</p>
-    </footer>
-
-    <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.querySelector('.sun-icon');
-        const moonIcon = document.querySelector('.moon-icon');
-        const html = document.documentElement;
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', savedTheme);
-        updateIcons(savedTheme);
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcons(newTheme);
-        });
-        function updateIcons(theme) {
-            if (theme === 'dark') {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            } else {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            }
-        }
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                // Modified for static pages to ensure visibility
-                reveals[i].classList.add("active");
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
-    </script>
-</body>
+    </body>
 </html>

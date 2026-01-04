@@ -126,6 +126,17 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
+        // --- TRANSFORM VERTICAL SCROLL TO HORIZONTAL ---
+        const scrollContainer = document.querySelector(".scroll-container");
+
+        scrollContainer.addEventListener("wheel", (evt) => {
+            // 1. Stop the page from scrolling down
+            evt.preventDefault();
+            
+            // 2. Move the container sideways by the amount you scrolled vertically
+            // Increase the multiplier (* 2 or * 3) if you want it to scroll faster
+            scrollContainer.scrollLeft += evt.deltaY;
+        });
     </script>
 </body>
 </html>

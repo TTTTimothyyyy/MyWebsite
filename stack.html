@@ -182,11 +182,15 @@
             }
         });
 
+        JavaScript
+
         // 4. Horizontal Mouse Wheel
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            // Scroll faster (x2 speed)
-            container.scrollLeft += evt.deltaY * 2;
+            
+            // CHANGED: Multiplier is now 0.2 (was 2)
+            // This moves the scrollbar 10x less per "click" of the wheel
+            container.scrollLeft += evt.deltaY * 0.2;
         });
     </script>
 </body>

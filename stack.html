@@ -74,6 +74,13 @@
                         <p>IDE Mastery</p>
                         <small>Debugging, Extensions, Intellisense</small>
                     </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🖌️</div>
+                        <h3>Adobe Ps/Ai</h3>
+                        <p>Game Sprites</p>
+                        <small>UI Design, Texture Atlases</small>
+                    </div>
                     
                     <div class="skill-card-large achievement">
                         <div class="card-icon">🏆</div>
@@ -85,7 +92,7 @@
                 </div>
             </div>
             
-            </section>
+        </section>
     </main>
 
     <footer>
@@ -93,7 +100,7 @@
     </footer>
 
     <script>
-        // --- THEME & REVEAL LOGIC (Keep existing) ---
+        // --- EXISTING THEME & REVEAL LOGIC ---
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
@@ -134,13 +141,12 @@
         const wrapper = document.getElementById('scrollWrapper');
         
         // 1. Clone items for infinite loop illusion
-        // We clone the entire set and append it to the end, and prepend it to the start
         const cards = Array.from(wrapper.children);
         
         // Clone for end
         cards.forEach(card => {
             const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true'); // Accessibility
+            clone.setAttribute('aria-hidden', 'true');
             wrapper.appendChild(clone);
         });
         
@@ -151,11 +157,8 @@
             wrapper.prepend(clone);
         });
 
-        // 2. Set initial scroll position to the middle (where the "real" cards are)
-        const singleSetWidth = cards.length * (300 + 32); // Card max-width (300) + gap (32px/2rem) roughly
-        // Better way: calculate actual width after render
+        // 2. Set initial scroll position to the middle
         window.onload = () => {
-             // Scroll to the middle set of cards
              const scrollWidth = wrapper.scrollWidth;
              container.scrollLeft = scrollWidth / 3;
         };
@@ -180,7 +183,5 @@
             container.scrollLeft += evt.deltaY;
         });
     </script>
-</body>
-</html>
 </body>
 </html>

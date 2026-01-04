@@ -28,68 +28,57 @@
     <main class="page-content">
         <section class="container reveal active">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Skills & Achievements</p>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Select a card to view detailed achievements</p>
             
             <div class="infinite-scroll-container" id="scrollContainer">
                 <div class="scrolling-wrapper" id="scrollWrapper">
                     
-                    <div class="skill-card-large">
+                    <div class="skill-card-large" data-key="unity">
                         <div class="card-icon">🎮</div>
                         <h3>Unity Engine</h3>
-                        <p>15+ Projects Completed</p>
+                        <p>15+ Projects</p>
                         <small>Advanced Physics, ECS, Level Design</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Projects</div>
                     </div>
 
-                    <div class="skill-card-large">
+                    <div class="skill-card-large" data-key="csharp">
                         <div class="card-icon">💻</div>
                         <h3>C# Scripting</h3>
-                        <p>5+ Years Experience</p>
+                        <p>5+ Years Exp</p>
                         <small>OOP, Design Patterns, Memory Management</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Code</div>
                     </div>
 
-                    <div class="skill-card-large">
+                    <div class="skill-card-large" data-key="blender">
                         <div class="card-icon">🎨</div>
                         <h3>Blender</h3>
                         <p>3D Asset Creation</p>
                         <small>Modeling, UV Mapping, Rigging</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Art</div>
                     </div>
 
-                    <div class="skill-card-large">
+                    <div class="skill-card-large" data-key="version">
                         <div class="card-icon">🔄</div>
-                        <h3>Plastic SCM</h3>
-                        <p>Version Control</p>
+                        <h3>Version Control</h3>
+                        <p>Plastic SCM / Git</p>
                         <small>Branching, Merging, Conflict Resolution</small>
-                    </div>
-
-                    <div class="skill-card-large">
-                        <div class="card-icon">🐙</div>
-                        <h3>GitHub</h3>
-                        <p>Repo Management</p>
-                        <small>Actions, Pull Requests, Documentation</small>
-                    </div>
-
-                    <div class="skill-card-large">
-                        <div class="card-icon">🛠️</div>
-                        <h3>VS Code</h3>
-                        <p>IDE Mastery</p>
-                        <small>Debugging, Extensions, Intellisense</small>
-                    </div>
-
-                    <div class="skill-card-large">
-                        <div class="card-icon">🖌️</div>
-                        <h3>Adobe Ps/Ai</h3>
-                        <p>Game Sprites</p>
-                        <small>UI Design, Texture Atlases</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Workflow</div>
                     </div>
                     
-                    <div class="skill-card-large achievement">
+                    <div class="skill-card-large achievement" data-key="cert">
                         <div class="card-icon">🏆</div>
                         <h3>Unity Certified</h3>
                         <p>Associate Programmer</p>
                         <small>Verified Achievement</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Cert</div>
                     </div>
 
                 </div>
+            </div>
+
+            <div id="detailsArea" class="details-display-area">
+                <div id="dynamicContent" class="detail-content">
+                    </div>
             </div>
             
         </section>
@@ -100,7 +89,97 @@
     </footer>
 
     <script>
-        // --- EXISTING THEME & REVEAL LOGIC ---
+        // --- 1. DATA LIBRARY (The content for your cards) ---
+        const contentLibrary = {
+            'unity': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Project Showcase</h3>
+                <p>I have utilized Unity for over 5 years to build immersive worlds. Here are select highlights:</p>
+                <div class="project-grid">
+                    <div>
+                        <div class="project-thumbnail">🚀</div>
+                        <h4 style="margin-top:1rem;">Space Shooter</h4>
+                        <p style="font-size:0.9rem;">Bullet hell mechanics with object pooling.</p>
+                    </div>
+                    <div>
+                        <div class="project-thumbnail">⚔️</div>
+                        <h4 style="margin-top:1rem;">RPG System</h4>
+                        <p style="font-size:0.9rem;">Inventory and quest systems built from scratch.</p>
+                    </div>
+                    <div>
+                        <div class="project-thumbnail">🏎️</div>
+                        <h4 style="margin-top:1rem;">Kart Racer</h4>
+                        <p style="font-size:0.9rem;">Arcade physics and multiplayer networking.</p>
+                    </div>
+                </div>
+            `,
+            'csharp': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">C# Architecture</h3>
+                <p>Clean code is my priority. I specialize in:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>Design Patterns:</strong> Singletons, Observers, and Factory patterns.</li>
+                    <li><strong>Optimization:</strong> Garbage Collection reduction and memory profiling.</li>
+                    <li><strong>Tools:</strong> Custom Editor scripting to speed up level design.</li>
+                </ul>
+            `,
+            'blender': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">3D Art & Assets</h3>
+                <p>From low-poly aesthetic to realistic props. Check out my art station links below.</p>
+                <div class="project-grid">
+                    <div>
+                        <div class="project-thumbnail">🏰</div>
+                        <h4 style="margin-top:1rem;">Environment Art</h4>
+                    </div>
+                    <div>
+                        <div class="project-thumbnail">🤖</div>
+                        <h4 style="margin-top:1rem;">Character Rigs</h4>
+                    </div>
+                </div>
+            `,
+            'version': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">DevOps & Workflow</h3>
+                <p>I manage complex branches using Plastic SCM for Unity and GitHub for web projects.</p>
+            `,
+            'cert': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Certified Associate</h3>
+                <p>Issued by Unity Technologies.</p>
+                <p>This certification validates my core proficiency in Unity, including Asset Management, Scripting, and Publishing.</p>
+            `
+        };
+
+        // --- 2. CLICK HANDLER LOGIC ---
+        const scrollWrapper = document.getElementById('scrollWrapper');
+        const detailsArea = document.getElementById('detailsArea');
+        const dynamicContent = document.getElementById('dynamicContent');
+
+        // Event Delegation (Handles clicks on Clones too!)
+        scrollWrapper.addEventListener('click', (e) => {
+            // Find the closest card element that was clicked
+            const card = e.target.closest('.skill-card-large');
+            
+            if (card) {
+                const key = card.getAttribute('data-key');
+                
+                // 1. Highlight the card (remove active from others)
+                document.querySelectorAll('.skill-card-large').forEach(c => c.classList.remove('selected-card'));
+                // Note: Since there are clones, we want to highlight ALL cards with this key
+                document.querySelectorAll(`.skill-card-large[data-key="${key}"]`).forEach(c => c.classList.add('selected-card'));
+
+                // 2. Load Content
+                if (contentLibrary[key]) {
+                    dynamicContent.innerHTML = contentLibrary[key];
+                    detailsArea.classList.add('open');
+                    
+                    // 3. Smooth Scroll to details
+                    setTimeout(() => {
+                        detailsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        });
+
+
+        // --- 3. EXISTING SETUP (Theme, Scroll, Etc) ---
+        // (Keep your existing Theme Toggle code here)
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
@@ -126,7 +205,7 @@
                 moonIcon.style.display = 'none';
             }
         }
-
+        
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -136,61 +215,40 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // --- INFINITE SCROLL LOGIC ---
+        // --- 4. INFINITE SCROLL LOGIC ---
         const container = document.getElementById('scrollContainer');
-        const wrapper = document.getElementById('scrollWrapper');
         
-        // 1. Clone items for infinite loop
-        // We check length to prevent double-cloning if script re-runs
-        if (wrapper.children.length > 0 && wrapper.children.length < 20) {
-            const cards = Array.from(wrapper.children);
-            
-            // Clone for End
+        // Clone items logic
+        if (scrollWrapper.children.length > 0 && scrollWrapper.children.length < 20) {
+            const cards = Array.from(scrollWrapper.children);
             cards.forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
-                wrapper.appendChild(clone);
+                scrollWrapper.appendChild(clone);
             });
-            
-            // Clone for Start
             cards.reverse().forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
-                wrapper.prepend(clone);
+                scrollWrapper.prepend(clone);
             });
         }
 
-        // 2. Set initial scroll position to the middle
         function centerScroll() {
-            // We use a timeout to ensure all images/styles are loaded
             setTimeout(() => {
-                const scrollWidth = wrapper.scrollWidth;
+                const scrollWidth = scrollWrapper.scrollWidth;
                 container.scrollLeft = scrollWidth / 3;
             }, 100);
         }
-        
         window.onload = centerScroll;
 
-        // 3. Teleport Logic (Infinite Loop)
         container.addEventListener('scroll', () => {
             const maxScrollLeft = container.scrollWidth - container.clientWidth;
-            
-            // If scrolled to the very end (right), snap back to middle
-            if (container.scrollLeft >= maxScrollLeft - 50) { 
-                container.scrollLeft = container.scrollWidth / 3;
-            } 
-            // If scrolled to the very start (left), snap forward to middle
-            else if (container.scrollLeft <= 50) {
-                container.scrollLeft = container.scrollWidth / 3;
-            }
+            if (container.scrollLeft >= maxScrollLeft - 50) container.scrollLeft = container.scrollWidth / 3;
+            else if (container.scrollLeft <= 50) container.scrollLeft = container.scrollWidth / 3;
         });
 
-        // 4. Horizontal Mouse Wheel
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            
-            // UPDATED: Set to 0.5 (Half speed). 
-            // 0.2 was likely too small for your mouse to register a pixel change.
             container.scrollLeft += evt.deltaY * 0.5;
         });
     </script>

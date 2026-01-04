@@ -407,24 +407,134 @@ footer {
     transform: translateY(0);
 }
 
-/* --- HORIZONTAL SCROLL SKILLS (UPDATED) --- */
+/* --- HORIZONTAL SCROLL SKILLS (Yu-Gi-Oh Style) --- */
 .infinite-scroll-container {
     width: 100%;
-    overflow-x: auto; /* Force horizontal scrollbar to appear */
+    overflow-x: auto;
     overflow-y: hidden;
     padding: 2rem 0;
-    
-    /* Custom Scrollbar Properties */
-    scrollbar-width: auto; /* Ensure scrollbar shows in Firefox */
+    scrollbar-width: auto;
     scrollbar-color: var(--accent-primary) var(--bg-primary);
-    
-    /* Smooth Mouse Wheel feel */
-    scroll-behavior: auto; /* MUST be auto for JS logic to work smoothly */
+    scroll-behavior: auto;
     cursor: grab;
-    
-    /* Optional: Fade edges */
+    /* Fade mask */
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2.5rem; /* More breathing room */
+    padding: 0 4rem; /* Start scrolling a bit inward */
+    width: max-content;
+    margin: 0 auto;
+}
+
+.skill-card-large {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border); /* Thicker border */
+    border-radius: 12px;
+    padding: 2rem;
+    
+    /* Yu-Gi-Oh / Tarot Card Proportions */
+    min-width: 320px; 
+    max-width: 320px;
+    height: 500px; /* Taller Portrait Height */
+    
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content to top */
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+}
+
+/* Inner "Frame" styling for that card game look */
+.skill-card-large::after {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.skill-card-large:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border-color: var(--accent-primary);
+    z-index: 10; /* Bring to front */
+}
+
+/* Active State (When clicked) */
+.skill-card-large.selected-card {
+    border-color: var(--accent-comp);
+    box-shadow: 0 0 20px var(--accent-comp);
+    transform: translateY(-15px);
+}
+
+.card-icon {
+    font-size: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background: var(--bg-primary);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--card-border);
+    z-index: 1;
+}
+
+/* --- DETAIL SECTION ( The Area Below) --- */
+.details-display-area {
+    width: 100%;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+    min-height: 0;
+    height: 0; /* Hidden by default */
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    border-top: 1px solid var(--card-border);
+}
+
+.details-display-area.open {
+    height: auto;
+    min-height: 400px;
+    opacity: 1;
+    padding-top: 3rem;
+}
+
+.detail-content {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 3rem;
+    border-radius: 12px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.project-thumbnail {
+    background: var(--bg-primary);
+    height: 150px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--card-border);
 }
 
 /* Webkit Scrollbar Styling (Chrome, Edge, Safari) */

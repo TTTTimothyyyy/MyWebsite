@@ -407,25 +407,54 @@ footer {
     transform: translateY(0);
 }
 
-/* --- HORIZONTAL SCROLL SKILLS --- */
-.scroll-container {
+/* --- HORIZONTAL SCROLL SKILLS (UPDATED) --- */
+.infinite-scroll-container {
     width: 100%;
-    overflow-x: auto;
-    /* Hide scrollbar for cleaner look (optional) */
-    scrollbar-width: thin; 
-    padding: 1rem 0 2rem 0; /* Space for shadow/hover effects */
-    /* Add a fading mask on edges to indicate scrollability */
+    overflow-x: auto; /* Force horizontal scrollbar to appear */
+    overflow-y: hidden;
+    padding: 2rem 0;
+    
+    /* Custom Scrollbar Properties */
+    scrollbar-width: auto; /* Ensure scrollbar shows in Firefox */
+    scrollbar-color: var(--accent-primary) var(--bg-primary);
+    
+    /* Smooth Mouse Wheel feel */
+    scroll-behavior: auto; /* MUST be auto for JS logic to work smoothly */
+    cursor: grab;
+    
+    /* Optional: Fade edges */
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 
+/* Webkit Scrollbar Styling (Chrome, Edge, Safari) */
+.infinite-scroll-container::-webkit-scrollbar {
+    height: 12px;
+}
+.infinite-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+}
+.infinite-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: 6px;
+    border: 2px solid var(--bg-secondary); /* Padding around thumb */
+}
+.infinite-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-primary);
+}
+
+.infinite-scroll-container:active {
+    cursor: grabbing;
+}
+
 .scrolling-wrapper {
     display: flex;
-    flex-wrap: nowrap; /* Forces horizontal layout */
+    flex-wrap: nowrap;
     gap: 2rem;
-    padding: 0 2rem; /* Initial padding inside scroll area */
-    width: max-content; /* Ensures div grows with content */
-    margin: 0 auto; /* Centers if content is small, allows scroll if large */
+    padding: 0 2rem;
+    width: max-content; /* Ensure container is wide enough */
+    margin: 0 auto;
 }
 
 .skill-card-large {
@@ -433,7 +462,7 @@ footer {
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 2.5rem;
-    min-width: 280px;  /* Make them much wider */
+    min-width: 280px; 
     max-width: 300px;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -443,6 +472,7 @@ footer {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0; /* Prevent squishing */
 }
 
 /* Decorative top bar for cards */
@@ -459,7 +489,7 @@ footer {
 }
 
 .skill-card-large:hover::before {
-    height: 100%; /* Fills background on hover */
+    height: 100%;
     opacity: 0.1;
 }
 
@@ -506,7 +536,7 @@ footer {
     z-index: 1;
 }
 
-/* Specific Style for Achievement Cards (Gold Border) */
+/* Specific Style for Achievement Cards */
 .skill-card-large.achievement {
     border-color: #ffd700;
 }
@@ -516,20 +546,4 @@ footer {
 }
 .skill-card-large.achievement::before {
     background: #ffd700;
-}
-
-/* Scrollbar Styling */
-.scroll-container::-webkit-scrollbar {
-    height: 8px;
-}
-.scroll-container::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 4px;
-}
-.scroll-container::-webkit-scrollbar-thumb {
-    background: var(--card-border);
-    border-radius: 4px;
-}
-.scroll-container::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
 }

@@ -141,38 +141,43 @@
         const wrapper = document.getElementById('scrollWrapper');
         
         // 1. Clone items for infinite loop illusion
-        const cards = Array.from(wrapper.children);
-        
-        // Clone for end
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            wrapper.appendChild(clone);
-        });
-        
-        // Clone for start (prepended)
-        cards.reverse().forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            wrapper.prepend(clone);
-        });
+        if (wrapper.children.length > 0) {
+            const cards = Array.from(wrapper.children);
+            
+            // Clone for end (append)
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                wrapper.appendChild(clone);
+            });
+            
+            // Clone for start (prepend)
+            cards.reverse().forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                wrapper.prepend(clone);
+            });
+        }
 
         // 2. Set initial scroll position to the middle
-        window.onload = () => {
-             const scrollWidth = wrapper.scrollWidth;
-             container.scrollLeft = scrollWidth / 3;
-        };
+        function centerScroll() {
+            const scrollWidth = wrapper.scrollWidth;
+            container.scrollLeft = scrollWidth / 3;
+        }
+        
+        // Wait for images/layout to be ready before centering
+        window.onload = centerScroll;
 
-        // 3. Infinite Scroll Check Logic
+        // 3. Infinite Scroll Check Logic (Teleportation)
         container.addEventListener('scroll', () => {
             const maxScrollLeft = container.scrollWidth - container.clientWidth;
             
             // If scrolled to the very end (right), snap back to middle
-            if (container.scrollLeft >= maxScrollLeft - 10) {
+            if (container.scrollLeft >= maxScrollLeft - 50) { 
                 container.scrollLeft = container.scrollWidth / 3;
             } 
             // If scrolled to the very start (left), snap forward to middle
-            else if (container.scrollLeft <= 0) {
+            else if (container.scrollLeft <= 50) {
                 container.scrollLeft = container.scrollWidth / 3;
             }
         });
@@ -180,7 +185,8 @@
         // 4. Horizontal Mouse Wheel
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            container.scrollLeft += evt.deltaY;
+            // Scroll faster (x2 speed)
+            container.scrollLeft += evt.deltaY * 2;
         });
     </script>
 </body>

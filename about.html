@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
     <nav>
         <div class="container nav-container">
             <div class="logo">TD<div class="logo-dot"></div><span>Dev</span></div>
@@ -26,11 +26,63 @@
             </button>
         </div>
     </nav>
-    
+
     <main class="page-content">
         <section class="container reveal active">
-             </section>
+            <h2 class="section-title">About Me</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>The Developer</h3>
+                    <p>I am a self-taught game developer based in Auckland, New Zealand. I love Game Development because it allows me the freedom to create anything I want by combining my artistic creativity, programming aptitude, and imagination.</p>
+                    <br>
+                    <p>I've worked on 15+ projects alone and with others in: 2D, 3D, Puzzle, Platformer, FPS, RTS, and many more.</p>
+                </div>
+                <div class="card">
+                    <h3>The Journey</h3>
+                    <p>My journey began in high school with HTML and CSS. I later delved into Android Studio and Java/Kotlin to build apps for NGOs.</p>
+                    <br>
+                    <p>Fascinated by creating applications, I transitioned into Unity Game Development, learning 3D modeling and C# to bring my own characters and worlds to life.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    </body>
+    <footer>
+        <p>&copy; 2025 Timothy Dunn Game Development. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        });
+        function updateIcons(theme) {
+            if (theme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
 </html>

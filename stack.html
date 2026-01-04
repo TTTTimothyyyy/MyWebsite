@@ -1,4 +1,105 @@
-<script>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack | Timothy Dunn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">TD<div class="logo-dot"></div><span>Dev</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="stack.html" class="active">Stack</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="container reveal active">
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Skills & Achievements</p>
+            
+            <div class="infinite-scroll-container" id="scrollContainer">
+                <div class="scrolling-wrapper" id="scrollWrapper">
+                    
+                    <div class="skill-card-large">
+                        <div class="card-icon">🎮</div>
+                        <h3>Unity Engine</h3>
+                        <p>15+ Projects Completed</p>
+                        <small>Advanced Physics, ECS, Level Design</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">💻</div>
+                        <h3>C# Scripting</h3>
+                        <p>5+ Years Experience</p>
+                        <small>OOP, Design Patterns, Memory Management</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🎨</div>
+                        <h3>Blender</h3>
+                        <p>3D Asset Creation</p>
+                        <small>Modeling, UV Mapping, Rigging</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🔄</div>
+                        <h3>Plastic SCM</h3>
+                        <p>Version Control</p>
+                        <small>Branching, Merging, Conflict Resolution</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>Repo Management</p>
+                        <small>Actions, Pull Requests, Documentation</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🛠️</div>
+                        <h3>VS Code</h3>
+                        <p>IDE Mastery</p>
+                        <small>Debugging, Extensions, Intellisense</small>
+                    </div>
+
+                    <div class="skill-card-large">
+                        <div class="card-icon">🖌️</div>
+                        <h3>Adobe Ps/Ai</h3>
+                        <p>Game Sprites</p>
+                        <small>UI Design, Texture Atlases</small>
+                    </div>
+                    
+                    <div class="skill-card-large achievement">
+                        <div class="card-icon">🏆</div>
+                        <h3>Unity Certified</h3>
+                        <p>Associate Programmer</p>
+                        <small>Verified Achievement</small>
+                    </div>
+
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Timothy Dunn Game Development. All rights reserved.</p>
+    </footer>
+
+    <script>
         // --- EXISTING THEME & REVEAL LOGIC ---
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
@@ -93,3 +194,5 @@
             container.scrollLeft += evt.deltaY * 0.5;
         });
     </script>
+</body>
+</html>

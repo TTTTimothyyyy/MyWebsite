@@ -12,9 +12,7 @@
         <div class="container nav-container">
             <div class="logo">TD<div class="logo-dot"></div><span>Dev</span></div>
             
-            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">☰</button>
-
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="stack.html">Stack</a></li>
@@ -37,7 +35,7 @@
             <p style="max-width: 600px; margin: 0 auto 2.5rem; color: var(--text-secondary); font-size: 1.1rem;">
                 I combine artistic creativity with clean programming to craft unique gaming worlds.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <div style="display: flex; gap: 1rem; justify-content: center;">
                 <a href="contact.html" class="btn">Get In Touch</a>
                 <a href="https://github.com/TTTTimothyyyy" target="_blank" class="btn" style="background: transparent; color: var(--text-primary); border: 1px solid var(--text-primary);">GitHub</a>
             </div>
@@ -49,7 +47,6 @@
     </footer>
 
     <script>
-        // Theme Logic
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
@@ -57,7 +54,6 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         html.setAttribute('data-theme', savedTheme);
         updateIcons(savedTheme);
-
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -65,7 +61,6 @@
             localStorage.setItem('theme', newTheme);
             updateIcons(newTheme);
         });
-
         function updateIcons(theme) {
             if (theme === 'dark') {
                 sunIcon.style.display = 'none';
@@ -75,20 +70,14 @@
                 moonIcon.style.display = 'none';
             }
         }
-
-        // Mobile Menu Logic
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-
-        // Reveal Logic
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
-                reveals[i].classList.add("active");
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
         window.addEventListener("scroll", reveal);

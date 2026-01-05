@@ -413,12 +413,21 @@ footer {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 2rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--accent-primary) var(--bg-primary);
+    
+    /* HIDE SCROLLBAR - Firefox */
+    scrollbar-width: none; 
+    /* HIDE SCROLLBAR - IE/Edge */
+    -ms-overflow-style: none; 
+    
     scroll-behavior: auto;
     cursor: grab;
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+/* HIDE SCROLLBAR - Chrome/Safari/Webkit */
+.infinite-scroll-container::-webkit-scrollbar {
+    display: none;
 }
 
 .scrolling-wrapper {
@@ -500,23 +509,6 @@ footer {
 }
 .skill-card-large.achievement::before {
     background: #ffd700;
-}
-
-/* Scrollbar Styling */
-.infinite-scroll-container::-webkit-scrollbar {
-    height: 12px;
-}
-.infinite-scroll-container::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 6px;
-}
-.infinite-scroll-container::-webkit-scrollbar-thumb {
-    background-color: var(--card-border);
-    border-radius: 6px;
-    border: 2px solid var(--bg-secondary);
-}
-.infinite-scroll-container::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-primary);
 }
 
 .infinite-scroll-container:active {

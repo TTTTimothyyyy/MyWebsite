@@ -52,7 +52,6 @@ body {
     padding: 0 2rem;
 }
 
-/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
@@ -91,7 +90,7 @@ body {
     box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
-/* --- NAVIGATION (UPDATED) --- */
+/* --- NAVIGATION --- */
 nav {
     position: sticky;
     top: 0;
@@ -99,7 +98,7 @@ nav {
     background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--card-border);
-    padding: 1rem 0; /* Control vertical height of nav here */
+    padding: 1rem 0;
 }
 
 .nav-container {
@@ -108,17 +107,16 @@ nav {
     align-items: center;
 }
 
-/* Logo - Brand Mark (Not clickable) */
 .logo {
-    font-size: 1.5rem; /* Logo Size */
+    font-size: 1.5rem;
     font-weight: 900;
     color: var(--text-primary);
     letter-spacing: -0.05em;
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: default; /* Shows regular mouse pointer */
-    user-select: none; /* Prevents text highlighting */
+    cursor: default;
+    user-select: none;
 }
 
 .logo span { color: var(--accent-primary); }
@@ -132,7 +130,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2.5rem; /* Control spacing between menu items here */
+    gap: 2.5rem;
     list-style: none;
 }
 
@@ -140,23 +138,16 @@ nav {
     text-decoration: none;
     color: var(--text-secondary);
     font-weight: 600;
-    font-size: 1rem; /* Control text size of menu items here */
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     position: relative;
 }
 
-/* Hover Effect */
-.nav-links a:hover {
+.nav-links a:hover, .nav-links a.active {
     color: var(--accent-primary);
 }
 
-/* The Active Link (Current Page) */
-.nav-links a.active {
-    color: var(--accent-primary);
-}
-
-/* Optional: Add a small line under the active link */
 .nav-links a.active::after {
     content: '';
     position: absolute;
@@ -237,7 +228,7 @@ nav {
     box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
 }
 
-/* --- CARDS & GRID --- */
+/* --- CARDS & GRID (Standard) --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -283,7 +274,7 @@ nav {
     font-size: 1rem;
 }
 
-/* --- SKILLS --- */
+/* --- SKILLS GRID (Small Tags) --- */
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -407,7 +398,11 @@ footer {
     transform: translateY(0);
 }
 
-/* --- HORIZONTAL SCROLL SKILLS (Yu-Gi-Oh Style) --- */
+/* ========================================= */
+/* STACK PAGE SPECIFIC STYLES          */
+/* ========================================= */
+
+/* --- INFINITE SCROLL CONTAINER --- */
 .infinite-scroll-container {
     width: 100%;
     overflow-x: auto;
@@ -425,36 +420,34 @@ footer {
 .scrolling-wrapper {
     display: flex;
     flex-wrap: nowrap;
-    gap: 2.5rem; /* More breathing room */
-    padding: 0 4rem; /* Start scrolling a bit inward */
+    gap: 2.5rem;
+    padding: 0 4rem;
     width: max-content;
     margin: 0 auto;
 }
 
+/* LARGE PORTRAIT CARDS (Yu-Gi-Oh Style) */
 .skill-card-large {
     background: var(--card-bg);
-    border: 2px solid var(--card-border); /* Thicker border */
+    border: 2px solid var(--card-border);
     border-radius: 12px;
     padding: 2rem;
-    
-    /* Yu-Gi-Oh / Tarot Card Proportions */
     min-width: 320px; 
     max-width: 320px;
-    height: 500px; /* Taller Portrait Height */
-    
+    height: 500px; /* Tall Height */
     text-align: center;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Align content to top */
+    justify-content: flex-start;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
-    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+    cursor: pointer;
 }
 
-/* Inner "Frame" styling for that card game look */
+/* Inner Frame Effect */
 .skill-card-large::after {
     content: '';
     position: absolute;
@@ -468,10 +461,10 @@ footer {
     transform: translateY(-15px) scale(1.02);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     border-color: var(--accent-primary);
-    z-index: 10; /* Bring to front */
+    z-index: 10;
 }
 
-/* Active State (When clicked) */
+/* Active/Selected State */
 .skill-card-large.selected-card {
     border-color: var(--accent-comp);
     box-shadow: 0 0 20px var(--accent-comp);
@@ -493,7 +486,40 @@ footer {
     z-index: 1;
 }
 
-/* --- DETAIL SECTION ( The Area Below) --- */
+/* Gold Achievement Card */
+.skill-card-large.achievement {
+    border-color: #ffd700;
+}
+.skill-card-large.achievement .card-icon {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+.skill-card-large.achievement::before {
+    background: #ffd700;
+}
+
+/* Scrollbar Styling */
+.infinite-scroll-container::-webkit-scrollbar {
+    height: 12px;
+}
+.infinite-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+}
+.infinite-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: 6px;
+    border: 2px solid var(--bg-secondary);
+}
+.infinite-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-primary);
+}
+
+.infinite-scroll-container:active {
+    cursor: grabbing;
+}
+
+/* --- DETAIL SECTION (Hidden Area) --- */
 .details-display-area {
     width: 100%;
     max-width: 1000px;
@@ -535,183 +561,84 @@ footer {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--card-border);
+    font-size: 3rem;
 }
 
-/* Webkit Scrollbar Styling (Chrome, Edge, Safari) */
-.infinite-scroll-container::-webkit-scrollbar {
-    height: 12px;
-}
-.infinite-scroll-container::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 6px;
-}
-.infinite-scroll-container::-webkit-scrollbar-thumb {
-    background-color: var(--card-border);
-    border-radius: 6px;
-    border: 2px solid var(--bg-secondary); /* Padding around thumb */
-}
-.infinite-scroll-container::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-primary);
-}
-
-.infinite-scroll-container:active {
-    cursor: grabbing;
-}
-
-.scrolling-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 2rem;
-    padding: 0 2rem;
-    width: max-content; /* Ensure container is wide enough */
-    margin: 0 auto;
-}
-
-.skill-card-large {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 2.5rem;
-    min-width: 280px; 
-    max-width: 300px;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0; /* Prevent squishing */
-}
-
-/* Decorative top bar for cards */
-.skill-card-large::before {
-    content: '';
-    position: absolute;
-    top: 0;
+/* --- COMPACT MODE (Fixed Sub-Nav) --- */
+/* This class activates when the user scrolls past the cards */
+.infinite-scroll-container.compact {
+    position: fixed; /* Fix to top of screen */
+    top: 75px;       /* Sit right under main nav */
     left: 0;
     width: 100%;
-    height: 6px;
-    background: var(--accent-primary);
-    transition: height 0.3s ease;
-    z-index: 0;
-}
-
-.skill-card-large:hover::before {
-    height: 100%;
-    opacity: 0.1;
-}
-
-.skill-card-large:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    border-color: var(--accent-primary);
-}
-
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    background: var(--bg-primary);
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--card-border);
-    z-index: 1;
-}
-
-.skill-card-large h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    font-weight: 800;
-    z-index: 1;
-}
-
-.skill-card-large p {
-    color: var(--accent-primary);
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    z-index: 1;
-}
-
-.skill-card-large small {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    z-index: 1;
-}
-
-/* Specific Style for Achievement Cards */
-.skill-card-large.achievement {
-    border-color: #ffd700;
-}
-.skill-card-large.achievement .card-icon {
-    border-color: #ffd700;
-    background: rgba(255, 215, 0, 0.1);
-}
-.skill-card-large.achievement::before {
-    background: #ffd700;
-}
-
-/* --- COMPACT / STICKY MODE (The "Squashed" Sub-Nav) --- */
-
-/* When the container is stuck to the top */
-.infinite-scroll-container.compact {
-    position: sticky;
-    top: 75px; /* Adjusts to sit right under your main Navbar */
     z-index: 50;
-    background: rgba(17, 24, 39, 0.95); /* Dark background to cover content behind it */
+    
+    background: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--accent-primary);
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
+    
+    /* Animation settings */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Shrink the card height */
+/* The Placeholder (Holds the space when cards leave) */
+.scroll-placeholder {
+    display: none; /* Hidden by default */
+    width: 100%;
+    height: 600px; /* Matches the original height of cards + padding */
+}
+.scroll-placeholder.active {
+    display: block;
+}
+
+/* --- TRANSFORMATIONS FOR COMPACT MODE --- */
+.infinite-scroll-container.compact .scrolling-wrapper {
+    padding: 0 2rem;
+    gap: 1rem;
+}
+
+/* Shrink the card wrapper */
 .infinite-scroll-container.compact .skill-card-large {
-    height: 90px; /* Squashed Height */
-    min-width: 260px; /* Keep width mostly same to prevent scrolling glitches */
-    padding: 0 1.5rem; /* Reduce padding */
+    height: 70px; /* Small Toolbar Height */
+    min-width: 220px;
+    max-width: 220px;
+    padding: 0 1rem;
     flex-direction: row; /* Horizontal Layout */
     justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
     border-width: 1px;
+    border-radius: 6px;
 }
 
-/* Shrink the Icon */
+/* Shrink Icon */
 .infinite-scroll-container.compact .card-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
     margin: 0;
     border-width: 1px;
 }
 
-/* Adjust Title Text */
+/* Adjust Text */
 .infinite-scroll-container.compact h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0;
     text-align: left;
     white-space: nowrap;
 }
 
-/* Hide everything else */
+/* HIDE extra elements instantly */
 .infinite-scroll-container.compact p, 
 .infinite-scroll-container.compact small, 
-.infinite-scroll-container.compact .click-text,
+.infinite-scroll-container.compact div[style*="margin-top"],
 .infinite-scroll-container.compact .skill-card-large::after {
     display: none;
-    opacity: 0;
 }
 
-/* Ensure the scrollbar moves up slightly in compact mode */
+/* Hide Scrollbar in compact mode for cleaner look */
 .infinite-scroll-container.compact::-webkit-scrollbar {
-    height: 6px;
+    height: 4px;
 }

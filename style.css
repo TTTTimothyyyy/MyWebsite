@@ -529,14 +529,11 @@ footer {
     max-width: 1000px;
     margin: 4rem auto 0;
     min-height: 0;
-    height: 0; 
+    height: 0; /* Hidden by default */
     overflow: hidden;
     opacity: 0;
     transition: all 0.5s ease;
-    
-    /* REMOVED: border-top: 1px solid var(--card-border); */
-    border-top: none; /* Explicitly removing it */
-    
+    border-top: none; /* Removed the top border line */
     position: relative;
     z-index: 10;
 }
@@ -551,7 +548,7 @@ footer {
 /* --- NEW: SHIFT UP CLASS --- */
 /* Pulls details up to cover the empty placeholder space */
 .details-display-area.shifted-up {
-    margin-top: -490px; /* Reduced negative margin to increase gap */
+    margin-top: -490px; /* Gap adjustment */
     transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
 }
 

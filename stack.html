@@ -203,7 +203,9 @@
                     
                     // Smooth scroll to content
                     setTimeout(() => {
-                        const offset = trigger.offsetTop - 85; 
+                        // FIX: We scroll to 65px (below the 80px threshold)
+                        // This ensures the logic (65 <= 80) stays TRUE and the menu stays collapsed.
+                        const offset = trigger.offsetTop - 65; 
                         window.scrollTo({ top: offset, behavior: 'smooth' });
                     }, 100);
                 }

@@ -52,11 +52,11 @@ body {
     padding: 0 2rem;
 }
 
-/* Update this existing class */
+/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
-    padding-bottom: 80vh; /* NEW: Adds lots of scroll space at the bottom */
+    padding-bottom: 80vh; /* Adds lots of scroll space at the bottom */
 }
 
 .section-title {
@@ -109,6 +109,7 @@ nav {
     align-items: center;
 }
 
+/* Logo - Brand Mark (Not clickable) */
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
@@ -230,7 +231,7 @@ nav {
     box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
 }
 
-/* --- CARDS & GRID (Standard) --- */
+/* --- CARDS & GRID --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -276,7 +277,7 @@ nav {
     font-size: 1rem;
 }
 
-/* --- SKILLS GRID (Small Tags) --- */
+/* --- SKILLS --- */
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -414,7 +415,6 @@ footer {
     scrollbar-color: var(--accent-primary) var(--bg-primary);
     scroll-behavior: auto;
     cursor: grab;
-    /* Fade mask */
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
@@ -566,25 +566,28 @@ footer {
     font-size: 3rem;
 }
 
-/* --- COMPACT MODE (Fixed Sub-Nav) --- */
+/* --- COMPACT MODE (Centered Floating Sub-Nav) --- */
 .infinite-scroll-container.compact {
-    position: fixed; /* Freezes it to the screen */
+    position: fixed;
+    top: 80px; /* Position below the main nav */
+    left: 50%; /* Move to center of screen */
+    transform: translateX(-50%); /* Center alignment */
     
-    /* ALIGNMENT TWEAK: matches the height of your Main Nav */
-    top: 73px;       
-    left: 0;
-    width: 100%;
+    width: auto; /* Allow it to shrink to fit content */
+    max-width: 95%; /* Prevent touching edges on small screens */
+    z-index: 50;
     
-    /* Layering: 50 is below Main Nav (100) but above content (0) */
-    z-index: 50; 
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
     
-    background: rgba(17, 24, 39, 0.98); /* Slightly less transparent for better readability */
-    backdrop-filter: blur(15px);        /* heavy blur to separate from content scrolling behind */
-    border-bottom: 1px solid var(--accent-primary);
-    padding: 0.5rem 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    /* Module styling */
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Transition styles, not position */
+    transition: background-color 0.3s ease, border-color 0.3s ease, height 0.3s ease, padding 0.3s ease;
 }
 
 /* The Placeholder (Holds the space when cards leave) */
@@ -599,36 +602,38 @@ footer {
 
 /* --- TRANSFORMATIONS FOR COMPACT MODE --- */
 .infinite-scroll-container.compact .scrolling-wrapper {
-    padding: 0 2rem;
-    gap: 1rem;
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+    margin: 0; /* Remove margin as parent is centered */
 }
 
 /* Shrink the card wrapper */
 .infinite-scroll-container.compact .skill-card-large {
-    height: 70px; /* Small Toolbar Height */
-    min-width: 220px;
-    max-width: 220px;
-    padding: 0 1rem;
-    flex-direction: row; /* Horizontal Layout */
+    height: 60px;
+    min-width: 200px;
+    max-width: 200px;
+    padding: 0 0.8rem;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 0.8rem;
     border-width: 1px;
     border-radius: 6px;
+    background: transparent; /* Blend into the sub-nav bar */
 }
 
 /* Shrink Icon */
 .infinite-scroll-container.compact .card-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
     margin: 0;
     border-width: 1px;
 }
 
 /* Adjust Text */
 .infinite-scroll-container.compact h3 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin: 0;
     text-align: left;
     white-space: nowrap;
@@ -645,4 +650,5 @@ footer {
 /* Hide Scrollbar in compact mode for cleaner look */
 .infinite-scroll-container.compact::-webkit-scrollbar {
     height: 4px;
+    display: none; /* Hide scrollbar completely in sub-nav */
 }

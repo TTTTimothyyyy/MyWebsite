@@ -30,6 +30,10 @@
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Select a card to view detailed achievements</p>
             
+            <div id="scrollTrigger" style="height: 1px; width: 100%; margin-bottom: 10px;"></div>
+
+            <div id="cardPlaceholder" class="scroll-placeholder"></div>
+
             <div class="infinite-scroll-container" id="scrollContainer">
                 <div class="scrolling-wrapper" id="scrollWrapper">
                     
@@ -89,27 +93,15 @@
     </footer>
 
     <script>
-        // --- 1. CONTENT LIBRARY (The detailed HTML for each card) ---
+        // --- 1. CONTENT LIBRARY ---
         const contentLibrary = {
             'unity': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Project Showcase</h3>
                 <p>I have utilized Unity for over 5 years to build immersive worlds. Here are select highlights:</p>
                 <div class="project-grid">
-                    <div>
-                        <div class="project-thumbnail">🚀</div>
-                        <h4 style="margin-top:1rem;">Space Shooter</h4>
-                        <p style="font-size:0.9rem;">Bullet hell mechanics with object pooling.</p>
-                    </div>
-                    <div>
-                        <div class="project-thumbnail">⚔️</div>
-                        <h4 style="margin-top:1rem;">RPG System</h4>
-                        <p style="font-size:0.9rem;">Inventory and quest systems built from scratch.</p>
-                    </div>
-                    <div>
-                        <div class="project-thumbnail">🏎️</div>
-                        <h4 style="margin-top:1rem;">Kart Racer</h4>
-                        <p style="font-size:0.9rem;">Arcade physics and multiplayer networking.</p>
-                    </div>
+                    <div><div class="project-thumbnail">🚀</div><h4 style="margin-top:1rem;">Space Shooter</h4><p style="font-size:0.9rem;">Bullet hell mechanics with object pooling.</p></div>
+                    <div><div class="project-thumbnail">⚔️</div><h4 style="margin-top:1rem;">RPG System</h4><p style="font-size:0.9rem;">Inventory and quest systems built from scratch.</p></div>
+                    <div><div class="project-thumbnail">🏎️</div><h4 style="margin-top:1rem;">Kart Racer</h4><p style="font-size:0.9rem;">Arcade physics and multiplayer networking.</p></div>
                 </div>`,
             'csharp': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">C# Architecture</h3>
@@ -123,14 +115,8 @@
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">3D Art & Assets</h3>
                 <p>From low-poly aesthetic to realistic props. Check out my art station links below.</p>
                 <div class="project-grid">
-                    <div>
-                        <div class="project-thumbnail">🏰</div>
-                        <h4 style="margin-top:1rem;">Environment Art</h4>
-                    </div>
-                    <div>
-                        <div class="project-thumbnail">🤖</div>
-                        <h4 style="margin-top:1rem;">Character Rigs</h4>
-                    </div>
+                    <div><div class="project-thumbnail">🏰</div><h4 style="margin-top:1rem;">Environment Art</h4></div>
+                    <div><div class="project-thumbnail">🤖</div><h4 style="margin-top:1rem;">Character Rigs</h4></div>
                 </div>`,
             'version': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">DevOps & Workflow</h3>
@@ -146,18 +132,17 @@
         const scrollWrapper = document.getElementById('scrollWrapper');
         const detailsArea = document.getElementById('detailsArea');
         const dynamicContent = document.getElementById('dynamicContent');
+        const trigger = document.getElementById('scrollTrigger');
+        const placeholder = document.getElementById('cardPlaceholder');
         
         // --- 3. CLONE ITEMS (Infinite Loop Setup) ---
-        // Run only if we haven't cloned yet (check length)
         if (scrollWrapper.children.length > 0 && scrollWrapper.children.length < 20) {
             const cards = Array.from(scrollWrapper.children);
-            // Clone for end (append)
             cards.forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
                 scrollWrapper.appendChild(clone);
             });
-            // Clone for start (prepend)
             cards.reverse().forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
@@ -177,12 +162,9 @@
         // --- 5. INFINITE TELEPORTATION LOGIC ---
         container.addEventListener('scroll', () => {
             const maxScrollLeft = container.scrollWidth - container.clientWidth;
-            // If scrolled to the very end (right), snap back to middle
             if (container.scrollLeft >= maxScrollLeft - 50) {
                 container.scrollLeft = container.scrollWidth / 3;
-            } 
-            // If scrolled to the very start (left), snap forward to middle
-            else if (container.scrollLeft <= 50) {
+            } else if (container.scrollLeft <= 50) {
                 container.scrollLeft = container.scrollWidth / 3;
             }
         });
@@ -190,7 +172,7 @@
         // --- 6. MOUSE WHEEL LOGIC ---
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            container.scrollLeft += evt.deltaY * 0.5; // Smooth scroll multiplier
+            container.scrollLeft += evt.deltaY * 0.5;
         });
 
         // --- 7. CLICK HANDLER (Show Details) ---
@@ -199,39 +181,38 @@
             if (card) {
                 const key = card.getAttribute('data-key');
                 
-                // Highlight Selected Card (and its clones)
                 document.querySelectorAll('.skill-card-large').forEach(c => c.classList.remove('selected-card'));
                 document.querySelectorAll(`.skill-card-large[data-key="${key}"]`).forEach(c => c.classList.add('selected-card'));
 
-                // Load Content
                 if (contentLibrary[key]) {
                     dynamicContent.innerHTML = contentLibrary[key];
                     detailsArea.classList.add('open');
                     
                     // Smooth scroll to content
                     setTimeout(() => {
-                        // Calculate offset to trigger the "Compact Mode" immediately
-                        const offset = container.offsetTop - 80; // 80px buffer for nav
+                        const offset = trigger.offsetTop - 85; 
                         window.scrollTo({ top: offset, behavior: 'smooth' });
                     }, 100);
                 }
             }
         });
 
-        // --- 8. COMPACT MODE TRIGGER (The "Squash" Effect) ---
+        // --- 8. COMPACT MODE TRIGGER (Anti-Jitter) ---
         window.addEventListener('scroll', () => {
-            const rect = container.getBoundingClientRect();
-            const triggerPoint = 80; // Distance from top (approx Nav height)
+            const rect = trigger.getBoundingClientRect();
+            // Trigger when anchor hits the spot where the menu will sit (80px from top)
+            const triggerPoint = 80; 
 
-            // If the container hits the top of the screen (under nav), make it compact
             if (rect.top <= triggerPoint) {
                 container.classList.add('compact');
+                placeholder.classList.add('active'); // Fill empty space
             } else {
                 container.classList.remove('compact');
+                placeholder.classList.remove('active'); // Remove filler
             }
         });
 
-        // --- 9. THEME & REVEAL LOGIC (Standard Site Code) ---
+        // --- 9. THEME LOGIC ---
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');

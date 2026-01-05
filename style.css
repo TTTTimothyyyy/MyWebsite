@@ -705,3 +705,37 @@ footer {
 .infinite-scroll-container.compact::-webkit-scrollbar {
     display: none;
 }
+
+/* --- NAV SHINE ANIMATION --- */
+@keyframes textShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.nav-links a.active.shine-effect {
+    /* Create a gradient: Primary color -> Bright Shine -> Primary color */
+    background: linear-gradient(
+        to right, 
+        var(--accent-primary) 20%, 
+        #fff 40%, 
+        #fff 60%, 
+        var(--accent-primary) 80%
+    );
+    background-size: 200% auto;
+    
+    /* Clip the background to the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Run the animation infinitely */
+    animation: textShine 3s linear infinite;
+    
+    /* Ensure the underline stays visible */
+    display: inline-block;
+}
+
+/* Ensure the underline matches the animated text color */
+.nav-links a.active.shine-effect::after {
+    background-color: var(--accent-primary);
+}

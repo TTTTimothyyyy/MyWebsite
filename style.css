@@ -1,6 +1,5 @@
 /* --- VARIABLES --- */
 :root {
-    /* Light Theme Variables */
     --bg-primary: #f0fdfa;
     --bg-secondary: #ffffff;
     --text-primary: #134e4a;
@@ -14,7 +13,6 @@
 }
 
 [data-theme="dark"] {
-    /* Dark Theme Variables */
     --bg-primary: #111827;
     --bg-secondary: #1f2937;
     --text-primary: #f0fdfa;
@@ -52,11 +50,10 @@ body {
     padding: 0 2rem;
 }
 
-/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
-    padding-bottom: 80vh; /* Adds lots of scroll space at the bottom */
+    padding-bottom: 80vh; /* Adds scroll space */
 }
 
 .section-title {
@@ -101,6 +98,7 @@ nav {
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--card-border);
     padding: 1rem 0;
+    height: 72px; /* Fixed height to help with calculations */
 }
 
 .nav-container {
@@ -109,7 +107,6 @@ nav {
     align-items: center;
 }
 
-/* Logo - Brand Mark (Not clickable) */
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
@@ -566,89 +563,120 @@ footer {
     font-size: 3rem;
 }
 
-/* --- COMPACT MODE (Centered Floating Sub-Nav) --- */
+
+/* ================================================================= */
+/* --- COMPACT MODE (Centered Floating Sub-Menu) --- */
+/* ================================================================= */
+
 .infinite-scroll-container.compact {
     position: fixed;
-    top: 80px; /* Position below the main nav */
-    left: 50%; /* Move to center of screen */
-    transform: translateX(-50%); /* Center alignment */
+    /* This positions it exactly below your 72px main nav */
+    top: 73px; 
     
-    width: auto; /* Allow it to shrink to fit content */
-    max-width: 95%; /* Prevent touching edges on small screens */
-    z-index: 50;
+    /* Absolute Centering */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Appearance */
+    width: auto;  /* Shrink to fit content */
+    max-width: 95vw;
+    z-index: 90; /* High Z-Index to stay on top of content */
     
     background: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(10px);
     
-    /* Module styling */
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 0.5rem;
+    border-radius: 50px; /* Pill Shape */
+    padding: 0.5rem 1rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     
-    /* Transition styles, not position */
-    transition: background-color 0.3s ease, border-color 0.3s ease, height 0.3s ease, padding 0.3s ease;
+    /* No scrollbars in menu mode */
+    overflow: hidden; 
+    transition: all 0.3s ease;
 }
 
-/* The Placeholder (Holds the space when cards leave) */
+/* The Placeholder (Holds the space so page doesn't jump) */
 .scroll-placeholder {
-    display: none; /* Hidden by default */
+    display: none; 
     width: 100%;
-    height: 600px; /* Matches the original height of cards + padding */
+    height: 600px; /* Must match original card height */
 }
 .scroll-placeholder.active {
     display: block;
 }
 
-/* --- TRANSFORMATIONS FOR COMPACT MODE --- */
+/* --- COLLAPSED CARD STYLING --- */
 .infinite-scroll-container.compact .scrolling-wrapper {
-    padding: 0 0.5rem;
+    padding: 0;
     gap: 0.5rem;
-    margin: 0; /* Remove margin as parent is centered */
+    margin: 0;
 }
 
-/* Shrink the card wrapper */
+/* Turn cards into clickable menu buttons */
 .infinite-scroll-container.compact .skill-card-large {
-    height: 60px;
-    min-width: 200px;
-    max-width: 200px;
-    padding: 0 0.8rem;
-    flex-direction: row;
-    justify-content: flex-start;
+    height: 50px;       /* Button height */
+    min-width: auto;    /* Allow width to shrink */
+    max-width: none;    
+    width: auto;
+    
+    padding: 0 1.2rem;
+    
+    flex-direction: row; /* Horizontal layout */
+    justify-content: center;
     align-items: center;
     gap: 0.8rem;
-    border-width: 1px;
-    border-radius: 6px;
-    background: transparent; /* Blend into the sub-nav bar */
+    
+    border: 1px solid transparent;
+    border-radius: 30px; /* Round buttons */
+    background: transparent;
 }
 
-/* Shrink Icon */
+/* Selected state in menu mode */
+.infinite-scroll-container.compact .skill-card-large.selected-card {
+    background: var(--accent-primary);
+    color: #111827; /* Dark text on bright button */
+    border-color: var(--accent-primary);
+    transform: none; /* No jumping */
+    box-shadow: none;
+}
+.infinite-scroll-container.compact .skill-card-large.selected-card h3 {
+    color: #111827;
+}
+
+/* Hover state in menu mode */
+.infinite-scroll-container.compact .skill-card-large:hover {
+    background: var(--card-border);
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+/* Shrink Icons */
 .infinite-scroll-container.compact .card-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1.1rem;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
     margin: 0;
-    border-width: 1px;
+    border: none;
+    background: transparent;
 }
 
 /* Adjust Text */
 .infinite-scroll-container.compact h3 {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin: 0;
     text-align: left;
     white-space: nowrap;
 }
 
-/* HIDE extra elements instantly */
+/* FORCE HIDE everything else */
 .infinite-scroll-container.compact p, 
 .infinite-scroll-container.compact small, 
 .infinite-scroll-container.compact div[style*="margin-top"],
 .infinite-scroll-container.compact .skill-card-large::after {
-    display: none;
+    display: none !important;
 }
 
-/* Hide Scrollbar in compact mode for cleaner look */
+/* Hide Scrollbar completely in compact mode */
 .infinite-scroll-container.compact::-webkit-scrollbar {
-    height: 4px;
-    display: none; /* Hide scrollbar completely in sub-nav */
+    display: none;
 }

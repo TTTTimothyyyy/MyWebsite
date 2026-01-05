@@ -200,15 +200,15 @@
         // --- 8. COMPACT MODE TRIGGER (Anti-Jitter) ---
         window.addEventListener('scroll', () => {
             const rect = trigger.getBoundingClientRect();
-            // Trigger when anchor hits the spot where the menu will sit (80px from top)
+            // This needs to match the CSS Top + a buffer
             const triggerPoint = 80; 
 
             if (rect.top <= triggerPoint) {
                 container.classList.add('compact');
-                placeholder.classList.add('active'); // Fill empty space
+                placeholder.classList.add('active'); 
             } else {
                 container.classList.remove('compact');
-                placeholder.classList.remove('active'); // Remove filler
+                placeholder.classList.remove('active'); 
             }
         });
 

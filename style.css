@@ -1,5 +1,6 @@
 /* --- VARIABLES --- */
 :root {
+    /* Light Theme Variables */
     --bg-primary: #f0fdfa;
     --bg-secondary: #ffffff;
     --text-primary: #134e4a;
@@ -13,6 +14,7 @@
 }
 
 [data-theme="dark"] {
+    /* Dark Theme Variables */
     --bg-primary: #111827;
     --bg-secondary: #1f2937;
     --text-primary: #f0fdfa;
@@ -50,6 +52,7 @@ body {
     padding: 0 2rem;
 }
 
+/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
@@ -393,9 +396,11 @@ footer {
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
+
+/* CRITICAL FIX: Removing 'transform' here allows fixed children to work properly */
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: none; 
 }
 
 /* ========================================= */
@@ -571,7 +576,7 @@ footer {
 .infinite-scroll-container.compact {
     position: fixed;
     /* This positions it exactly below your 72px main nav */
-    top: 73px; 
+    top: 85px; 
     
     /* Absolute Centering */
     left: 50%;
@@ -580,7 +585,7 @@ footer {
     /* Appearance */
     width: auto;  /* Shrink to fit content */
     max-width: 95vw;
-    z-index: 90; /* High Z-Index to stay on top of content */
+    z-index: 99; /* Higher index to stay on top */
     
     background: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(10px);

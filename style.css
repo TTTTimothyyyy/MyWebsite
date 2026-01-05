@@ -657,3 +657,61 @@ footer {
 .skill-card-large.achievement::before {
     background: #ffd700;
 }
+
+/* --- COMPACT / STICKY MODE (The "Squashed" Sub-Nav) --- */
+
+/* When the container is stuck to the top */
+.infinite-scroll-container.compact {
+    position: sticky;
+    top: 75px; /* Adjusts to sit right under your main Navbar */
+    z-index: 50;
+    background: rgba(17, 24, 39, 0.95); /* Dark background to cover content behind it */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--accent-primary);
+    padding: 1rem 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+/* Shrink the card height */
+.infinite-scroll-container.compact .skill-card-large {
+    height: 90px; /* Squashed Height */
+    min-width: 260px; /* Keep width mostly same to prevent scrolling glitches */
+    padding: 0 1.5rem; /* Reduce padding */
+    flex-direction: row; /* Horizontal Layout */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    border-width: 1px;
+}
+
+/* Shrink the Icon */
+.infinite-scroll-container.compact .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    margin: 0;
+    border-width: 1px;
+}
+
+/* Adjust Title Text */
+.infinite-scroll-container.compact h3 {
+    font-size: 1rem;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Hide everything else */
+.infinite-scroll-container.compact p, 
+.infinite-scroll-container.compact small, 
+.infinite-scroll-container.compact .click-text,
+.infinite-scroll-container.compact .skill-card-large::after {
+    display: none;
+    opacity: 0;
+}
+
+/* Ensure the scrollbar moves up slightly in compact mode */
+.infinite-scroll-container.compact::-webkit-scrollbar {
+    height: 6px;
+}

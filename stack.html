@@ -89,7 +89,7 @@
     </footer>
 
     <script>
-        // --- 1. DATA LIBRARY (The content for your cards) ---
+        // --- 1. CONTENT LIBRARY (The detailed HTML for each card) ---
         const contentLibrary = {
             'unity': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Project Showcase</h3>
@@ -110,8 +110,7 @@
                         <h4 style="margin-top:1rem;">Kart Racer</h4>
                         <p style="font-size:0.9rem;">Arcade physics and multiplayer networking.</p>
                     </div>
-                </div>
-            `,
+                </div>`,
             'csharp': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">C# Architecture</h3>
                 <p>Clean code is my priority. I specialize in:</p>
@@ -119,8 +118,7 @@
                     <li><strong>Design Patterns:</strong> Singletons, Observers, and Factory patterns.</li>
                     <li><strong>Optimization:</strong> Garbage Collection reduction and memory profiling.</li>
                     <li><strong>Tools:</strong> Custom Editor scripting to speed up level design.</li>
-                </ul>
-            `,
+                </ul>`,
             'blender': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">3D Art & Assets</h3>
                 <p>From low-poly aesthetic to realistic props. Check out my art station links below.</p>
@@ -133,53 +131,107 @@
                         <div class="project-thumbnail">🤖</div>
                         <h4 style="margin-top:1rem;">Character Rigs</h4>
                     </div>
-                </div>
-            `,
+                </div>`,
             'version': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">DevOps & Workflow</h3>
-                <p>I manage complex branches using Plastic SCM for Unity and GitHub for web projects.</p>
-            `,
+                <p>I manage complex branches using Plastic SCM for Unity and GitHub for web projects.</p>`,
             'cert': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Certified Associate</h3>
                 <p>Issued by Unity Technologies.</p>
-                <p>This certification validates my core proficiency in Unity, including Asset Management, Scripting, and Publishing.</p>
-            `
+                <p>This certification validates my core proficiency in Unity, including Asset Management, Scripting, and Publishing.</p>`
         };
 
-        // --- 2. CLICK HANDLER LOGIC ---
+        // --- 2. CORE VARIABLES ---
+        const container = document.getElementById('scrollContainer');
         const scrollWrapper = document.getElementById('scrollWrapper');
         const detailsArea = document.getElementById('detailsArea');
         const dynamicContent = document.getElementById('dynamicContent');
+        
+        // --- 3. CLONE ITEMS (Infinite Loop Setup) ---
+        // Run only if we haven't cloned yet (check length)
+        if (scrollWrapper.children.length > 0 && scrollWrapper.children.length < 20) {
+            const cards = Array.from(scrollWrapper.children);
+            // Clone for end (append)
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                scrollWrapper.appendChild(clone);
+            });
+            // Clone for start (prepend)
+            cards.reverse().forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                scrollWrapper.prepend(clone);
+            });
+        }
 
-        // Event Delegation (Handles clicks on Clones too!)
+        // --- 4. CENTER SCROLL POSITION ---
+        function centerScroll() {
+            setTimeout(() => {
+                const scrollWidth = scrollWrapper.scrollWidth;
+                container.scrollLeft = scrollWidth / 3;
+            }, 100);
+        }
+        window.onload = centerScroll;
+
+        // --- 5. INFINITE TELEPORTATION LOGIC ---
+        container.addEventListener('scroll', () => {
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+            // If scrolled to the very end (right), snap back to middle
+            if (container.scrollLeft >= maxScrollLeft - 50) {
+                container.scrollLeft = container.scrollWidth / 3;
+            } 
+            // If scrolled to the very start (left), snap forward to middle
+            else if (container.scrollLeft <= 50) {
+                container.scrollLeft = container.scrollWidth / 3;
+            }
+        });
+
+        // --- 6. MOUSE WHEEL LOGIC ---
+        container.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            container.scrollLeft += evt.deltaY * 0.5; // Smooth scroll multiplier
+        });
+
+        // --- 7. CLICK HANDLER (Show Details) ---
         scrollWrapper.addEventListener('click', (e) => {
-            // Find the closest card element that was clicked
             const card = e.target.closest('.skill-card-large');
-            
             if (card) {
                 const key = card.getAttribute('data-key');
                 
-                // 1. Highlight the card (remove active from others)
+                // Highlight Selected Card (and its clones)
                 document.querySelectorAll('.skill-card-large').forEach(c => c.classList.remove('selected-card'));
-                // Note: Since there are clones, we want to highlight ALL cards with this key
                 document.querySelectorAll(`.skill-card-large[data-key="${key}"]`).forEach(c => c.classList.add('selected-card'));
 
-                // 2. Load Content
+                // Load Content
                 if (contentLibrary[key]) {
                     dynamicContent.innerHTML = contentLibrary[key];
                     detailsArea.classList.add('open');
                     
-                    // 3. Smooth Scroll to details
+                    // Smooth scroll to content
                     setTimeout(() => {
-                        detailsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Calculate offset to trigger the "Compact Mode" immediately
+                        const offset = container.offsetTop - 80; // 80px buffer for nav
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
                     }, 100);
                 }
             }
         });
 
+        // --- 8. COMPACT MODE TRIGGER (The "Squash" Effect) ---
+        window.addEventListener('scroll', () => {
+            const rect = container.getBoundingClientRect();
+            const triggerPoint = 80; // Distance from top (approx Nav height)
 
-        // --- 3. EXISTING SETUP (Theme, Scroll, Etc) ---
-        // (Keep your existing Theme Toggle code here)
+            // If the container hits the top of the screen (under nav), make it compact
+            if (rect.top <= triggerPoint) {
+                container.classList.add('compact');
+            } else {
+                container.classList.remove('compact');
+            }
+        });
+
+        // --- 9. THEME & REVEAL LOGIC (Standard Site Code) ---
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
@@ -214,43 +266,6 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
-
-        // --- 4. INFINITE SCROLL LOGIC ---
-        const container = document.getElementById('scrollContainer');
-        
-        // Clone items logic
-        if (scrollWrapper.children.length > 0 && scrollWrapper.children.length < 20) {
-            const cards = Array.from(scrollWrapper.children);
-            cards.forEach(card => {
-                const clone = card.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                scrollWrapper.appendChild(clone);
-            });
-            cards.reverse().forEach(card => {
-                const clone = card.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                scrollWrapper.prepend(clone);
-            });
-        }
-
-        function centerScroll() {
-            setTimeout(() => {
-                const scrollWidth = scrollWrapper.scrollWidth;
-                container.scrollLeft = scrollWidth / 3;
-            }, 100);
-        }
-        window.onload = centerScroll;
-
-        container.addEventListener('scroll', () => {
-            const maxScrollLeft = container.scrollWidth - container.clientWidth;
-            if (container.scrollLeft >= maxScrollLeft - 50) container.scrollLeft = container.scrollWidth / 3;
-            else if (container.scrollLeft <= 50) container.scrollLeft = container.scrollWidth / 3;
-        });
-
-        container.addEventListener("wheel", (evt) => {
-            evt.preventDefault();
-            container.scrollLeft += evt.deltaY * 0.5;
-        });
     </script>
 </body>
 </html>

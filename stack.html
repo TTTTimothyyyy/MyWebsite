@@ -57,8 +57,16 @@
                         <div class="card-icon">🎨</div>
                         <h3>Blender</h3>
                         <p>3D Asset Creation</p>
-                        <small>Modeling, UV Mapping, Rigging/Anim, Renders</small>
+                        <small>Modeling, UV Mapping, Rigging/Anim</small>
                         <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Art</div>
+                    </div>
+
+                    <div class="skill-card-large" data-key="env">
+                        <div class="card-icon">🏰</div>
+                        <h3>Environment Art</h3>
+                        <p>Modular Kits</p>
+                        <small>Medieval Packs, Scene Composition, Lighting</small>
+                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Worlds</div>
                     </div>
 
                     <div class="skill-card-large" data-key="version">
@@ -127,17 +135,27 @@
             
             'blender': `
                 <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">3D Art & Assets</h3>
-                <p>I create custom assets to maintain a cohesive visual style. Featured work:</p>
+                <p>My primary tool for 3D creation. I utilize high-end features including:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>Rendering:</strong> High-fidelity visualization using <strong>Cycles</strong> and <strong>Eevee</strong> engines.</li>
+                    <li><strong>Pipeline:</strong> Low-poly optimization for game engines vs. high-poly sculpting.</li>
+                    <li><strong>Rigging:</strong> Character skeletal setup and animation.</li>
+                </ul>`,
+
+            // NEW SECTION: Environment Art
+            'env': `
+                <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Environment Art</h3>
+                <p>I specialize in creating cohesive 3D environments using modular workflows.</p>
                 <div class="project-grid">
                     <div>
-                        <div class="project-thumbnail">🏛️</div>
-                        <h4 style="margin-top:1rem;">Ruin Runner Env</h4>
-                        <p style="font-size:0.9rem;">Full custom environment assets and level design.</p>
+                        <div class="project-thumbnail">🏰</div>
+                        <h4 style="margin-top:1rem;">Medieval Modular Pack</h4>
+                        <p style="font-size:0.9rem;">A comprehensive set of custom handcrafted building assets.</p>
                     </div>
                     <div>
-                        <div class="project-thumbnail">🔋</div>
-                        <h4 style="margin-top:1rem;">Electro Bunker</h4>
-                        <p style="font-size:0.9rem;">Modeled defense towers, bunkers, and enemy bugs.</p>
+                        <div class="project-thumbnail">💡</div>
+                        <h4 style="margin-top:1rem;">Scene Composition</h4>
+                        <p style="font-size:0.9rem;">Atmospheric lighting and post-processing setup in Blender.</p>
                     </div>
                 </div>`,
             

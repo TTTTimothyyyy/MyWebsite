@@ -596,7 +596,8 @@ footer {
     max-width: 95vw;
     z-index: 99; /* Higher index to stay on top */
     
-    background: rgba(17, 24, 39, 0.95);
+    /* FIX: USE THEME VARIABLE, NOT HARDCODED COLOR */
+    background: var(--nav-bg); 
     backdrop-filter: blur(10px);
     
     border: 1px solid var(--card-border);
@@ -658,14 +659,22 @@ footer {
 /* Selected state in menu mode */
 .infinite-scroll-container.compact .skill-card-large.selected-card {
     background: var(--accent-primary);
-    color: #111827; /* Dark text on bright button */
     border-color: var(--accent-primary);
     transform: none; /* No jumping */
     box-shadow: none;
 }
-.infinite-scroll-container.compact .skill-card-large.selected-card h3 {
-    color: #111827;
+
+/* Text color fix for selected button */
+[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card,
+[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
+    color: #111827; /* Dark text on bright Teal */
 }
+
+[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card,
+[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
+    color: #ffffff; /* White text on dark Teal */
+}
+
 
 /* Hover state in menu mode */
 .infinite-scroll-container.compact .skill-card-large:hover {

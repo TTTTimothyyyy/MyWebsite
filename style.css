@@ -548,7 +548,7 @@ footer {
 /* --- NEW: SHIFT UP CLASS --- */
 /* Pulls details up to cover the empty placeholder space */
 .details-display-area.shifted-up {
-    margin-top: -520px; /* Covers most of the 600px placeholder */
+    margin-top: -490px; /* Reduced negative margin to increase gap */
     transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
 }
 

@@ -1,6 +1,5 @@
 /* --- VARIABLES --- */
 :root {
-    /* Light Theme Variables */
     --bg-primary: #f0fdfa;
     --bg-secondary: #ffffff;
     --text-primary: #134e4a;
@@ -14,7 +13,6 @@
 }
 
 [data-theme="dark"] {
-    /* Dark Theme Variables */
     --bg-primary: #111827;
     --bg-secondary: #1f2937;
     --text-primary: #f0fdfa;
@@ -49,91 +47,45 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
 }
 
-/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
-    padding-bottom: 80vh; /* Adds scroll space */
+    padding-bottom: 5rem;
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     font-weight: 800;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-align: center;
     color: var(--accent-primary);
-    letter-spacing: -0.02em;
     text-transform: uppercase;
 }
 
-/* --- BUTTONS --- */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--accent-primary);
-    color: #111827;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 700;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-
-[data-theme="dark"] .btn { color: #000; }
-[data-theme="light"] .btn { color: #fff; }
-
-.btn:hover {
-    transform: translateY(-2px);
-    background-color: var(--accent-comp);
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
-}
-
-/* --- NAVIGATION --- */
+/* --- NAVIGATION & MOBILE MENU --- */
 nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--card-border);
-    padding: 1rem 0;
-    height: 72px; /* Fixed height to help with calculations */
+    height: 72px;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--text-primary);
-    letter-spacing: -0.05em;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: default;
-    user-select: none;
-}
-
-.logo span { color: var(--accent-primary); }
-.logo-dot {
-    height: 8px;
-    width: 8px;
-    background-color: var(--accent-comp);
-    border-radius: 50%;
-    display: inline-block;
+    height: 100%;
 }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
 }
 
@@ -141,94 +93,72 @@ nav {
     text-decoration: none;
     color: var(--text-secondary);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     position: relative;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-primary);
-}
+.nav-links a.active { color: var(--accent-primary); }
 
-.nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-primary);
-    border-radius: 2px;
-}
-
-/* --- THEME TOGGLE --- */
-.theme-toggle {
+/* Hamburger Button */
+.menu-toggle {
+    display: none;
     background: none;
-    border: 1px solid var(--card-border);
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
     cursor: pointer;
-    color: var(--accent-primary);
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.theme-toggle:hover {
-    background-color: var(--accent-glow);
-    border-color: var(--accent-primary);
+@media (max-width: 850px) {
+    .menu-toggle { display: block; order: 2; }
+    .theme-toggle { order: 1; margin-left: auto; margin-right: 1rem; }
+    
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid var(--card-border);
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+    }
+    
+    .nav-links.active { transform: translateY(0); }
 }
 
 /* --- HERO SECTION --- */
 .hero {
-    min-height: 85vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
+    padding: 2rem 0;
 }
 
 .hero-content h1 {
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     line-height: 1.1;
-    color: var(--text-primary);
+    margin-bottom: 1rem;
 }
 
 .hero-content h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
     color: var(--accent-primary);
-    margin-bottom: 2rem;
-    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 .profile-img {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    object-fit: cover;
     border: 4px solid var(--bg-primary);
     outline: 4px solid var(--accent-primary);
     margin-bottom: 2rem;
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
 }
 
 /* --- CARDS & GRID --- */
@@ -236,472 +166,81 @@ nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
 }
 
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    padding: 2.5rem;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
+    padding: 2rem;
+    border-radius: 12px;
 }
 
-.card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--accent-primary);
-    transition: background-color 0.3s;
+/* --- STACK PAGE SCROLLING --- */
+.infinite-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 2rem 0;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory; /* Makes cards stick on mobile */
 }
 
-.card:hover::after { background-color: var(--accent-comp); }
-.card:hover {
-    border-color: var(--accent-comp);
-    transform: translateY(-5px);
-}
+.infinite-scroll-container::-webkit-scrollbar { display: none; }
 
-.card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-.card p, .card li {
-    color: var(--text-secondary);
-    font-size: 1rem;
-}
-
-/* --- SKILLS --- */
-.skills-grid {
+.scrolling-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 1.5rem;
+    padding: 0 1.5rem;
 }
 
-.skill-tag {
-    background: var(--bg-secondary);
-    border: 1px solid var(--card-border);
-    color: var(--text-primary);
+.skill-card-large {
+    min-width: 280px;
+    width: 80vw;
+    max-width: 320px;
+    height: 450px;
+    scroll-snap-align: center; /* Stickiness */
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
     padding: 1.5rem;
-    min-width: 140px;
-    border-radius: 8px;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s;
 }
 
-.skill-tag span { font-weight: 700; font-size: 1.1rem; }
-.skill-tag small {
-    color: var(--accent-primary);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-}
-
-.skill-tag:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 5px 15px var(--accent-glow);
-    transform: translateY(-3px);
-}
-
-/* --- TIMELINE --- */
-.timeline-item {
-    position: relative;
-    padding-left: 2.5rem;
-    margin-bottom: 2.5rem;
-    border-left: 2px solid var(--card-border);
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    background: var(--accent-comp);
-    transform: rotate(45deg);
-}
-
-.timeline-date {
-    font-size: 0.85rem;
-    color: var(--accent-primary);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-/* --- CONTACT --- */
-.contact-methods {
+/* Compact Mode Fix for Mobile */
+.infinite-scroll-container.compact {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    transform: none;
+    border-radius: 0;
+    padding: 0.5rem;
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
 }
 
-.contact-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 2rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--card-border);
-    color: var(--text-primary);
+/* Detail Content Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-primary);
+    color: #fff;
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.2s;
+    border-radius: 8px;
+    font-weight: 700;
 }
-
-.contact-btn svg { color: var(--accent-primary); }
-
-.contact-btn:hover {
-    border-color: var(--accent-comp);
-    color: var(--accent-comp);
-}
-.contact-btn:hover svg { color: var(--accent-comp); }
 
 /* --- FOOTER --- */
 footer {
     text-align: center;
-    padding: 4rem 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    padding: 3rem 0;
     border-top: 1px solid var(--card-border);
-    margin-top: 6rem;
-    background-color: var(--bg-secondary);
-}
-
-/* --- ANIMATIONS & MOBILE --- */
-@media (max-width: 768px) {
-    .hero-content h1 { font-size: 3rem; }
-    .nav-links { display: none; }
-}
-
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
-
-/* CRITICAL FIX: Removing 'transform' here allows fixed children to work properly */
-.reveal.active {
-    opacity: 1;
-    transform: none; 
-}
-
-/* ========================================= */
-/* STACK PAGE SPECIFIC STYLES          */
-/* ========================================= */
-
-/* --- INFINITE SCROLL CONTAINER --- */
-.infinite-scroll-container {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 2rem 0;
-    
-    /* HIDE SCROLLBAR - Firefox */
-    scrollbar-width: none; 
-    /* HIDE SCROLLBAR - IE/Edge */
-    -ms-overflow-style: none; 
-    
-    scroll-behavior: auto;
-    cursor: grab;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-}
-
-/* HIDE SCROLLBAR - Chrome/Safari/Webkit */
-.infinite-scroll-container::-webkit-scrollbar {
-    display: none;
-}
-
-.scrolling-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 2.5rem;
-    padding: 0 4rem;
-    width: max-content;
-    margin: 0 auto;
-}
-
-/* LARGE PORTRAIT CARDS (Yu-Gi-Oh Style) */
-.skill-card-large {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
-    border-radius: 12px;
-    padding: 2rem;
-    min-width: 320px; 
-    max-width: 320px;
-    height: 500px; /* Tall Height */
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    cursor: pointer;
-}
-
-/* Inner Frame Effect */
-.skill-card-large::after {
-    content: '';
-    position: absolute;
-    top: 15px; left: 15px; right: 15px; bottom: 15px;
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    pointer-events: none;
-}
-
-.skill-card-large:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    border-color: var(--accent-primary);
-    z-index: 10;
-}
-
-/* Active/Selected State */
-.skill-card-large.selected-card {
-    border-color: var(--accent-comp);
-    box-shadow: 0 0 20px var(--accent-comp);
-    transform: translateY(-15px);
-}
-
-.card-icon {
-    font-size: 4rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    background: var(--bg-primary);
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--card-border);
-    z-index: 1;
-}
-
-/* Gold Achievement Card */
-.skill-card-large.achievement {
-    border-color: #ffd700;
-}
-.skill-card-large.achievement .card-icon {
-    border-color: #ffd700;
-    background: rgba(255, 215, 0, 0.1);
-}
-.skill-card-large.achievement::before {
-    background: #ffd700;
-}
-
-.infinite-scroll-container:active {
-    cursor: grabbing;
-}
-
-/* --- DETAIL SECTION (Hidden Area) --- */
-.details-display-area {
-    width: 100%;
-    max-width: 1000px;
-    margin: 4rem auto 0;
-    min-height: 0;
-    height: 0; /* Hidden by default */
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.5s ease;
-    border-top: none; /* Removed the top border line */
-    position: relative;
-    z-index: 10;
-}
-
-.details-display-area.open {
-    height: auto;
-    min-height: 400px;
-    opacity: 1;
-    padding-top: 3rem;
-}
-
-/* --- NEW: SHIFT UP CLASS --- */
-/* Pulls details up to cover the empty placeholder space */
-.details-display-area.shifted-up {
-    margin-top: -490px; /* Gap adjustment */
-    transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
-}
-
-.detail-content {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 3rem;
-    border-radius: 12px;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.project-thumbnail {
-    background: var(--bg-primary);
-    height: 150px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--card-border);
-    font-size: 3rem;
-}
-
-
-/* ================================================================= */
-/* --- COMPACT MODE (Centered Floating Sub-Menu) --- */
-/* ================================================================= */
-
-.infinite-scroll-container.compact {
-    position: fixed;
-    /* This positions it exactly below your 72px main nav */
-    top: 85px; 
-    
-    /* Absolute Centering */
-    left: 50%;
-    transform: translateX(-50%);
-    
-    /* Appearance */
-    width: auto;  /* Shrink to fit content */
-    max-width: 95vw;
-    z-index: 99; /* Higher index to stay on top */
-    
-    /* FIX: USE THEME VARIABLE, NOT HARDCODED COLOR */
-    background: var(--nav-bg); 
-    backdrop-filter: blur(10px);
-    
-    border: 1px solid var(--card-border);
-    border-radius: 50px; /* Pill Shape */
-    padding: 0.5rem 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* No scrollbars in menu mode */
-    overflow: hidden; 
-    transition: all 0.3s ease;
-}
-
-/* The Placeholder (Holds the space so page doesn't jump) */
-.scroll-placeholder {
-    display: none; 
-    width: 100%;
-    height: 600px; /* Must match original card height */
-}
-.scroll-placeholder.active {
-    display: block;
-}
-
-/* --- COLLAPSED CARD STYLING --- */
-
-/* 1. HIDE CLONES: Stop infinite repeat in compact mode */
-.infinite-scroll-container.compact .infinite-clone {
-    display: none !important;
-}
-
-/* 2. CENTER ITEMS: Ensure remaining items are centered */
-.infinite-scroll-container.compact .scrolling-wrapper {
-    padding: 0;
-    gap: 0.5rem;
-    margin: 0;
-    justify-content: center;
-    width: auto;
-    min-width: 100%;
-}
-
-/* Turn cards into clickable menu buttons */
-.infinite-scroll-container.compact .skill-card-large {
-    height: 50px;       /* Button height */
-    min-width: auto;    /* Allow width to shrink */
-    max-width: none;    
-    width: auto;
-    
-    padding: 0 1.2rem;
-    
-    flex-direction: row; /* Horizontal layout */
-    justify-content: center;
-    align-items: center;
-    gap: 0.8rem;
-    
-    border: 1px solid transparent;
-    border-radius: 30px; /* Round buttons */
-    background: transparent;
-}
-
-/* Selected state in menu mode */
-.infinite-scroll-container.compact .skill-card-large.selected-card {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-    transform: none; /* No jumping */
-    box-shadow: none;
-}
-
-/* Text color fix for selected button */
-[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card,
-[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
-    color: #111827; /* Dark text on bright Teal */
-}
-
-[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card,
-[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
-    color: #ffffff; /* White text on dark Teal */
-}
-
-
-/* Hover state in menu mode */
-.infinite-scroll-container.compact .skill-card-large:hover {
-    background: var(--card-border);
-    transform: translateY(-2px);
-    box-shadow: none;
-}
-
-/* Shrink Icons */
-.infinite-scroll-container.compact .card-icon {
-    width: 24px;
-    height: 24px;
-    font-size: 1rem;
-    margin: 0;
-    border: none;
-    background: transparent;
-}
-
-/* Adjust Text */
-.infinite-scroll-container.compact h3 {
-    font-size: 0.9rem;
-    margin: 0;
-    text-align: left;
-    white-space: nowrap;
-}
-
-/* FORCE HIDE everything else */
-.infinite-scroll-container.compact p, 
-.infinite-scroll-container.compact small, 
-.infinite-scroll-container.compact div[style*="margin-top"],
-.infinite-scroll-container.compact .skill-card-large::after {
-    display: none !important;
-}
-
-/* Hide Scrollbar completely in compact mode */
-.infinite-scroll-container.compact::-webkit-scrollbar {
-    display: none;
+    background: var(--bg-secondary);
 }

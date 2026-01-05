@@ -135,17 +135,24 @@
         const trigger = document.getElementById('scrollTrigger');
         const placeholder = document.getElementById('cardPlaceholder');
         
-        // --- 3. CLONE ITEMS (Infinite Loop Setup) ---
+        // --- 3. CLONE ITEMS (With ID Tagging) ---
+        // We add 'infinite-clone' class so we can hide them in compact mode
         if (scrollWrapper.children.length > 0 && scrollWrapper.children.length < 20) {
             const cards = Array.from(scrollWrapper.children);
+            
+            // Clone for end (append)
             cards.forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
+                clone.classList.add('infinite-clone'); // NEW: Tag as clone
                 scrollWrapper.appendChild(clone);
             });
+            
+            // Clone for start (prepend)
             cards.reverse().forEach(card => {
                 const clone = card.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
+                clone.classList.add('infinite-clone'); // NEW: Tag as clone
                 scrollWrapper.prepend(clone);
             });
         }
@@ -161,6 +168,10 @@
 
         // --- 5. INFINITE TELEPORTATION LOGIC ---
         container.addEventListener('scroll', () => {
+            // STOP infinite scroll if we are in compact mode 
+            // (We want a static menu, not an infinite loop there)
+            if (container.classList.contains('compact')) return;
+
             const maxScrollLeft = container.scrollWidth - container.clientWidth;
             if (container.scrollLeft >= maxScrollLeft - 50) {
                 container.scrollLeft = container.scrollWidth / 3;
@@ -172,10 +183,12 @@
         // --- 6. MOUSE WHEEL LOGIC ---
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            container.scrollLeft += evt.deltaY * 0.5;
+            // Scroll faster/standard speed in compact mode
+            const multiplier = container.classList.contains('compact') ? 1.0 : 0.5;
+            container.scrollLeft += evt.deltaY * multiplier;
         });
 
-        // --- 7. CLICK HANDLER (Show Details) ---
+        // --- 7. CLICK HANDLER ---
         scrollWrapper.addEventListener('click', (e) => {
             const card = e.target.closest('.skill-card-large');
             if (card) {
@@ -197,18 +210,27 @@
             }
         });
 
-        // --- 8. COMPACT MODE TRIGGER (Anti-Jitter) ---
+        // --- 8. COMPACT MODE TRIGGER (Gap Fix Included) ---
         window.addEventListener('scroll', () => {
             const rect = trigger.getBoundingClientRect();
-            // This needs to match the CSS Top + a buffer
             const triggerPoint = 80; 
 
             if (rect.top <= triggerPoint) {
+                // ACTIVE COMPACT MODE
                 container.classList.add('compact');
                 placeholder.classList.add('active'); 
+                detailsArea.classList.add('shifted-up'); // NEW: Pull details up
             } else {
+                // DISABLE COMPACT MODE
                 container.classList.remove('compact');
-                placeholder.classList.remove('active'); 
+                placeholder.classList.remove('active');
+                detailsArea.classList.remove('shifted-up'); // NEW: Push details back down
+                
+                // Re-center scroll if coming out of compact mode to prevent jumps
+                // (This keeps the infinite loop feeling seamless)
+                 if (container.scrollLeft < 50 || container.scrollLeft > container.scrollWidth - 100) {
+                    container.scrollLeft = container.scrollWidth / 3;
+                 }
             }
         });
 

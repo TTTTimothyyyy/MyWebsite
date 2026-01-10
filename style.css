@@ -739,3 +739,32 @@ footer {
 .nav-links a.active.shine-effect::after {
     background-color: var(--accent-primary);
 }
+
+/* --- NEW SOCIAL BUTTON STYLES --- */
+.btn-outline {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--text-primary) !important;
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-comp) !important;
+    border-color: var(--accent-comp) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+/* Mobile Fix for many buttons */
+@media (max-width: 600px) {
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 1rem;
+    }
+    .hero-btns .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}

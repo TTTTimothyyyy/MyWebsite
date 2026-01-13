@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Canvas Styling to ensure it stays in the background */
         #particle-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Behind content */
-            pointer-events: none; /* Let clicks pass through */
+            z-index: -1;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -138,7 +137,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        /* --- PARTICLE TRAIL & FIREWORK SYSTEM --- */
+        /* --- ADVANCED PARTICLE TRAIL & FIREWORK SYSTEM --- */
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -154,7 +153,8 @@
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
-            // Constant trail when moving
+            
+            // STOP emission while hovering to clear visual space
             if (!isHovering) {
                 for (let i = 0; i < 2; i++) {
                     particles.push(new Particle(mouse.x, mouse.y, false));
@@ -162,9 +162,9 @@
             }
         });
 
-        // Add explosion to all clickable elements
-        const clickables = document.querySelectorAll('a, button, .card');
-        clickables.forEach(item => {
+        // Add explosion and toggle emission pause on interactive elements
+        const interactables = document.querySelectorAll('a, button, .card, .skill-card-large');
+        interactables.forEach(item => {
             item.addEventListener('mouseenter', () => {
                 isHovering = true;
                 createFirework(mouse.x, mouse.y);
@@ -180,39 +180,39 @@
                 this.y = y;
                 this.isFirework = isFirework;
                 
-                // Pull colors from active CSS theme
                 const style = getComputedStyle(document.documentElement);
+                const currentTheme = html.getAttribute('data-theme');
+                
                 const primaryColor = style.getPropertyValue('--accent-primary').trim();
                 const compColor = style.getPropertyValue('--accent-comp').trim();
+                
+                // Set Neutral color based on Dark/Light theme
+                // Dark mode: White | Light mode: Dark Teal
+                const neutralColor = (currentTheme === 'dark') ? '#ffffff' : '#064e4b';
 
                 this.size = Math.random() * 3 + 1;
-                this.color = isFirework ? compColor : primaryColor;
+                
+                // Mix accent colors with the theme-specific neutral color
+                const colorPool = isFirework ? [compColor, neutralColor] : [primaryColor, neutralColor];
+                this.color = colorPool[Math.floor(Math.random() * colorPool.length)];
                 
                 if (isFirework) {
-                    // Explosion physics
                     const angle = Math.random() * Math.PI * 2;
-                    const force = Math.random() * 6 + 2;
+                    const force = Math.random() * 8 + 2;
                     this.speedX = Math.cos(angle) * force;
                     this.speedY = Math.sin(angle) * force;
-                    this.decay = 0.02;
+                    this.decay = 0.015; // Lasts longer for the "show"
                 } else {
-                    // Soft trail physics
                     this.speedX = Math.random() * 2 - 1;
                     this.speedY = Math.random() * 2 - 1;
-                    this.decay = 0.015;
+                    this.decay = 0.02;
                 }
                 this.life = 1.0;
             }
 
             update() {
-                if (isHovering && !this.isFirework) {
-                    // Trail particles "magnetize" to cursor on hover
-                    this.x += (mouse.x - this.x) * 0.15;
-                    this.y += (mouse.y - this.y) * 0.15;
-                } else {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                }
+                this.x += this.speedX;
+                this.y += this.speedY;
                 this.life -= this.decay;
             }
 
@@ -226,7 +226,7 @@
         }
 
         function createFirework(x, y) {
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 particles.push(new Particle(x, y, true));
             }
         }

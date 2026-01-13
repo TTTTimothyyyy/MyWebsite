@@ -11,10 +11,11 @@
     <nav>
         <div class="container nav-container">
             <div class="logo">TD<div class="logo-dot"></div><span>Portfolio</span></div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="stack.html" class="active">Stack</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="stack.html" class="active shine-effect">Stack</a></li>
                 <li><a href="history.html">History</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -26,7 +27,7 @@
     </nav>
 
     <main class="page-content">
-        <section class="container reveal active">
+        <section class="container reveal">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Select a card to view detailed achievements</p>
             
@@ -199,7 +200,7 @@
         const trigger = document.getElementById('scrollTrigger');
         const placeholder = document.getElementById('cardPlaceholder');
 
-        // --- 3. MOUSE WHEEL LOGIC (Standard Side-to-Side) ---
+        // --- 3. MOUSE WHEEL LOGIC ---
         container.addEventListener("wheel", (evt) => {
             evt.preventDefault();
             const multiplier = container.classList.contains('compact') ? 1.0 : 0.8;
@@ -268,7 +269,14 @@
         
         // --- 7. REVEAL ANIMATIONS ---
         const reveal = () => {
-            document.querySelectorAll(".reveal").forEach(el => el.classList.add("active"));
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    reveals[i].classList.add("active");
+                }
+            }
         };
         window.addEventListener("scroll", reveal);
         reveal();

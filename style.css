@@ -923,3 +923,13 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px; /* Adjusts for the sticky nav */
 }
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Sits behind content */
+    pointer-events: none; /* Allows you to click buttons through it */
+}

@@ -6,8 +6,22 @@
     <title>Timothy Dunn | Interactive Software Developer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Canvas Styling to ensure it stays in the background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind content */
+            pointer-events: none; /* Let clicks pass through */
+        }
+    </style>
 </head>
 <body>
+
+    <canvas id="particle-canvas"></canvas>
 
     <nav>
         <div class="container nav-container">
@@ -84,6 +98,7 @@
     </footer>
 
     <script>
+        /* --- THEME & REVEAL LOGIC --- */
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
@@ -91,6 +106,7 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         html.setAttribute('data-theme', savedTheme);
         updateIcons(savedTheme);
+
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -98,6 +114,7 @@
             localStorage.setItem('theme', newTheme);
             updateIcons(newTheme);
         });
+
         function updateIcons(theme) {
             if (theme === 'dark') {
                 sunIcon.style.display = 'none';
@@ -107,6 +124,7 @@
                 moonIcon.style.display = 'none';
             }
         }
+
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -119,6 +137,113 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
+
+        /* --- PARTICLE TRAIL & FIREWORK SYSTEM --- */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+        let isHovering = false;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        window.dispatchEvent(new Event('resize'));
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            // Constant trail when moving
+            if (!isHovering) {
+                for (let i = 0; i < 2; i++) {
+                    particles.push(new Particle(mouse.x, mouse.y, false));
+                }
+            }
+        });
+
+        // Add explosion to all clickable elements
+        const clickables = document.querySelectorAll('a, button, .card');
+        clickables.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                isHovering = true;
+                createFirework(mouse.x, mouse.y);
+            });
+            item.addEventListener('mouseleave', () => {
+                isHovering = false;
+            });
+        });
+
+        class Particle {
+            constructor(x, y, isFirework) {
+                this.x = x;
+                this.y = y;
+                this.isFirework = isFirework;
+                
+                // Pull colors from active CSS theme
+                const style = getComputedStyle(document.documentElement);
+                const primaryColor = style.getPropertyValue('--accent-primary').trim();
+                const compColor = style.getPropertyValue('--accent-comp').trim();
+
+                this.size = Math.random() * 3 + 1;
+                this.color = isFirework ? compColor : primaryColor;
+                
+                if (isFirework) {
+                    // Explosion physics
+                    const angle = Math.random() * Math.PI * 2;
+                    const force = Math.random() * 6 + 2;
+                    this.speedX = Math.cos(angle) * force;
+                    this.speedY = Math.sin(angle) * force;
+                    this.decay = 0.02;
+                } else {
+                    // Soft trail physics
+                    this.speedX = Math.random() * 2 - 1;
+                    this.speedY = Math.random() * 2 - 1;
+                    this.decay = 0.015;
+                }
+                this.life = 1.0;
+            }
+
+            update() {
+                if (isHovering && !this.isFirework) {
+                    // Trail particles "magnetize" to cursor on hover
+                    this.x += (mouse.x - this.x) * 0.15;
+                    this.y += (mouse.y - this.y) * 0.15;
+                } else {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                }
+                this.life -= this.decay;
+            }
+
+            draw() {
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createFirework(x, y) {
+            for (let i = 0; i < 25; i++) {
+                particles.push(new Particle(x, y, true));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>

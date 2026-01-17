@@ -93,7 +93,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Timothy Dunn Game Development. All rights reserved.</p>
+        <p>&copy; 2026 Timothy Dunn Game Development. All rights reserved.</p>
     </footer>
 
     <script>
@@ -102,6 +102,12 @@
         const sunIcon = document.querySelector('.sun-icon');
         const moonIcon = document.querySelector('.moon-icon');
         const html = document.documentElement;
+        
+        const updateIcons = (theme) => {
+            sunIcon.style.display = theme === 'dark' ? 'none' : 'block';
+            moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
+        };
+
         const savedTheme = localStorage.getItem('theme') || 'dark';
         html.setAttribute('data-theme', savedTheme);
         updateIcons(savedTheme);
@@ -113,16 +119,6 @@
             localStorage.setItem('theme', newTheme);
             updateIcons(newTheme);
         });
-
-        function updateIcons(theme) {
-            if (theme === 'dark') {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            } else {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            }
-        }
 
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
@@ -137,7 +133,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        /* --- ADVANCED PARTICLE TRAIL & FIREWORK SYSTEM --- */
+        /* --- REFINED PARTICLE SYSTEM --- */
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -154,7 +150,7 @@
             mouse.x = e.clientX;
             mouse.y = e.clientY;
             
-            // STOP emission while hovering to clear visual space
+            // STOP trail emission while cursor is hovering a card
             if (!isHovering) {
                 for (let i = 0; i < 2; i++) {
                     particles.push(new Particle(mouse.x, mouse.y, false));
@@ -183,29 +179,28 @@
                 const style = getComputedStyle(document.documentElement);
                 const currentTheme = html.getAttribute('data-theme');
                 
-                const primaryColor = style.getPropertyValue('--accent-primary').trim();
-                const compColor = style.getPropertyValue('--accent-comp').trim();
+                const teal = style.getPropertyValue('--accent-primary').trim();
+                const orange = style.getPropertyValue('--accent-comp').trim();
                 
-                // Set Neutral color based on Dark/Light theme
-                // Dark mode: White | Light mode: Dark Teal
-                const neutralColor = (currentTheme === 'dark') ? '#ffffff' : '#064e4b';
+                // Theme-Specific Neutrals: White for Dark | Dark Teal for Light
+                const neutral = (currentTheme === 'dark') ? '#ffffff' : '#064e4b';
 
-                this.size = Math.random() * 3 + 1;
+                this.size = Math.random() * (isFirework ? 4 : 2) + 1;
                 
-                // Mix accent colors with the theme-specific neutral color
-                const colorPool = isFirework ? [compColor, neutralColor] : [primaryColor, neutralColor];
+                // Firework uses Orange mix | Trail uses Teal mix
+                const colorPool = isFirework ? [orange, neutral] : [teal, neutral];
                 this.color = colorPool[Math.floor(Math.random() * colorPool.length)];
                 
                 if (isFirework) {
                     const angle = Math.random() * Math.PI * 2;
-                    const force = Math.random() * 8 + 2;
+                    const force = Math.random() * 8 + 3;
                     this.speedX = Math.cos(angle) * force;
                     this.speedY = Math.sin(angle) * force;
-                    this.decay = 0.015; // Lasts longer for the "show"
+                    this.decay = 0.015;
                 } else {
-                    this.speedX = Math.random() * 2 - 1;
-                    this.speedY = Math.random() * 2 - 1;
-                    this.decay = 0.02;
+                    this.speedX = Math.random() * 1.5 - 0.75;
+                    this.speedY = Math.random() * 1.5 - 0.75;
+                    this.decay = 0.01;
                 }
                 this.life = 1.0;
             }

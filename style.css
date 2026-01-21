@@ -961,4 +961,51 @@ footer {
         width: 90%;          /* Prevents buttons from touching the screen edges */
         margin: 0.5rem auto; /* Centers them */
     }
+
+    /* 1. Reset the Main Container */
+    /* Remove fixed heights and horizontal scrolling constraints */
+    .infinite-scroll-container {
+        height: auto !important;
+        overflow: visible !important;
+        white-space: normal !important;
+        display: block !important;
+        padding-bottom: 2rem;
+    }
+
+    /* 2. Stack the Cards Vertically */
+    /* Switch from horizontal row to vertical column */
+    .scrolling-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem; /* Space between cards */
+        width: 100%;
+        transform: none !important; /* Disable any JS-driven movement */
+    }
+
+    /* 3. Style the Individual Cards */
+    /* Make them look like standard mobile cards */
+    .skill-card-large {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important; /* Let content dictate height */
+        margin: 0 !important;
+        opacity: 1 !important; /* Ensure they are always fully visible */
+        transform: none !important; /* Remove 3D/Scale effects */
+    }
+
+    /* 4. Disable Desktop-Only Triggers */
+    /* Hide the elements that control the desktop animation logic */
+    #scrollTrigger, 
+    #cardPlaceholder {
+        display: none !important;
+    }
+
+    /* 5. Adjust the Details Area */
+    /* Ensure the popup content appears naturally below the list */
+    .details-display-area {
+        position: relative;
+        height: auto;
+        opacity: 1;
+        margin-top: 2rem;
+    }
 }

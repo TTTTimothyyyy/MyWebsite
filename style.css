@@ -968,19 +968,22 @@ html {
 /* ================================================================= */
 /* --- MOBILE BOTTOM NAV STYLES --- */
 .mobile-nav {
-    display: none; /* Hidden by default on Desktop */
+    display: none; /* Hidden on Desktop */
     position: fixed;
-    bottom: 0;
+    bottom: 0; /* Moves nav to the bottom */
     left: 0;
     width: 100%;
-    height: 65px;
+    height: 70px; /* Slightly taller for comfortable thumb reach */
     background: var(--nav-bg);
     backdrop-filter: blur(15px);
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border); /* Border now on top */
+    border-bottom: none; 
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
+    
+    /* Important for modern phones with "Home Bars" */
+    padding-bottom: env(safe-area-inset-bottom); 
 }
 
 .mobile-nav-link {
@@ -1005,18 +1008,14 @@ html {
 
 /* --- RESPONSIVE LOGIC --- */
 @media (max-width: 768px) {
-    /* Hide the top nav links on mobile */
     .nav-links {
         display: none !important;
     }
-
-    /* Show the bottom nav on mobile */
     .mobile-nav {
         display: flex;
     }
-
-    /* Add padding to body so content isn't hidden behind the bottom nav */
+    /* Add padding to the body so content isn't hidden by the nav bar */
     body {
-        padding-bottom: 80px;
+        padding-bottom: 80px; 
     }
 }

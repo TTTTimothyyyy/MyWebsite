@@ -973,24 +973,39 @@ footer {
     }
 
     /* 2. Stack the Cards Vertically */
-    /* Switch from horizontal row to vertical column */
     .scrolling-wrapper {
         display: flex !important;
         flex-direction: column !important;
-        gap: 1.5rem; /* Space between cards */
+        gap: 1.5rem;
         width: 100%;
-        transform: none !important; /* Disable any JS-driven movement */
+        height: auto !important;      /* Forces container to grow with content */
+        transform: none !important;   /* Disables JS movement */
+        padding-top: 1rem;            /* Adds a little breathing room at the top */
     }
 
     /* 3. Style the Individual Cards */
-    /* Make them look like standard mobile cards */
     .skill-card-large {
+        /* Reset Size & Visibility */
         width: 100% !important;
         min-width: 0 !important;
-        height: auto !important; /* Let content dictate height */
+        height: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        
+        /* CRITICAL FIX: Unpin the cards so they don't squash together */
+        position: relative !important; 
+        top: auto !important;
+        left: auto !important;
         margin: 0 !important;
-        opacity: 1 !important; /* Ensure they are always fully visible */
-        transform: none !important; /* Remove 3D/Scale effects */
+        
+        /* Optional: Tweak padding so they aren't so huge on mobile */
+        padding: 1.5rem !important;
+    }
+    
+    /* Optional: Fix the glow/selection state for mobile */
+    .skill-card-large.selected-card {
+        box-shadow: 0 0 15px var(--accent-primary) !important; /* Softer glow */
+        border: 1px solid var(--accent-primary) !important;
     }
 
     /* 4. Disable Desktop-Only Triggers */

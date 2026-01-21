@@ -405,7 +405,7 @@ footer {
 }
 
 /* ========================================= */
-/* STACK PAGE SPECIFIC STYLES          */
+/* STACK PAGE SPECIFIC STYLES               */
 /* ========================================= */
 
 /* --- INFINITE SCROLL CONTAINER --- */
@@ -936,132 +936,11 @@ html {
 }
 
 /* ================================================================= */
-/* --- MOBILE RESPONSIVE ADJUSTMENTS (Safe for Desktop) ---          */
+/* --- UPDATED: MOBILE BOTTOM NAV & RESPONSIVE FIXES ---             */
 /* ================================================================= */
 
-@media (max-width: 768px) {
-    /* 1. Container & Spacing */
-    .container {
-        padding: 0 1.2rem;
-    }
-
-    .page-content {
-        padding-top: 2rem;
-        padding-bottom: 40vh; /* Reduced for mobile viewport */
-    }
-
-    /* 2. Hero Section */
-    .hero {
-        min-height: 70vh;
-        padding-top: 4rem;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5rem; /* Scaled down from 4.5rem */
-        line-height: 1.2;
-    }
-
-    .hero-content h2 {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .profile-img {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 1.5rem;
-    }
-
-    /* 3. Hero Buttons (Vertical Stack) */
-    .hero-btns {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-    }
-
-    .hero-btns .btn, 
-    .hero-btns .btn-outline {
-        width: 100%;
-        max-width: 320px;
-        text-align: center;
-        padding: 1rem;
-    }
-
-    /* 4. Bento Grid (Single Column) */
-    .bento-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-
-    .bento-large {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .card {
-        padding: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-    }
-
-    /* 5. Stack Page / Skill Cards */
-    .skill-card-large {
-        min-width: 280px; /* Slimmer for mobile screens */
-        max-width: 280px;
-        height: 450px;
-        padding: 1.5rem;
-    }
-
-    .scrolling-wrapper {
-        padding: 0 1rem;
-        gap: 1.5rem;
-    }
-
-    /* 6. Navigation */
-    nav {
-        height: auto;
-        padding: 0.8rem 0;
-    }
-
-    .logo {
-        font-size: 1.2rem;
-    }
-
-    .nav-links {
-        display: none; /* Hide desktop nav; consider a mobile menu later */
-    }
-
-    /* 7. Footer */
-    footer {
-        padding: 3rem 0;
-        margin-top: 3rem;
-    }
-
-    /* 8. Grid Adjustments */
-    .grid {
-        /* Stack cards vertically on phones */
-        grid-template-columns: 1fr; 
-    }
-}
-
-/* Extra Small Devices */
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    
-    .tech-ticker span {
-        font-size: 0.75rem;
-        padding: 0 1.5rem;
-    }
-}
-
-/* --- MOBILE BOTTOM NAV STYLES --- */
 .mobile-nav {
-    display: none; /* Hidden by default on Desktop */
+    display: none; /* Hidden on Desktop */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -1070,11 +949,10 @@ html {
     background: var(--nav-bg);
     backdrop-filter: blur(15px);
     border-top: 1px solid var(--card-border);
-    display: none; /* Changed to flex in media query */
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .mobile-nav-link {
@@ -1086,7 +964,6 @@ html {
     font-size: 0.7rem;
     font-weight: 600;
     gap: 4px;
-    transition: all 0.2s ease;
 }
 
 .mobile-nav-link i {
@@ -1097,8 +974,18 @@ html {
     color: var(--accent-primary);
 }
 
-/* --- RESPONSIVE LOGIC --- */
 @media (max-width: 768px) {
+    /* Prevent text clipping */
+    .hero-content h1 { 
+        font-size: clamp(2rem, 10vw, 3rem); 
+        overflow-wrap: break-word; 
+    }
+    
+    /* Global Container Padding */
+    .container {
+        padding: 0 1.2rem;
+    }
+
     /* Hide the top nav links on mobile */
     .nav-links {
         display: none !important;
@@ -1109,8 +996,13 @@ html {
         display: flex;
     }
 
-    /* Add padding to body so content isn't hidden behind the bottom nav */
+    /* Padding for the sticky footer */
     body {
         padding-bottom: 80px;
+    }
+
+    /* Stack cards vertically */
+    .grid {
+        grid-template-columns: 1fr; 
     }
 }

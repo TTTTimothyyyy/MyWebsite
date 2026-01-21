@@ -929,8 +929,36 @@ footer {
     color: var(--accent-primary);
 }
 
-@media (max-width: 768px) {
+
+/* --- MOBILE LAYOUT OVERRIDES --- */
+@media (max-width: 768px) 
+{
     .nav-links { display: none !important; } /* Hide Top Text Links */
     .mobile-nav { display: flex; } /* Show Bottom Nav */
     body { padding-bottom: 80px; } /* Prevent Footer Overlap */
+
+    /* Force Grid to Stack Vertically */
+    .grid {
+        display: flex;             /* Switches from Grid to Flexbox for better mobile control */
+        flex-direction: column;    /* Stacks items top-to-bottom */
+        gap: 2rem;                 /* Adds space between the stacked cards */
+    }
+
+    /* Adjust Card Spacing */
+    .card {
+        width: 100%;               /* Ensures the card takes full width */
+        margin-bottom: 1rem;       /* Extra safety spacing */
+    }
+
+    /* Ensure the container has breathing room on the sides */
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* Tighter Buttons on Mobile */
+    .contact-btn, button {
+        width: 90%;          /* Prevents buttons from touching the screen edges */
+        margin: 0.5rem auto; /* Centers them */
+    }
 }

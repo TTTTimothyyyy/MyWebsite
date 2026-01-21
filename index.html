@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timothy Dunn | Interactive Software Developer</title>
 
-    <link rel="icon" type="image/png" href="Images/user.png">
+    <link rel="icon" type="image/png" href="Images/favicon.png">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         #particle-canvas {
             position: fixed;
@@ -152,7 +154,6 @@
             mouse.x = e.clientX;
             mouse.y = e.clientY;
             
-            // trail emission is paused if isHovering is true
             if (!isHovering) {
                 for (let i = 0; i < 2; i++) {
                     particles.push(new Particle(mouse.x, mouse.y, false));
@@ -160,12 +161,9 @@
             }
         });
 
-        // REFINED HOVER LOGIC: Persist silence when moving to links within cards
         const interactables = document.querySelectorAll('a, button, .card, .skill-card-large');
         interactables.forEach(item => {
             item.addEventListener('mouseenter', (e) => {
-                // Only fire explosion if we aren't already in a hovering state 
-                // (e.g., prevents double-fire when moving from card to link)
                 if (!isHovering) {
                     createFirework(mouse.x, mouse.y);
                 }
@@ -173,8 +171,6 @@
             });
 
             item.addEventListener('mouseleave', (e) => {
-                // Check if the mouse actually left the parent container 
-                // or just moved to a child link
                 const related = e.relatedTarget;
                 if (!related || !item.contains(related)) {
                     isHovering = false;
@@ -193,11 +189,9 @@
                 
                 const teal = style.getPropertyValue('--accent-primary').trim();
                 const orange = style.getPropertyValue('--accent-comp').trim();
-                
                 const neutral = (currentTheme === 'dark') ? '#ffffff' : '#064e4b';
 
                 this.size = Math.random() * (isFirework ? 4 : 2) + 1;
-                
                 const colorPool = isFirework ? [orange, neutral] : [teal, neutral];
                 this.color = colorPool[Math.floor(Math.random() * colorPool.length)];
                 

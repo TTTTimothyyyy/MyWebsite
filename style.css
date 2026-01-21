@@ -1058,3 +1058,59 @@ html {
         padding: 0 1.5rem;
     }
 }
+
+/* --- MOBILE BOTTOM NAV STYLES --- */
+.mobile-nav {
+    display: none; /* Hidden by default on Desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--card-border);
+    display: none; /* Changed to flex in media query */
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
+}
+
+.mobile-nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.mobile-nav-link i {
+    font-size: 1.2rem;
+}
+
+.mobile-nav-link.active {
+    color: var(--accent-primary);
+}
+
+/* --- RESPONSIVE LOGIC --- */
+@media (max-width: 768px) {
+    /* Hide the top nav links on mobile */
+    .nav-links {
+        display: none !important;
+    }
+
+    /* Show the bottom nav on mobile */
+    .mobile-nav {
+        display: flex;
+    }
+
+    /* Add padding to body so content isn't hidden behind the bottom nav */
+    body {
+        padding-bottom: 80px;
+    }
+}

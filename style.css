@@ -190,6 +190,7 @@ nav {
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding-top: 4rem; /* Restore space above profile */
 }
 
 .hero::before {
@@ -205,6 +206,13 @@ nav {
     pointer-events: none;
 }
 
+.hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
 .hero-content h1 {
     font-size: 4.5rem;
     font-weight: 900;
@@ -218,6 +226,16 @@ nav {
     color: var(--accent-primary);
     margin-bottom: 2rem;
     font-weight: 600;
+}
+
+.hero-content p {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    word-wrap: break-word; /* Fixes text clipping */
+    overflow-wrap: break-word;
+    line-height: 1.5;
 }
 
 .profile-img {
@@ -388,7 +406,19 @@ footer {
 
 /* --- ANIMATIONS & MOBILE --- */
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 3rem; }
+    .hero {
+        padding-top: 6rem; /* Increase space above profile for mobile */
+        min-height: auto;
+    }
+    .hero-content h1 { 
+        font-size: clamp(2.2rem, 10vw, 3rem); 
+        overflow-wrap: break-word; 
+    }
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+        max-width: 100%;
+    }
     .nav-links { display: none; }
 }
 
@@ -936,11 +966,9 @@ html {
 }
 
 /* ================================================================= */
-/* --- UPDATED: MOBILE BOTTOM NAV & RESPONSIVE FIXES ---             */
-/* ================================================================= */
-
+/* --- MOBILE BOTTOM NAV STYLES --- */
 .mobile-nav {
-    display: none; /* Hidden on Desktop */
+    display: none; /* Hidden by default on Desktop */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -952,7 +980,7 @@ html {
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
 }
 
 .mobile-nav-link {
@@ -964,6 +992,7 @@ html {
     font-size: 0.7rem;
     font-weight: 600;
     gap: 4px;
+    transition: all 0.2s ease;
 }
 
 .mobile-nav-link i {
@@ -974,18 +1003,8 @@ html {
     color: var(--accent-primary);
 }
 
+/* --- RESPONSIVE LOGIC --- */
 @media (max-width: 768px) {
-    /* Prevent text clipping */
-    .hero-content h1 { 
-        font-size: clamp(2rem, 10vw, 3rem); 
-        overflow-wrap: break-word; 
-    }
-    
-    /* Global Container Padding */
-    .container {
-        padding: 0 1.2rem;
-    }
-
     /* Hide the top nav links on mobile */
     .nav-links {
         display: none !important;
@@ -996,13 +1015,8 @@ html {
         display: flex;
     }
 
-    /* Padding for the sticky footer */
+    /* Add padding to body so content isn't hidden behind the bottom nav */
     body {
         padding-bottom: 80px;
-    }
-
-    /* Stack cards vertically */
-    .grid {
-        grid-template-columns: 1fr; 
     }
 }

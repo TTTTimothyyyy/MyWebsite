@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="Images/favicon.png">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         #particle-canvas {
             position: fixed;
@@ -76,6 +77,29 @@
         </section>
     </main>
 
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link active">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+        <a href="stack.html" class="mobile-nav-link">
+            <i class="fas fa-layer-group"></i>
+            <span>Stack</span>
+        </a>
+        <a href="gallery.html" class="mobile-nav-link">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </nav>
+
     <footer>
         <p>&copy; 2026 Timothy Dunn Game Development. All rights reserved.</p>
     </footer>
@@ -140,7 +164,7 @@
             }
         });
 
-        const interactables = document.querySelectorAll('a, button, .card');
+        const interactables = document.querySelectorAll('a, button, .card, .mobile-nav-link');
         interactables.forEach(item => {
             item.addEventListener('mouseenter', (e) => {
                 if (!isHovering) {

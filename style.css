@@ -234,7 +234,8 @@ nav {
 /* --- CARDS & GRID --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Force exactly 2 columns on desktop */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -1037,6 +1038,12 @@ html {
     footer {
         padding: 3rem 0;
         margin-top: 3rem;
+    }
+
+    /* 8. Grid Adjustments */
+    .grid {
+        /* Stack cards vertically on phones */
+        grid-template-columns: 1fr; 
     }
 }
 

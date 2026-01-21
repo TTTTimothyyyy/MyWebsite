@@ -195,7 +195,7 @@ if (scrollContainer) {
         }
     });
 
-    // Compact Mode Trigger
+    // Compact Mode Triggers
     window.addEventListener('scroll', () => {
         const rect = trigger.getBoundingClientRect();
         if (rect.top <= 80) {

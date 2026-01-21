@@ -45,6 +45,17 @@ body {
     overflow-x: hidden;
 }
 
+/* --- CANVAS STYLE (Moved from HTML) --- */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
 /* --- LAYOUT UTILITIES --- */
 .container {
     max-width: 1200px;
@@ -52,11 +63,10 @@ body {
     padding: 0 2rem;
 }
 
-/* This class handles spacing for sub-pages (About, Stack, etc.) */
 .page-content {
     min-height: 60vh; 
     padding-top: 4rem;
-    padding-bottom: 80vh; /* Adds scroll space */
+    padding-bottom: 80vh; 
 }
 
 .section-title {
@@ -101,7 +111,7 @@ nav {
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--card-border);
     padding: 1rem 0;
-    height: 72px; /* Fixed height to help with calculations */
+    height: 72px; 
 }
 
 .nav-container {
@@ -190,7 +200,7 @@ nav {
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding-top: 4rem; /* Restore space above profile */
+    padding-top: 4rem;
 }
 
 .hero::before {
@@ -233,7 +243,7 @@ nav {
     margin: 0 auto 2.5rem;
     color: var(--text-secondary);
     font-size: 1.1rem;
-    word-wrap: break-word; /* Fixes text clipping */
+    word-wrap: break-word; 
     overflow-wrap: break-word;
     line-height: 1.5;
 }
@@ -252,7 +262,6 @@ nav {
 /* --- CARDS & GRID --- */
 .grid {
     display: grid;
-    /* Force exactly 2 columns on desktop */
     grid-template-columns: repeat(2, 1fr); 
     gap: 2rem;
     margin-top: 2rem;
@@ -407,7 +416,7 @@ footer {
 /* --- ANIMATIONS & MOBILE --- */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 6rem; /* Increase space above profile for mobile */
+        padding-top: 6rem; 
         min-height: auto;
     }
     .hero-content h1 { 
@@ -419,7 +428,8 @@ footer {
         padding: 0 0.5rem;
         max-width: 100%;
     }
-    .nav-links { display: none; }
+    /* Hide the top nav links (Text links) */
+    .nav-links { display: none !important; }
 }
 
 .reveal {
@@ -428,7 +438,6 @@ footer {
     transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 
-/* CRITICAL FIX: Removing 'transform' here allows fixed children to work properly */
 .reveal.active {
     opacity: 1;
     transform: none; 
@@ -438,25 +447,19 @@ footer {
 /* STACK PAGE SPECIFIC STYLES                */
 /* ========================================= */
 
-/* --- INFINITE SCROLL CONTAINER --- */
 .infinite-scroll-container {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 2rem 0;
-    
-    /* HIDE SCROLLBAR - Firefox */
     scrollbar-width: none; 
-    /* HIDE SCROLLBAR - IE/Edge */
     -ms-overflow-style: none; 
-    
     scroll-behavior: auto;
     cursor: grab;
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 
-/* HIDE SCROLLBAR - Chrome/Safari/Webkit */
 .infinite-scroll-container::-webkit-scrollbar {
     display: none;
 }
@@ -470,7 +473,6 @@ footer {
     margin: 0 auto;
 }
 
-/* LARGE PORTRAIT CARDS (Yu-Gi-Oh Style) */
 .skill-card-large {
     background: var(--card-bg);
     border: 2px solid var(--card-border);
@@ -478,7 +480,7 @@ footer {
     padding: 2rem;
     min-width: 320px; 
     max-width: 320px;
-    height: 500px; /* Tall Height */
+    height: 500px;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
@@ -491,7 +493,6 @@ footer {
     cursor: pointer;
 }
 
-/* Inner Frame Effect */
 .skill-card-large::after {
     content: '';
     position: absolute;
@@ -508,7 +509,6 @@ footer {
     z-index: 10;
 }
 
-/* Active/Selected State */
 .skill-card-large.selected-card {
     border-color: var(--accent-comp);
     box-shadow: 0 0 20px var(--accent-comp);
@@ -530,7 +530,6 @@ footer {
     z-index: 1;
 }
 
-/* Gold Achievement Card */
 .skill-card-large.achievement {
     border-color: #ffd700;
 }
@@ -546,17 +545,16 @@ footer {
     cursor: grabbing;
 }
 
-/* --- DETAIL SECTION (Hidden Area) --- */
 .details-display-area {
     width: 100%;
     max-width: 1000px;
     margin: 4rem auto 0;
     min-height: 0;
-    height: 0; /* Hidden by default */
+    height: 0;
     overflow: hidden;
     opacity: 0;
     transition: all 0.5s ease;
-    border-top: none; /* Removed the top border line */
+    border-top: none;
     position: relative;
     z-index: 10;
 }
@@ -568,10 +566,8 @@ footer {
     padding-top: 3rem;
 }
 
-/* --- NEW: SHIFT UP CLASS --- */
-/* Pulls details up to cover the empty placeholder space */
 .details-display-area.shifted-up {
-    margin-top: -490px; /* Gap adjustment */
+    margin-top: -490px;
     transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
 }
 
@@ -600,57 +596,41 @@ footer {
     font-size: 3rem;
 }
 
-
-/* ================================================================= */
+/* ========================================= */
 /* --- COMPACT MODE (Centered Floating Sub-Menu) --- */
-/* ================================================================= */
+/* ========================================= */
 
 .infinite-scroll-container.compact {
     position: fixed;
-    /* This positions it exactly below your 72px main nav */
     top: 85px; 
-    
-    /* Absolute Centering */
     left: 50%;
     transform: translateX(-50%);
-    
-    /* Appearance */
-    width: auto;  /* Shrink to fit content */
+    width: auto;
     max-width: 95vw;
-    z-index: 99; /* Higher index to stay on top */
-    
-    /* FIX: USE THEME VARIABLE, NOT HARDCODED COLOR */
+    z-index: 99;
     background: var(--nav-bg); 
     backdrop-filter: blur(10px);
-    
     border: 1px solid var(--card-border);
-    border-radius: 50px; /* Pill Shape */
+    border-radius: 50px;
     padding: 0.5rem 1rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* No scrollbars in menu mode */
     overflow: hidden; 
     transition: all 0.3s ease;
 }
 
-/* The Placeholder (Holds the space so page doesn't jump) */
 .scroll-placeholder {
     display: none; 
     width: 100%;
-    height: 600px; /* Must match original card height */
+    height: 600px;
 }
 .scroll-placeholder.active {
     display: block;
 }
 
-/* --- COLLAPSED CARD STYLING --- */
-
-/* 1. HIDE CLONES: Stop infinite repeat in compact mode */
 .infinite-scroll-container.compact .infinite-clone {
     display: none !important;
 }
 
-/* 2. CENTER ITEMS: Ensure remaining items are centered */
 .infinite-scroll-container.compact .scrolling-wrapper {
     padding: 0;
     gap: 0.5rem;
@@ -660,53 +640,38 @@ footer {
     min-width: 100%;
 }
 
-/* Turn cards into clickable menu buttons */
 .infinite-scroll-container.compact .skill-card-large {
-    height: 50px;       /* Button height */
-    min-width: auto;    /* Allow width to shrink */
-    max-width: none;    
+    height: 50px;
+    min-width: auto;
+    max-width: none;
     width: auto;
-    
     padding: 0 1.2rem;
-    
-    flex-direction: row; /* Horizontal layout */
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
-    
     border: 1px solid transparent;
-    border-radius: 30px; /* Round buttons */
+    border-radius: 30px;
     background: transparent;
 }
 
-/* Selected state in menu mode */
 .infinite-scroll-container.compact .skill-card-large.selected-card {
     background: var(--accent-primary);
     border-color: var(--accent-primary);
-    transform: none; /* No jumping */
+    transform: none;
     box-shadow: none;
 }
 
-/* Text color fix for selected button */
 [data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card,
 [data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
-    color: #111827; /* Dark text on bright Teal */
+    color: #111827;
 }
 
 [data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card,
 [data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
-    color: #ffffff; /* White text on dark Teal */
+    color: #ffffff;
 }
 
-
-/* Hover state in menu mode */
-.infinite-scroll-container.compact .skill-card-large:hover {
-    background: var(--card-border);
-    transform: translateY(-2px);
-    box-shadow: none;
-}
-
-/* Shrink Icons */
 .infinite-scroll-container.compact .card-icon {
     width: 24px;
     height: 24px;
@@ -716,7 +681,6 @@ footer {
     background: transparent;
 }
 
-/* Adjust Text */
 .infinite-scroll-container.compact h3 {
     font-size: 0.9rem;
     margin: 0;
@@ -724,7 +688,6 @@ footer {
     white-space: nowrap;
 }
 
-/* FORCE HIDE everything else */
 .infinite-scroll-container.compact p, 
 .infinite-scroll-container.compact small, 
 .infinite-scroll-container.compact div[style*="margin-top"],
@@ -732,46 +695,29 @@ footer {
     display: none !important;
 }
 
-/* Hide Scrollbar completely in compact mode */
 .infinite-scroll-container.compact::-webkit-scrollbar {
     display: none;
 }
 
-/* --- NAV SHINE ANIMATION --- */
 @keyframes textShine {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
 
 .nav-links a.active.shine-effect {
-    /* Create a gradient: Primary color -> Bright Shine -> Primary color */
-    background: linear-gradient(
-        to right, 
-        var(--accent-primary) 20%, 
-        #fff 40%, 
-        #fff 60%, 
-        var(--accent-primary) 80%
-    );
+    background: linear-gradient(to right, var(--accent-primary) 20%, #fff 40%, #fff 60%, var(--accent-primary) 80%);
     background-size: 200% auto;
-    
-    /* Clip the background to the text */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    
-    /* Run the animation infinitely */
     animation: textShine 3s linear infinite;
-    
-    /* Ensure the underline stays visible */
     display: inline-block;
 }
 
-/* Ensure the underline matches the animated text color */
 .nav-links a.active.shine-effect::after {
     background-color: var(--accent-primary);
 }
 
-/* --- NEW SOCIAL BUTTON STYLES --- */
 .btn-outline {
     background: transparent !important;
     color: var(--text-primary) !important;
@@ -785,7 +731,6 @@ footer {
     box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
-/* Mobile Fix for many buttons */
 @media (max-width: 600px) {
     .hero-btns {
         flex-direction: column;
@@ -800,12 +745,10 @@ footer {
     }
 }
 
-/* --- ICON SPACING --- */
 .btn i, .btn-outline i {
     margin-right: 8px;
 }
 
-/* --- HERO BUTTON CONTAINER --- */
 .hero-btns {
     display: flex;
     gap: 1rem;
@@ -814,7 +757,6 @@ footer {
     margin-bottom: 3rem;
 }
 
-/* --- TECH TICKER --- */
 .tech-ticker {
     margin-top: 2rem;
     overflow: hidden;
@@ -845,7 +787,6 @@ footer {
     100% { transform: translate3d(-100%, 0, 0); }
 }
 
-/* --- BENTO GRID --- */
 .featured-work {
     padding: 4rem 0;
 }
@@ -891,7 +832,6 @@ footer {
     text-decoration: underline;
 }
 
-/* --- REVISED SOCIAL BUTTONS --- */
 .btn-outline {
     background: transparent !important;
     color: var(--text-primary) !important;
@@ -904,7 +844,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* MOBILE FIXES */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;
@@ -914,14 +853,6 @@ footer {
     }
 }
 
-@media (max-width: 600px) {
-    .hero-btns .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-/* --- GALLERY PAGE STYLES --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -949,41 +880,33 @@ footer {
     transform: scale(1.05);
 }
 
-/* Ensure smooth scrolling when clicking the # links */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Adjusts for the sticky nav */
-}
-
 #particle-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Sits behind content */
-    pointer-events: none; /* Allows you to click buttons through it */
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* ================================================================= */
-/* --- MOBILE BOTTOM NAV STYLES --- */
+/* --- UPDATED: FIXED BOTTOM MOBILE NAV --- */
+/* ================================================================= */
 .mobile-nav {
     display: none; /* Hidden on Desktop */
     position: fixed;
-    bottom: 0; /* Moves nav to the bottom */
+    bottom: 0; /* Forces nav to the bottom */
     left: 0;
     width: 100%;
-    height: 70px; /* Slightly taller for comfortable thumb reach */
+    height: 70px;
     background: var(--nav-bg);
     backdrop-filter: blur(15px);
-    border-top: 1px solid var(--card-border); /* Border now on top */
-    border-bottom: none; 
+    border-top: 1px solid var(--card-border);
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    
-    /* Important for modern phones with "Home Bars" */
-    padding-bottom: env(safe-area-inset-bottom); 
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .mobile-nav-link {
@@ -1006,16 +929,8 @@ html {
     color: var(--accent-primary);
 }
 
-/* --- RESPONSIVE LOGIC --- */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none !important;
-    }
-    .mobile-nav {
-        display: flex;
-    }
-    /* Add padding to the body so content isn't hidden by the nav bar */
-    body {
-        padding-bottom: 80px; 
-    }
+    .nav-links { display: none !important; } /* Hide Top Text Links */
+    .mobile-nav { display: flex; } /* Show Bottom Nav */
+    body { padding-bottom: 80px; } /* Prevent Footer Overlap */
 }

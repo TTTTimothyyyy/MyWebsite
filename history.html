@@ -9,17 +9,6 @@
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -139,118 +128,6 @@
         <p>&copy; 2026 Timothy Dunn Game Development. All rights reserved.</p>
     </footer>
 
-    <script>
-        /* --- THEME & REVEAL LOGIC --- */
-        const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.querySelector('.sun-icon');
-        const moonIcon = document.querySelector('.moon-icon');
-        const html = document.documentElement;
-        
-        const updateIcons = (theme) => {
-            sunIcon.style.display = theme === 'dark' ? 'none' : 'block';
-            moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
-        };
-
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', savedTheme);
-        updateIcons(savedTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcons(newTheme);
-        });
-
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
-
-        /* --- PARTICLE SYSTEM --- */
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null };
-        let isHovering = false;
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-        window.dispatchEvent(new Event('resize'));
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            if (!isHovering) {
-                for (let i = 0; i < 2; i++) {
-                    particles.push(new Particle(mouse.x, mouse.y, false));
-                }
-            }
-        });
-
-        // Added .mobile-nav-link to interactables
-        const interactables = document.querySelectorAll('a, button, .timeline-item, .mobile-nav-link');
-        interactables.forEach(item => {
-            item.addEventListener('mouseenter', (e) => {
-                if (!isHovering) createFirework(mouse.x, mouse.y);
-                isHovering = true;
-            });
-
-            item.addEventListener('mouseleave', (e) => {
-                const related = e.relatedTarget;
-                if (!related || !item.contains(related)) isHovering = false;
-            });
-        });
-
-        class Particle {
-            constructor(x, y, isFirework) {
-                this.x = x; this.y = y; this.isFirework = isFirework;
-                const style = getComputedStyle(document.documentElement);
-                const currentTheme = html.getAttribute('data-theme');
-                const teal = style.getPropertyValue('--accent-primary').trim();
-                const orange = style.getPropertyValue('--accent-comp').trim();
-                const neutral = (currentTheme === 'dark') ? '#ffffff' : '#064e4b';
-                this.size = Math.random() * (isFirework ? 4 : 2) + 1;
-                const colorPool = isFirework ? [orange, neutral] : [teal, neutral];
-                this.color = colorPool[Math.floor(Math.random() * colorPool.length)];
-                if (isFirework) {
-                    const angle = Math.random() * Math.PI * 2;
-                    const force = Math.random() * 8 + 3;
-                    this.speedX = Math.cos(angle) * force;
-                    this.speedY = Math.sin(angle) * force;
-                    this.decay = 0.015;
-                } else {
-                    this.speedX = Math.random() * 1.5 - 0.75;
-                    this.speedY = Math.random() * 1.5 - 0.75;
-                    this.decay = 0.01;
-                }
-                this.life = 1.0;
-            }
-            update() { this.x += this.speedX; this.y += this.speedY; this.life -= this.decay; }
-            draw() { ctx.globalAlpha = this.life; ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
-        }
-
-        function createFirework(x, y) { for (let i = 0; i < 30; i++) particles.push(new Particle(x, y, true)); }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update(); particles[i].draw();
-                if (particles[i].life <= 0) { particles.splice(i, 1); i--; }
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

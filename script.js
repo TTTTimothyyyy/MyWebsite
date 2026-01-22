@@ -236,31 +236,89 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(el => el.class
 window.addEventListener("scroll", reveal);
 reveal();
 
-// --- 7. MOBILE STACK LOGIC: INJECT DETAILS (MOBILE ONLY) ---
+/* --- 7. MOBILE STACK LOGIC: RESTRUCTURE & FEATURES --- */
 function initMobileStack() {
     if (window.innerWidth <= 768) {
         const cards = document.querySelectorAll('.skill-card-large');
         
         cards.forEach(card => {
             const key = card.getAttribute('data-key');
-            // Check if we already injected to prevent duplicates
-            if (contentLibrary[key] && !card.querySelector('.mobile-injected-content')) {
-                
-                const detailDiv = document.createElement('div');
-                detailDiv.className = 'mobile-injected-content';
-                detailDiv.style.marginTop = '1.5rem';
-                detailDiv.style.paddingTop = '1.5rem';
-                detailDiv.style.borderTop = '1px solid rgba(255,255,255,0.1)';
-                detailDiv.style.textAlign = 'left'; 
-                detailDiv.innerHTML = contentLibrary[key];
-                
-                // Remove the "Click to View" text
-                const prompt = card.querySelector('div[style*="text-transform: uppercase"]');
-                if (prompt) prompt.style.display = 'none';
+            
+            // Prevent running this logic twice
+            if (card.classList.contains('mobile-optimized')) return;
+            card.classList.add('mobile-optimized');
 
-                card.appendChild(detailDiv);
+            // 1. Create Layout Containers
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'mobile-card-header';
+            
+            const bodyDiv = document.createElement('div');
+            bodyDiv.className = 'mobile-card-body';
+
+            // 2. Move Existing Content into Containers
+            // We select specific elements to move to header
+            const icon = card.querySelector('.card-icon');
+            const title = card.querySelector('h3');
+            const subtitle = card.querySelector('p');
+            const small = card.querySelector('small');
+            const prompt = card.querySelector('div[style*="text-transform: uppercase"]');
+
+            if (icon) headerDiv.appendChild(icon);
+            if (title) headerDiv.appendChild(title);
+            if (subtitle) headerDiv.appendChild(subtitle); 
+            if (small) headerDiv.appendChild(small); // Added this to save your tags!
+
+            // Inject Details into Body
+            if (contentLibrary[key]) {
+                const detailContent = document.createElement('div');
+                detailContent.innerHTML = contentLibrary[key];
+                detailContent.style.marginTop = '1rem';
+                bodyDiv.appendChild(detailContent);
             }
+
+            // Remove desktop prompt
+            if (prompt) prompt.remove();
+
+            // Clear card and append new structure
+            // Note: We leave 'small' tag or others in the card, then clean up
+            card.innerHTML = ''; 
+            card.appendChild(headerDiv);
+            card.appendChild(bodyDiv);
+
+            // 3. Add Back to Top Button
+            const topBtn = document.createElement('div');
+            topBtn.className = 'back-to-top-btn';
+            topBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            card.appendChild(topBtn);
+
+            // 4. Scroll Logic (Show Button + Reset)
+            bodyDiv.addEventListener('scroll', () => {
+                if (bodyDiv.scrollTop > 150) {
+                    topBtn.classList.add('visible');
+                } else {
+                    topBtn.classList.remove('visible');
+                }
+            });
+
+            topBtn.addEventListener('click', () => {
+                bodyDiv.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
+
+        // 5. Auto-Reset Scroll when out of view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    // Find the body div inside the card and reset it
+                    const scrollBody = entry.target.querySelector('.mobile-card-body');
+                    if (scrollBody) {
+                        scrollBody.scrollTop = 0;
+                    }
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 90% of card is gone
+
+        cards.forEach(card => observer.observe(card));
     }
 }
 

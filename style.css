@@ -969,29 +969,87 @@ footer {
         animation: none !important;
     }
 
-    /* 4. The Card: Full Screen & Scrollable Internally */
+    /* 4. The Card: The Static Frame */
     .skill-card-large {
         /* Dimensions */
-        min-width: 85vw !important;       /* Take up 85% of screen width */
-        height: 100% !important;          /* Fill the container height */
+        min-width: 85vw !important;
+        height: 100% !important;
         margin: 0 !important;
+        padding: 0 !important; /* Remove padding from frame to let border sit right */
         
-        /* Snapping Logic */
+        /* Snapping */
         scroll-snap-align: center;
         
-        /* Positioning Override */
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        opacity: 1 !important;
-        transform: none !important;
-        
-        /* content handling */
-        white-space: normal !important;   /* Allow text wrapping */
-        overflow-y: auto !important;      /* Allow scrolling INSIDE the card */
+        /* Layout */
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        position: relative !important;
+        overflow: hidden !important; /* CRITICAL: The card itself does NOT scroll */
+        
+        /* Visuals */
+        background: var(--card-bg);
+        border: 2px solid var(--card-border);
+        border-radius: 12px;
+    }
+
+    /* Fix the Border Trim to stay static on top */
+    .skill-card-large::after {
+        content: '';
+        position: absolute;
+        top: 10px; left: 10px; right: 10px; bottom: 10px;
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        pointer-events: none;
+        z-index: 10; /* Sits ON TOP of scrolling content */
+    }
+
+    /* The Sticky Header Section */
+    .mobile-card-header {
+        flex-shrink: 0; /* Never shrink */
+        padding: 2rem 2rem 1rem 2rem;
+        background: var(--card-bg); /* Opaque background to cover scrolling text */
+        z-index: 5;
+        border-bottom: 1px solid var(--card-border);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* The Scrollable Body */
+    .mobile-card-body {
+        flex-grow: 1;
+        overflow-y: auto; /* THIS is what scrolls now */
+        padding: 1.5rem 2rem 5rem 2rem; /* Bottom padding for Back-to-Top button space */
+        scrollbar-width: thin; /* Nice thin scrollbar for Android */
+    }
+
+    /* Back to Top Button */
+    .back-to-top-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: var(--accent-primary);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 20;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+        cursor: pointer;
+    }
+
+    .back-to-top-btn.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
     }
 
     /* 5. Hide Desktop Elements */

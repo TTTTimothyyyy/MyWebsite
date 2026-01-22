@@ -209,3 +209,37 @@ if (scrollContainer) {
         }
     });
 }
+
+/* --- MOBILE STACK LOGIC: INJECT DETAILS --- */
+function initMobileStack() {
+    // Only run on mobile devices
+    if (window.innerWidth <= 768) {
+        const cards = document.querySelectorAll('.skill-card-large');
+        
+        cards.forEach(card => {
+            const key = card.getAttribute('data-key');
+            // Check if we already injected the content to prevent duplicates
+            if (contentLibrary[key] && !card.querySelector('.mobile-injected-content')) {
+                
+                // Create a container for the details
+                const detailDiv = document.createElement('div');
+                detailDiv.className = 'mobile-injected-content';
+                detailDiv.style.marginTop = '1.5rem';
+                detailDiv.style.paddingTop = '1.5rem';
+                detailDiv.style.borderTop = '1px solid rgba(255,255,255,0.1)';
+                detailDiv.innerHTML = contentLibrary[key];
+                
+                // Remove the "Click to View" text since it's now visible
+                const prompt = card.querySelector('div[style*="text-transform: uppercase"]');
+                if (prompt) prompt.style.display = 'none';
+
+                // Append the details to the card
+                card.appendChild(detailDiv);
+            }
+        });
+    }
+}
+
+// Run on load and resize
+window.addEventListener('DOMContentLoaded', initMobileStack);
+window.addEventListener('resize', initMobileStack);

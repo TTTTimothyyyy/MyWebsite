@@ -930,97 +930,74 @@ footer {
 }
 
 
-/* --- MOBILE LAYOUT OVERRIDES --- */
-@media (max-width: 768px) 
-{
-    .nav-links { display: none !important; } /* Hide Top Text Links */
-    .mobile-nav { display: flex; } /* Show Bottom Nav */
-    body { padding-bottom: 80px; } /* Prevent Footer Overlap */
-
-    /* Force Grid to Stack Vertically */
-    .grid {
-        display: flex;             /* Switches from Grid to Flexbox for better mobile control */
-        flex-direction: column;    /* Stacks items top-to-bottom */
-        gap: 2rem;                 /* Adds space between the stacked cards */
-    }
-
-    /* Adjust Card Spacing */
-    .card {
-        width: 100%;               /* Ensures the card takes full width */
-        margin-bottom: 1rem;       /* Extra safety spacing */
-    }
-
-    /* Ensure the container has breathing room on the sides */
-    .container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
-    /* Tighter Buttons on Mobile */
-    .contact-btn, button {
-        width: 90%;          /* Prevents buttons from touching the screen edges */
-        margin: 0.5rem auto; /* Centers them */
-    }
-
-    /* 1. Reset the Main Container */
-    /* Remove fixed heights and horizontal scrolling constraints */
+/* --- MOBILE LAYOUT & HORIZONTAL STACK OVERRIDES --- */
+@media (max-width: 768px) {
+    
+    /* 1. Global Mobile Fixes */
+    .nav-links { display: none !important; }
+    .mobile-nav { display: flex; }
+    body { padding-bottom: 80px; } /* Space for bottom nav */
+    
+    /* 2. Container: The "Window" for the carousel */
     .infinite-scroll-container {
-        height: auto !important;
-        overflow: visible !important;
-        white-space: normal !important;
-        display: block !important;
-        padding-bottom: 2rem;
+        /* Calculate height: Viewport - Header - Bottom Nav - Padding */
+        height: calc(100vh - 180px) !important; 
+        
+        display: flex !important;
+        overflow-x: auto !important;      /* Allow horizontal scroll */
+        overflow-y: hidden !important;    /* Lock vertical scroll */
+        scroll-snap-type: x mandatory;    /* Force cards to snap to center */
+        
+        /* Remove desktop styles */
+        width: 100% !important;
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
+        padding: 0 !important;
     }
 
-    /* 2. Stack the Cards Vertically */
+    /* 3. Wrapper: The long strip containing the cards */
     .scrolling-wrapper {
         display: flex !important;
-        flex-direction: column !important;
-        gap: 1.5rem;
-        width: 100%;
-        height: auto !important;      /* Forces container to grow with content */
-        transform: none !important;   /* Disables JS movement */
-        padding-top: 1rem;            /* Adds a little breathing room at the top */
+        flex-direction: row !important;   /* Horizontal row */
+        width: auto !important;
+        gap: 1rem;
+        padding: 0 1.5rem;                /* Padding start/end */
+        transform: none !important;       /* Disable desktop animation */
+        animation: none !important;
     }
 
-    /* 3. Style the Individual Cards */
+    /* 4. The Card: Full Screen & Scrollable Internally */
     .skill-card-large {
-        /* Reset Size & Visibility */
-        width: 100% !important;
-        min-width: 0 !important;
-        height: auto !important;
+        /* Dimensions */
+        min-width: 85vw !important;       /* Take up 85% of screen width */
+        height: 100% !important;          /* Fill the container height */
+        margin: 0 !important;
+        
+        /* Snapping Logic */
+        scroll-snap-align: center;
+        
+        /* Positioning Override */
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
         opacity: 1 !important;
         transform: none !important;
         
-        /* CRITICAL FIX: Unpin the cards so they don't squash together */
-        position: relative !important; 
-        top: auto !important;
-        left: auto !important;
-        margin: 0 !important;
-        
-        /* Optional: Tweak padding so they aren't so huge on mobile */
-        padding: 1.5rem !important;
-    }
-    
-    /* Optional: Fix the glow/selection state for mobile */
-    .skill-card-large.selected-card {
-        box-shadow: 0 0 15px var(--accent-primary) !important; /* Softer glow */
-        border: 1px solid var(--accent-primary) !important;
+        /* content handling */
+        white-space: normal !important;   /* Allow text wrapping */
+        overflow-y: auto !important;      /* Allow scrolling INSIDE the card */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
-    /* 4. Disable Desktop-Only Triggers */
-    /* Hide the elements that control the desktop animation logic */
-    #scrollTrigger, 
-    #cardPlaceholder {
+    /* 5. Hide Desktop Elements */
+    #scrollTrigger, #cardPlaceholder, .details-display-area {
         display: none !important;
     }
-
-    /* 5. Adjust the Details Area */
-    /* Ensure the popup content appears naturally below the list */
-    .details-display-area {
-        position: relative;
-        height: auto;
-        opacity: 1;
-        margin-top: 2rem;
-    }
+    
+    /* 6. General Layout Fixes (About/Contact) */
+    .grid { display: flex; flex-direction: column; gap: 2rem; }
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .contact-btn, button { width: 90%; margin: 0.5rem auto; }
 }

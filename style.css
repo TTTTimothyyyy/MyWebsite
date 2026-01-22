@@ -953,6 +953,9 @@ footer {
         mask-image: none !important;
         -webkit-mask-image: none !important;
         padding: 0 !important;
+
+        /* Safety Line: */
+        position: static !important; /* Prevents "fixed" position from Compact Mode */
     }
 
     /* 3. Wrapper: The long strip containing the cards */

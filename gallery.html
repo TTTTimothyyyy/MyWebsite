@@ -44,8 +44,8 @@
 
         <section id="unity-gallery" class="container reveal" style="margin-top: 8rem;">
             <h2 class="section-title">Unity Assets</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="Images/asset1.jpg" alt="Unity Asset"></div>
+            <div class="gallery-grid" id="unityGrid">
+                <!-- Images will be loaded via script -->
             </div>
         </section>
     </main>
@@ -129,6 +129,49 @@
             
             galleryItem.appendChild(img);
             blenderGrid.appendChild(galleryItem);
+        });
+
+        // Load Unity Assets dynamically
+        const unityImages = [
+            'Ruins & Modular Building Parts Pack Cover.png',
+            'MedievalBuildingParts_claypartsr.png',
+            'MedievalBuildingParts_fullpackrender_1.png',
+            'MedievalBuildingParts_stoneparts.png',
+            'MedievalBuildingParts_woodpartsplus.png',
+            'MedievalBuildingParts_woodpartsr.png',
+            'Render_01.png',
+            'Render_02.png',
+            'Render_03.png',
+            'Render_04.png',
+            'Render_05.png',    
+            'Render_06.png',
+            'Render_07.png',
+            'Render_08.png',
+            'Render_09.png',
+            'Render_10.png',
+            'Render_11.png',
+            'Render_12.png',
+            'Render_13.png',
+            'Render_14.png',
+            'Render_15.png',
+            'Render_16.png',
+            'Render_17.png',
+            'Render_PurplePortal.png',
+        ];
+
+        const unityGrid = document.getElementById('unityGrid');
+
+        unityImages.forEach((imageName, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.src = `Images/Unity Assets/${imageName}`;
+            img.alt = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
+            img.loading = 'lazy';
+            
+            galleryItem.appendChild(img);
+            unityGrid.appendChild(galleryItem);
         });
     </script>
 </body>

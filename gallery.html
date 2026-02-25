@@ -43,12 +43,18 @@
         </section>
 
         <section id="unity-gallery" class="container reveal" style="margin-top: 8rem;">
-            <h2 class="section-title">Unity Assets</h2>
-            <div class="gallery-grid" id="unityGrid">
+            <h2 class="section-title">Unity Assets</h2> 
+            <div class="gallery-grid" id="unityGrid">   
                 <!-- Images will be loaded via script -->
             </div>
         </section>
     </main>
+
+    <!-- Lightbox Modal Structure -->
+    <div id="imageModal" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
 
     <nav class="mobile-nav">
         <a href="index.html" class="mobile-nav-link">
@@ -83,6 +89,28 @@
 
     <script src="script.js"></script>
     <script>
+        // --- Lightbox Logic ---
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("lightboxImg");
+        const closeSpan = document.querySelector(".close-lightbox");
+
+        function openModal(src) {
+            modal.style.display = "flex"; 
+            modalImg.src = src;
+        }
+
+        // Close when clicking the X
+        closeSpan.onclick = function() { 
+            modal.style.display = "none";
+        }
+
+        // Close when clicking outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
         // Load Blender Renders dynamically
         const blenderImages = [
             'Pills.png',
@@ -127,6 +155,11 @@
             img.alt = imageName.replace(/\.(png|jpg)$/, '');
             img.loading = 'lazy';
             
+            // Add click event for Lightbox
+            img.onclick = function() {
+                openModal(this.src);
+            };
+            
             galleryItem.appendChild(img);
             blenderGrid.appendChild(galleryItem);
         });
@@ -169,6 +202,11 @@
             img.src = `Images/Unity Assets/${imageName}`;
             img.alt = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
             img.loading = 'lazy';
+            
+            // Add click event for Lightbox
+            img.onclick = function() {
+                openModal(this.src);
+            };
             
             galleryItem.appendChild(img);
             unityGrid.appendChild(galleryItem);

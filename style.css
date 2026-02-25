@@ -1062,3 +1062,70 @@ footer {
     .container { padding-left: 1.5rem; padding-right: 1.5rem; }
     .contact-btn, button { width: 90%; margin: 0.5rem auto; }
 }
+
+/* --- Lightbox Modal Styles --- */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000; /* Increased to stay above Mobile Nav (z-index 1000) */
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    
+    /* Flexbox for centering */
+    display: none; /* Keep none by default, JS toggles to flex */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure JS class toggle works correctly with Flexbox */
+.lightbox-modal.active {
+    display: flex;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: zoomIn 0.3s;
+    object-fit: contain; /* Prevents image distortion */
+}
+
+@keyframes zoomIn {
+    from {transform:scale(0.8); opacity:0}
+    to {transform:scale(1); opacity:1}
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 2001; /* Ensure on top of image */
+}
+
+.close-lightbox:hover,
+.close-lightbox:focus {
+    color: var(--accent-color, #bbb);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive Lightbox */
+@media only screen and (max-width: 700px) {
+    .lightbox-content {
+        width: 100%;
+    }
+}

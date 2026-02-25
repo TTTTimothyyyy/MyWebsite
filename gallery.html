@@ -37,8 +37,8 @@
     <main class="page-content">
         <section id="blender-gallery" class="container reveal active">
             <h2 class="section-title">Blender Renders</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="Images/render1.jpg" alt="Blender Work"></div>
+            <div class="gallery-grid" id="blenderGrid">
+                <!-- Images will be loaded here -->
             </div>
         </section>
 
@@ -82,5 +82,54 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Load Blender Renders dynamically
+        const blenderImages = [
+            'Pills.png',
+            'Edge.png',
+            'Pinch.png',
+            'Ring.png',
+            'Royal.png',
+            'Tome.png',
+            'Autumn.png',
+            'Bell.png',
+            'Box.png',
+            'Breakfast.png',
+            'Camp.png',
+            'ChildHoodToy_Lego.png',
+            'Flower.png',
+            'Frame.png',
+            'Glass.png',
+            'Headphones.png',
+            'Ink.png',
+            'LampDenoised.png',
+            'LighthouseDawnHighQual.png',
+            'Lost Hat.png',
+            'Map.png',
+            'Moon Pic.png',
+            'Portal.png',
+            'Robot1.png',
+            'Spaceship1.png',
+            'SpoonSpoonSpoon.jpg',
+            'SuperNova.png',
+            'Swing.png',
+            'Wire-Somewhere_Cold.png'
+        ];
+
+        const blenderGrid = document.getElementById('blenderGrid');
+        
+        blenderImages.forEach((imageName, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.src = `Images/Blender Renders/${imageName}`;
+            img.alt = imageName.replace(/\.(png|jpg)$/, '');
+            img.loading = 'lazy';
+            
+            galleryItem.appendChild(img);
+            blenderGrid.appendChild(galleryItem);
+        });
+    </script>
 </body>
 </html>

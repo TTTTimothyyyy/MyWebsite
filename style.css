@@ -1259,3 +1259,10 @@ footer {
 .infinite-scroll-container.scrolled-mode div[style*="margin-top"] {
     display: none;
 }
+
+/* --- FIX: PREVENT CONTENT OVERLAP --- */
+/* When valid, this pushes the Details Area down so it doesn't hide behind the sticky header */
+.infinite-scroll-container.scrolled-mode + .details-display-area {
+    margin-top: 140px !important; /* height of header (120px) + gap (20px) */
+    transition: margin-top 0.3s ease;
+}

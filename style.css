@@ -1261,8 +1261,16 @@ footer {
 }
 
 /* --- FIX: PREVENT CONTENT OVERLAP --- */
-/* When valid, this pushes the Details Area down so it doesn't hide behind the sticky header */
-.infinite-scroll-container.scrolled-mode + .details-display-area {
-    margin-top: 140px !important; /* height of header (120px) + gap (20px) */
-    transition: margin-top 0.3s ease;
+/* Adds breathing room between the sticky header and the details section */
+.details-display-area.shifted-up {
+    margin-top: -490px;
+    transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
+}
+
+/* When compact mode is active, override the shifted-up margin */
+/* This adds a gap strip of background between the sticky nav and the details */
+.details-display-area.open.shifted-up {
+    margin-top: -350px; /* Reduced negative margin = more visible gap */
+    padding-top: 2rem;  /* Extra breathing room at the top of the content */
+    transition: margin-top 0.4s ease;
 }

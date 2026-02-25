@@ -35,19 +35,26 @@
     </nav>
 
     <main class="page-content">
-        <section id="blender-gallery" class="container reveal active">
-            <h2 class="section-title">Blender Renders</h2>
-            <div class="gallery-grid" id="blenderGrid">
-                <!-- Images will be loaded here -->
+        
+        <!-- Filter Buttons -->
+        <section class="container reveal active" style="text-align: center;">
+            <h1 class="section-title" style="margin-bottom: 1rem;">Asset Gallery</h1>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">A collection of my 3D renders and game assets.</p>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="blender">Blender Renders</button>
+                <button class="filter-btn" data-filter="unity">Unity Assets</button>
             </div>
         </section>
 
-        <section id="unity-gallery" class="container reveal" style="margin-top: 8rem;">
-            <h2 class="section-title">Unity Assets</h2> 
-            <div class="gallery-grid" id="unityGrid">   
-                <!-- Images will be loaded via script -->
+        <!-- Unified Gallery Grid -->
+        <section class="container">
+            <div class="gallery-grid" id="mainGalleryGrid">
+                <!-- Javascript will combine images here -->
             </div>
         </section>
+
     </main>
 
     <!-- Lightbox Modal Structure -->
@@ -99,72 +106,20 @@
             modalImg.src = src;
         }
 
-        // Close when clicking the X
-        closeSpan.onclick = function() { 
-            modal.style.display = "none";
-        }
+        closeSpan.onclick = function() { modal.style.display = "none"; }
+        modal.onclick = function(event) { if (event.target === modal) modal.style.display = "none"; }
 
-        // Close when clicking outside the image
-        modal.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        // Load Blender Renders dynamically
+        // --- Data Definitions ---
         const blenderImages = [
-            'Pills.png',
-            'Edge.png',
-            'Pinch.png',
-            'Ring.png',
-            'Royal.png',
-            'Tome.png',
-            'Autumn.png',
-            'Bell.png',
-            'Box.png',
-            'Breakfast.png',
-            'Camp.png',
-            'ChildHoodToy_Lego.png',
-            'Flower.png',
-            'Frame.png',
-            'Glass.png',
-            'Headphones.png',
-            'Ink.png',
-            'LampDenoised.png',
-            'LighthouseDawnHighQual.png',
-            'Lost Hat.png',
-            'Map.png',
-            'Moon Pic.png',
-            'Portal.png',
-            'Robot1.png',
-            'Spaceship1.png',
-            'SpoonSpoonSpoon.jpg',
-            'SuperNova.png',
-            'Swing.png',
+            'Pills.png', 'Edge.png', 'Pinch.png', 'Ring.png', 'Royal.png', 'Tome.png',
+            'Autumn.png', 'Bell.png', 'Box.png', 'Breakfast.png', 'Camp.png',
+            'ChildHoodToy_Lego.png', 'Flower.png', 'Frame.png', 'Glass.png',
+            'Headphones.png', 'Ink.png', 'LampDenoised.png', 'LighthouseDawnHighQual.png',
+            'Lost Hat.png', 'Map.png', 'Moon Pic.png', 'Portal.png', 'Robot1.png',
+            'Spaceship1.png', 'SpoonSpoonSpoon.jpg', 'SuperNova.png', 'Swing.png',
             'Wire-Somewhere_Cold.png'
         ];
 
-        const blenderGrid = document.getElementById('blenderGrid');
-        
-        blenderImages.forEach((imageName, index) => {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            
-            const img = document.createElement('img');
-            img.src = `Images/Blender Renders/${imageName}`;
-            img.alt = imageName.replace(/\.(png|jpg)$/, '');
-            img.loading = 'lazy';
-            
-            // Add click event for Lightbox
-            img.onclick = function() {
-                openModal(this.src);
-            };
-            
-            galleryItem.appendChild(img);
-            blenderGrid.appendChild(galleryItem);
-        });
-
-        // Load Unity Assets dynamically
         const unityImages = [
             'Ruins & Modular Building Parts Pack - Cover.png',
             'MedievalBuildingParts_claypartsr.png',
@@ -172,32 +127,66 @@
             'MedievalBuildingParts_stoneparts.png',
             'MedievalBuildingParts_woodpartsplus.png',
             'MedievalBuildingParts_woodpartsr.png',
-            'Render_01.png',
-            'Render_02.png',
-            'Render_03.png',  
-            'Render_06.png',
-            'Render_10.png',
+            'Render_01.png', 'Render_02.png', 'Render_03.png',  
+            'Render_06.png', 'Render_10.png',
         ];
 
-        const unityGrid = document.getElementById('unityGrid');
+        const mainGrid = document.getElementById('mainGalleryGrid');
 
-        unityImages.forEach((imageName, index) => {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            
+        // Helper function to create gallery items
+        function createGalleryItem(filename, category, folder) {
+            const item = document.createElement('div');
+            item.className = `gallery-item show`; 
+            item.setAttribute('data-category', category); // Store category for filtering
+
             const img = document.createElement('img');
-            img.src = `Images/Unity Assets/${imageName}`;
-            img.alt = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
+            img.src = `Images/${folder}/${filename}`;
+            img.alt = filename.replace(/\.(png|jpg|jpeg)$/i, '');
             img.loading = 'lazy';
             
-            // Add click event for Lightbox
-            img.onclick = function() {
-                openModal(this.src);
-            };
-            
-            galleryItem.appendChild(img);
-            unityGrid.appendChild(galleryItem);
+            // Lightbox click
+            img.onclick = function() { openModal(this.src); };
+
+            item.appendChild(img);
+            return item;
+        }
+
+        // Populate Grid
+        // 1. Add Blender Images
+        blenderImages.forEach(img => {
+            mainGrid.appendChild(createGalleryItem(img, 'blender', 'Blender Renders'));
         });
+
+        // 2. Add Unity Images
+        unityImages.forEach(img => {
+            mainGrid.appendChild(createGalleryItem(img, 'unity', 'Unity Assets'));
+        });
+
+        // --- Filter Logic ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hide');
+                        item.classList.add('show');
+                    } else {
+                        item.classList.remove('show');
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+
     </script>
 </body>
 </html>

@@ -171,10 +171,14 @@ if (scrollWrapper) {
                 if (contentLibrary[key]) {
                     dynamicContent.innerHTML = contentLibrary[key];
                     detailsArea.classList.add('open');
-                    setTimeout(() => {
-                        const offset = trigger.offsetTop - 65; 
-                        window.scrollTo({ top: offset, behavior: 'smooth' });
-                    }, 100);
+                    
+                    // REMOVED: The logic that forced a scroll or layout shift immediately
+                    // instead, we just gently scroll the details into view if needed, 
+                    // but we do NOT trigger the 'compact' class here.
+                    
+                    // Optional: Smooth scroll to just show the details area starts
+                    // const detailsTop = detailsArea.getBoundingClientRect().top + window.scrollY - 300;
+                    // window.scrollTo({ top: detailsTop, behavior: 'smooth' });
                 }
             }
         }
@@ -202,7 +206,9 @@ window.addEventListener('scroll', () => {
     // CHECK: Only run on desktop
     if (window.innerWidth > 768 && trigger) {
         const rect = trigger.getBoundingClientRect();
-        if (rect.top <= 80) {
+        // Adjust threshold: e.g., only shrink when the trigger (below cards) hits top of screen
+        // This ensures users have scrolled PAST the cards to read details before shrinking occurs
+        if (rect.top <= 80) { 
             container.classList.add('compact');
             placeholder.classList.add('active'); 
             detailsArea.classList.add('shifted-up');

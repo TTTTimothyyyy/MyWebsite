@@ -1,28 +1,42 @@
 /* --- 1. CONTENT LIBRARY --- */
 const contentLibrary = {
     'unity': `
-        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:2rem;">Unity Project Showcase</h3>
+        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Project Showcase</h3>
+
+        <!-- Filter Tags -->
+        <div style="display:flex; gap:0.75rem; margin-bottom:2rem; flex-wrap:wrap;">
+            <button onclick="filterProjects('all')" id="filter-all" 
+                style="padding:0.4rem 1rem; border-radius:999px; border:1px solid var(--accent-primary); background:var(--accent-primary); color:#000; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;">
+                All
+            </button>
+            <button onclick="filterProjects('in-development')" id="filter-in-development"
+                style="padding:0.4rem 1rem; border-radius:999px; border:1px solid var(--accent-comp); background:transparent; color:var(--accent-comp); font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;">
+                In Development
+            </button>
+            <button onclick="filterProjects('paused')" id="filter-paused"
+                style="padding:0.4rem 1rem; border-radius:999px; border:1px solid var(--text-secondary); background:transparent; color:var(--text-secondary); font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;">
+                Paused Development
+            </button>
+            <button onclick="filterProjects('released')" id="filter-released"
+                style="padding:0.4rem 1rem; border-radius:999px; border:1px solid var(--accent-primary); background:transparent; color:var(--accent-primary); font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;">
+                Released
+            </button>
+        </div>
 
         <!-- ROW 1: Ember Express (Featured) -->
-        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+        <div class="project-row" data-status="in-development" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem; transition: opacity 0.3s ease, transform 0.3s ease;">
             <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">✨ The Ember Express
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(In Development)</span>
             </h4>
-
-            <!-- Sub Header Tag Line -->
             <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
                 Steampunk Procedural Dungeon Crawler &nbsp;|&nbsp; Job-Based Extraction Looter &nbsp;|&nbsp; Co-op Firefighting Survival &nbsp;|&nbsp; Resource Management
             </p>
-
-            <!-- 2 Images Side by Side -->
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
                 <img src="Images/Stack/EmberExpress_1.png" alt="Ember Express Screenshot 1"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
                 <img src="Images/Stack/EmberExpress_2.png" alt="Ember Express Screenshot 2"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
             </div>
-
-            <!-- Short Description -->
             <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1.25rem;">
                 A <strong style="color:var(--text-primary);">steampunk extraction game</strong> set in a world divided between the elite 
                 <strong style="color:var(--text-primary);">"Above"</strong> and the rusted, steam-choked <strong style="color:var(--text-primary);">"Below."</strong> 
@@ -30,8 +44,6 @@ const contentLibrary = {
                 <strong style="color:var(--text-primary);">greed against survival</strong> across 
                 <strong style="color:var(--text-primary);">nine procedurally generated tunnel environments.</strong>
             </p>
-
-            <!-- Devlog Notice -->
             <div style="border-left:3px solid var(--accent-comp); padding:0.75rem 1rem; background:var(--bg-secondary); border-radius:0 8px 8px 0;">
                 <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
                     📺 <strong style="color:var(--accent-comp);">Devlog Coming Soon</strong> — A full YouTube devlog covering the project scope, 
@@ -41,32 +53,44 @@ const contentLibrary = {
         </div>
 
         <!-- ROW 2: Ruin Runner Reborn -->
-        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
-            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">🏃 Ruin Runner Reborn
+        <div class="project-row" data-status="paused" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem; transition: opacity 0.3s ease, transform 0.3s ease;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">🏃 Ruin Runner Reborn
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
             </h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
+                FPS &nbsp;|&nbsp; Parkour &nbsp;|&nbsp; Puzzle Solving &nbsp;|&nbsp; Solo Project
+            </p>
             <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                FPS parkour & puzzle solving | Remake of one of my oldest projects - Ruin Runner.
+                A remake of one of my oldest projects. Features custom FPS movement, 
+                <strong style="color:var(--text-primary);">parkour mechanics</strong> and environmental puzzle solving.
             </p>
         </div>
 
         <!-- ROW 3: Yooha's Game -->
-        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
-            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">💌 Yooha's Game
+        <div class="project-row" data-status="released" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem; transition: opacity 0.3s ease, transform 0.3s ease;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">💌 Yooha's Game
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Released)</span>
             </h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
+                Narrative &nbsp;|&nbsp; Dating Sim &nbsp;|&nbsp; Client Work &nbsp;|&nbsp; Amsterdam University
+            </p>
             <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                Narrative dating sim | Client work for Amsterdam University.
+                A narrative dating sim developed as <strong style="color:var(--text-primary);">client work for Amsterdam University.</strong> 
+                Focuses on branching dialogue and character-driven storytelling.
             </p>
         </div>
 
         <!-- ROW 4: Star Tale -->
-        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
-            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">✨ Star Tale
+        <div class="project-row" data-status="paused" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem; transition: opacity 0.3s ease, transform 0.3s ease;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">✨ Star Tale
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
             </h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
+                Co-op &nbsp;|&nbsp; Adventure &nbsp;|&nbsp; Rune Collection &nbsp;|&nbsp; Multiplayer
+            </p>
             <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                Co-op adventure with rune collection systems.
+                A co-op adventure game built around a <strong style="color:var(--text-primary);">rune collection and crafting system,</strong> 
+                with multiplayer support using Photon PUN 2.
             </p>
         </div>`,
     
@@ -292,7 +316,44 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(el => el.class
 window.addEventListener("scroll", reveal);
 reveal();
 
-/* --- 7. MOBILE STACK LOGIC: RESTRUCTURE & FEATURES --- */
+/* --- UNITY PROJECT FILTER LOGIC --- */
+function filterProjects(status) {
+    const rows = document.querySelectorAll('.project-row');
+    const buttons = document.querySelectorAll('[id^="filter-"]');
+
+    // Update active button styles
+    buttons.forEach(btn => {
+        btn.style.background = 'transparent';
+        btn.style.color = btn.id === 'filter-released' || btn.id === 'filter-all' 
+            ? 'var(--accent-primary)' 
+            : btn.id === 'filter-in-development' 
+                ? 'var(--accent-comp)' 
+                : 'var(--text-secondary)';
+    });
+
+    const activeBtn = document.getElementById(`filter-${status}`);
+    if (activeBtn) {
+        activeBtn.style.background = status === 'in-development' 
+            ? 'var(--accent-comp)' 
+            : status === 'paused' 
+                ? 'var(--text-secondary)' 
+                : 'var(--accent-primary)';
+        activeBtn.style.color = '#000';
+    }
+
+    // Show/Hide rows
+    rows.forEach(row => {
+        if (status === 'all' || row.getAttribute('data-status') === status) {
+            row.style.display = 'block';
+            row.style.opacity = '1';
+            row.style.transform = 'translateY(0)';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+/* --- 7. MOBILE STACK LOGIC --- */
 function initMobileStack() {
     if (window.innerWidth <= 768) {
         const cards = document.querySelectorAll('.skill-card-large');

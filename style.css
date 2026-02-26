@@ -1295,7 +1295,7 @@ footer {
 .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card {
     background: var(--accent-primary) !important;
     border-color: var(--accent-primary) !important;
-    color: #000 !important;
+    color: #ffffff !important;
     font-weight: 700 !important;
     transform: none !important;
     box-shadow: none !important;
@@ -1304,7 +1304,7 @@ footer {
 .infinite-scroll-container.scrolled-mode .skill-card-large.achievement.selected-card {
     background: gold !important;
     border-color: gold !important;
-    color: #000 !important;
+    color: #ffffff !important;
 }
 
 /* Reset card icon to inline emoji */
@@ -1331,4 +1331,41 @@ footer {
 /* Hide the gold glow on achievement card */
 .infinite-scroll-container.scrolled-mode .skill-card-large.achievement {
     border-color: var(--card-border) !important;
+}
+
+/* --- LIGHT MODE: STACK TAB PILLS --- */
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(13, 148, 136, 0.3) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large:hover {
+    border-color: var(--accent-primary) !important;
+    color: var(--accent-primary) !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2) !important;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card {
+    background: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.35) !important;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large.achievement.selected-card {
+    background: #b8860b !important;
+    border-color: #b8860b !important;
+    color: #ffffff !important;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large h3 {
+    color: inherit !important;
+}
+
+/* Light mode blur fade */
+[data-theme="light"] .infinite-scroll-container.scrolled-mode::after {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }

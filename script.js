@@ -102,7 +102,7 @@ const contentLibrary = {
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
                 <img src="Images/Stack/YoohasGame_1.png" alt="Yooha's Game Screenshot 1"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
-                <img src="Images/Stack/YoohasGame_2.png" alt="Yooha's Game Screenshot 2"
+                <img src="Images/Stack/YoohasGame_2.avif" alt="Yooha's Game Screenshot 2"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
             </div>
 
@@ -137,9 +137,9 @@ const contentLibrary = {
 
             <!-- 2 Images Side by Side -->
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
-                <img src="Images/Stack/StarTale_1.png" alt="Star Tale Screenshot 1"
+                <img src="Images/Stack/StarTale_1.avif" alt="Star Tale Screenshot 1"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
-                <img src="Images/Stack/StarTale_2.png" alt="Star Tale Screenshot 2"
+                <img src="Images/Stack/StarTale_2.avif" alt="Star Tale Screenshot 2"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
             </div>
 

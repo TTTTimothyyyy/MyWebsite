@@ -1369,3 +1369,59 @@ footer {
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
 }
+
+/* --- LIGHT MODE CONTRAST IMPROVEMENTS --- */
+
+/* Stronger card backgrounds */
+[data-theme="light"] .detail-content {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(13, 148, 136, 0.25) !important;
+    box-shadow: 0 4px 24px rgba(13, 148, 136, 0.1) !important;
+}
+
+/* Project rows inside detail content */
+[data-theme="light"] .project-row {
+    background: #f8fffe !important;
+    border: 1.5px solid rgba(13, 148, 136, 0.2) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Project row hover */
+[data-theme="light"] .project-row:hover {
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 4px 20px rgba(13, 148, 136, 0.15) !important;
+}
+
+/* Filter buttons inside project showcase */
+[data-theme="light"] [id^="filter-"] {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Devlog / GitHub notice banners */
+[data-theme="light"] .project-row div[style*="border-left"] {
+    background: #f0fdfa !important;
+    border-left-width: 3px !important;
+}
+
+/* Project grid cards (cert/env content) */
+[data-theme="light"] .project-grid > div {
+    background: #f8fffe !important;
+    border: 1.5px solid rgba(13, 148, 136, 0.2) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Page background slightly more distinct */
+[data-theme="light"] .page-content {
+    background: linear-gradient(180deg, #e6faf7 0%, #f0fdfa 100%);
+}
+
+/* Section title pop */
+[data-theme="light"] .section-title {
+    text-shadow: 0 2px 12px rgba(13, 148, 136, 0.15);
+}
+
+/* Nav border more visible in light mode */
+[data-theme="light"] nav {
+    border-bottom: 2px solid rgba(13, 148, 136, 0.3) !important;
+    box-shadow: 0 2px 12px rgba(13, 148, 136, 0.1);
+}

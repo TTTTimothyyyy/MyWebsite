@@ -1213,64 +1213,105 @@ footer {
 
 /* Sticky Header Mode (triggered by JS on scroll) */
 .infinite-scroll-container.scrolled-mode {
-    position: fixed;
-    top: 70px; /* Adjust based on navbar height */
+    position: sticky;
+    top: 72px;
     left: 0;
     width: 100%;
-    height: 120px; /* Small height */
+    height: auto;
     z-index: 100;
     background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-    padding: 10px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    
-    /* Flex alignment for small cards */
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.6rem 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
-    overflow-x: auto; 
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    cursor: default;
+}
+
+.infinite-scroll-container.scrolled-mode::-webkit-scrollbar {
+    display: none;
 }
 
 .infinite-scroll-container.scrolled-mode .scrolling-wrapper {
     display: flex;
-    gap: 1rem;
+    flex-direction: row;
+    gap: 0.5rem;
     padding: 0 2rem;
+    width: auto;
+    margin: 0;
 }
 
-/* Shrink elements inside the card */
+/* --- FULLY RESET CARD TO PILL SHAPE --- */
 .infinite-scroll-container.scrolled-mode .skill-card-large {
-    min-width: 200px;
-    height: 100px;
-    padding: 1rem;
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    all: unset !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--card-border) !important;
+    background: var(--bg-secondary) !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: all 0.2s ease !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
+.infinite-scroll-container.scrolled-mode .skill-card-large:hover {
+    border-color: var(--accent-primary) !important;
+    color: var(--accent-primary) !important;
+    transform: none !important;
+}
+
+.infinite-scroll-container.scrolled-mode .skill-card-large.selected-card {
+    background: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.infinite-scroll-container.scrolled-mode .skill-card-large.achievement.selected-card {
+    background: gold !important;
+    border-color: gold !important;
+    color: #000 !important;
+}
+
+/* Reset card icon to inline emoji */
 .infinite-scroll-container.scrolled-mode .card-icon {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    all: unset !important;
+    font-size: 1rem !important;
+    display: inline !important;
 }
 
-/* Hide extra details in scrolled mode */
-.infinite-scroll-container.scrolled-mode p,
-.infinite-scroll-container.scrolled-mode small,
-.infinite-scroll-container.scrolled-mode div[style*="margin-top"] {
-    display: none;
+/* Reset h3 inside pills */
+.infinite-scroll-container.scrolled-mode .skill-card-large h3 {
+    all: unset !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: inherit !important;
+    white-space: nowrap !important;
 }
 
-/* --- FIX: PREVENT CONTENT OVERLAP --- */
-/* Adds breathing room between the sticky header and the details section */
-.details-display-area.shifted-up {
-    margin-top: -490px;
-    transition: margin-top 0.4s ease, opacity 0.5s ease, height 0.5s ease;
+/* Hide the inner border trim */
+.infinite-scroll-container.scrolled-mode .skill-card-large::after {
+    display: none !important;
 }
 
-/* When compact mode is active, override the shifted-up margin */
-/* This adds a gap strip of background between the sticky nav and the details */
-.details-display-area.open.shifted-up {
-    margin-top: -350px; /* Reduced negative margin = more visible gap */
-    padding-top: 2rem;  /* Extra breathing room at the top of the content */
-    transition: margin-top 0.4s ease;
+/* Hide the gold glow on achievement card */
+.infinite-scroll-container.scrolled-mode .skill-card-large.achievement {
+    border-color: var(--card-border) !important;
 }

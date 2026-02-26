@@ -76,6 +76,17 @@ const contentLibrary = {
                 Use <strong style="color:var(--text-primary);">Slow Time</strong> to solve puzzles and survive lethal hazards, 
                 then return to the <strong style="color:var(--text-primary);">Metroidvania hub world</strong> to unlock new portals and track your progress.
             </p>
+
+            <!-- GitHub Request Notice -->
+            <div style="border-left:3px solid var(--text-secondary); padding:0.75rem 1rem; background:var(--bg-secondary); border-radius:0 8px 8px 0;">
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+                    🐙 <strong style="color:var(--text-secondary);">Project Files Available on Request</strong> — 
+                    The source files for this project are available via GitHub upon request. 
+                    <a href="contact.html" style="color:var(--accent-primary); text-decoration:underline; font-weight:600;">
+                        Get in Touch →
+                    </a>
+                </p>
+            </div>
         </div>
 
         <!-- ROW 3: Yooha's Game -->

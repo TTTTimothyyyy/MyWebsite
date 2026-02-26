@@ -71,13 +71,36 @@ const contentLibrary = {
             <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">💌 Yooha's Game
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Released)</span>
             </h4>
-            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
                 Narrative &nbsp;|&nbsp; Dating Sim &nbsp;|&nbsp; Client Work &nbsp;|&nbsp; Amsterdam University
             </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                A narrative dating sim developed as <strong style="color:var(--text-primary);">client work for Amsterdam University.</strong> 
-                Focuses on branching dialogue and character-driven storytelling.
+
+            <!-- 2 Images Side by Side -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+                <img src="Images/Stack/YoohasGame_1.png" alt="Yooha's Game Screenshot 1"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+                <img src="Images/Stack/YoohasGame_2.png" alt="Yooha's Game Screenshot 2"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+            </div>
+
+            <!-- Description -->
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1.25rem;">
+                A <strong style="color:var(--text-primary);">free of charge game</strong> made for a client as part of their 
+                <strong style="color:var(--text-primary);">university art installation project in Amsterdam.</strong> 
+                I was given instructions for design, story, flow and media — all the rest was left to my 
+                <strong style="color:var(--text-primary);">creativity and programming ability.</strong>
             </p>
+
+            <!-- GitHub Notice -->
+            <div style="border-left:3px solid var(--accent-primary); padding:0.75rem 1rem; background:var(--bg-secondary); border-radius:0 8px 8px 0;">
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+                    🐙 <strong style="color:var(--accent-primary);">Full Project on GitHub</strong> — The complete project code is publicly available. 
+                    <a href="https://github.com/TTTTimothyyyy/unity-game-YoohaInstallationProject" target="_blank" 
+                        style="color:var(--accent-primary); text-decoration:underline; font-weight:600;">
+                        View Repository →
+                    </a>
+                </p>
+            </div>
         </div>
 
         <!-- ROW 4: Star Tale -->

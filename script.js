@@ -57,12 +57,24 @@ const contentLibrary = {
             <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">🏃 Ruin Runner Reborn
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
             </h4>
-            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
-                FPS &nbsp;|&nbsp; Parkour &nbsp;|&nbsp; Puzzle Solving &nbsp;|&nbsp; Solo Project
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                FPS &nbsp;|&nbsp; Parkour &nbsp;|&nbsp; Time Manipulation &nbsp;|&nbsp; Metroidvania &nbsp;|&nbsp; Solo Project
             </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                A remake of one of my oldest projects. Features custom FPS movement, 
-                <strong style="color:var(--text-primary);">parkour mechanics</strong> and environmental puzzle solving.
+
+            <!-- 2 Images Side by Side -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+                <img src="Images/Stack/RuinRunnerReborn_1.png" alt="Ruin Runner Reborn Screenshot 1"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+                <img src="Images/Stack/RuinRunnerReborn_2.png" alt="Ruin Runner Reborn Screenshot 2"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+            </div>
+
+            <!-- Description -->
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1.25rem;">
+                A <strong style="color:var(--text-primary);">precision first-person parkour game</strong> — chain together 
+                <strong style="color:var(--text-primary);">wall-runs, climbs and triple-dashes</strong> across stylized low-poly biomes. 
+                Use <strong style="color:var(--text-primary);">Slow Time</strong> to solve puzzles and survive lethal hazards, 
+                then return to the <strong style="color:var(--text-primary);">Metroidvania hub world</strong> to unlock new portals and track your progress.
             </p>
         </div>
 

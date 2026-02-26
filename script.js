@@ -345,26 +345,7 @@ const setupInteractions = () => {
 };
 setupInteractions();
 
-// --- 5. COMPACT MODE TRIGGER (DESKTOP ONLY) ---
-window.addEventListener('scroll', () => {
-    // CHECK: Only run on desktop
-    if (window.innerWidth > 768 && trigger) {
-        const rect = trigger.getBoundingClientRect();
-        // Adjust threshold: e.g., only shrink when the trigger (below cards) hits top of screen
-        // This ensures users have scrolled PAST the cards to read details before shrinking occurs
-        if (rect.top <= 80) { 
-            container.classList.add('compact');
-            placeholder.classList.add('active'); 
-            detailsArea.classList.add('shifted-up');
-        } else {
-            container.classList.remove('compact');
-            placeholder.classList.remove('active');
-            detailsArea.classList.remove('shifted-up');
-        }
-    }
-});
-
-// --- 6. THEME LOGIC ---
+// --- 5. THEME LOGIC ---
 const updateIcons = (theme) => {
     document.querySelector('.sun-icon').style.display = theme === 'dark' ? 'none' : 'block';
     document.querySelector('.moon-icon').style.display = theme === 'dark' ? 'block' : 'none';

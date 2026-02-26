@@ -35,71 +35,42 @@
     <main class="page-content">
         <section class="container reveal active">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.2rem;">Select a card to view detailed achievements</p>
-            
-            <!-- Trigger for scroll behavior -->
-            <div id="scrollTrigger" style="position: absolute; top: 400px; height: 1px; width: 100%;"></div>
-            
-            <div id="cardPlaceholder" class="scroll-placeholder"></div>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.2rem;">Select a category to view detailed achievements</p>
 
+            <!-- Collapsed Tab Menu (Always Visible) -->
             <div class="infinite-scroll-container" id="scrollContainer">
                 <div class="scrolling-wrapper" id="scrollWrapper">
-                    
-                    <div class="skill-card-large" data-key="unity">
+                    <div class="skill-card-large scrolled-mode" data-key="unity">
                         <div class="card-icon">🎮</div>
                         <h3>Unity Engine</h3>
-                        <p>15+ Projects</p>
-                        <small>Advanced Physics, ECS, Level Design</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Projects</div>
                     </div>
-
-                    <div class="skill-card-large" data-key="csharp">
+                    <div class="skill-card-large scrolled-mode" data-key="csharp">
                         <div class="card-icon">💻</div>
                         <h3>C# Scripting</h3>
-                        <p>20k+ Lines of Code</p>
-                        <small>OOP, Design Patterns, Memory Management</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Code</div>
                     </div>
-
-                    <div class="skill-card-large" data-key="blender">
+                    <div class="skill-card-large scrolled-mode" data-key="blender">
                         <div class="card-icon">🎨</div>
                         <h3>Blender</h3>
-                        <p>3D Asset Creation</p>
-                        <small>Modeling, UV Mapping, Rigging/Anim</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Art</div>
                     </div>
-
-                    <div class="skill-card-large" data-key="env">
+                    <div class="skill-card-large scrolled-mode" data-key="env">
                         <div class="card-icon">🏰</div>
                         <h3>Environment Art</h3>
-                        <p>Modular Kits</p>
-                        <small>Medieval Packs, Scene Composition, Lighting</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Worlds</div>
                     </div>
-
-                    <div class="skill-card-large" data-key="version">
+                    <div class="skill-card-large scrolled-mode" data-key="version">
                         <div class="card-icon">🔄</div>
                         <h3>Version Control</h3>
-                        <p>Plastic SCM / Git / VSC</p>
-                        <small>Branching, Merging, Conflict Resolution, Workflows</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Workflow</div>
                     </div>
-                    
-                    <div class="skill-card-large achievement" data-key="cert">
+                    <div class="skill-card-large scrolled-mode achievement" data-key="cert">
                         <div class="card-icon">🏆</div>
                         <h3>Unity Certified</h3>
-                        <p>Associate Programmer</p>
-                        <small>Verified Achievements</small>
-                        <div style="margin-top: auto; color: var(--accent-comp); font-size: 0.8rem; text-transform: uppercase; font-weight: bold;">Click to View Cert</div>
                     </div>
-
                 </div>
             </div>
 
             <div id="detailsArea" class="details-display-area">
                 <div id="dynamicContent" class="detail-content"></div>
             </div>
-            
+
         </section>
     </main>
 

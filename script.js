@@ -5,9 +5,15 @@ const contentLibrary = {
 
         <!-- ROW 1: Ember Express (Featured) -->
         <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
-            <h4 style="font-size:1.4rem; margin-bottom:1.25rem;">✨ The Ember Express
+            <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">✨ The Ember Express
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(In Development)</span>
             </h4>
+
+            <!-- Sub Header Tag Line -->
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Steampunk Procedural Dungeon Crawler &nbsp;|&nbsp; Job-Based Extraction Looter &nbsp;|&nbsp; Co-op Firefighting Survival &nbsp;|&nbsp; Resource Management
+            </p>
+
             <!-- 2 Images Side by Side -->
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
                 <img src="Images/Stack/EmberExpress_1.png" alt="Ember Express Screenshot 1"
@@ -15,25 +21,23 @@ const contentLibrary = {
                 <img src="Images/Stack/EmberExpress_2.png" alt="Ember Express Screenshot 2"
                     style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
             </div>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                Steampunk Procedural Dungeon Crawler | Job-Based Extraction Looter | Co-op Firefighting Survival | Resource Management
+
+            <!-- Short Description -->
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1.25rem;">
+                A <strong style="color:var(--text-primary);">steampunk extraction game</strong> set in a world divided between the elite 
+                <strong style="color:var(--text-primary);">"Above"</strong> and the rusted, steam-choked <strong style="color:var(--text-primary);">"Below."</strong> 
+                Play as a contractor operating from a <strong style="color:var(--text-primary);">modular rail-car</strong>, balancing 
+                <strong style="color:var(--text-primary);">greed against survival</strong> across 
+                <strong style="color:var(--text-primary);">nine procedurally generated tunnel environments.</strong>
             </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:0.75rem;">
-                In the world of Ember Express, the elite thrive in the sunlit <strong style="color:var(--text-primary);">"Above,"</strong>
-                while the rest of humanity toils in the rusted, steam-choked <strong style="color:var(--text-primary);">"Below."</strong>
-                You are a jack-of-all-trades contractor—part firefighter, part scavenger—operating out of a
-                <strong style="color:var(--text-primary);">customizable, modular rail-car.</strong>
-            </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:0.75rem;">
-                The game challenges players to balance <strong style="color:var(--text-primary);">greed against survival.</strong>
-                Using a variety of steampunk gadgets—from <em>Pressure Hoses</em> to <em>"Sticky Sprinklers"</em>—you'll explore
-                <strong style="color:var(--text-primary);">nine unique tunnel environments,</strong> from sunken cities to pitch-black voids.
-                Every room is <strong style="color:var(--text-primary);">procedurally generated,</strong> ensuring that no two "shifts" are ever the same.
-            </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                Between runs, return to your <strong style="color:var(--text-primary);">mobile hub</strong> to install new modules,
-                upgrade your <em>Flamebreaker suit,</em> and trade scrap for the gear you need to survive one more day in the deep.
-            </p>
+
+            <!-- Devlog Notice -->
+            <div style="border-left:3px solid var(--accent-comp); padding:0.75rem 1rem; background:var(--bg-secondary); border-radius:0 8px 8px 0;">
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+                    📺 <strong style="color:var(--accent-comp);">Devlog Coming Soon</strong> — A full YouTube devlog covering the project scope, 
+                    roadmap and development journey is planned for the near future. Stay tuned!
+                </p>
+            </div>
         </div>
 
         <!-- ROW 2: Ruin Runner Reborn -->

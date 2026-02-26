@@ -1219,10 +1219,11 @@ footer {
     width: 100%;
     height: auto;
     z-index: 100;
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--card-border);
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
     padding: 0.6rem 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
     overflow-x: auto;

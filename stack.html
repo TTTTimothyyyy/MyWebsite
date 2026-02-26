@@ -37,36 +37,37 @@
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Tech Stack</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.2rem;">Select a category to view detailed achievements</p>
 
-            <!-- Collapsed Tab Menu (Always Visible) -->
-            <div class="infinite-scroll-container" id="scrollContainer">
+            <!-- KEPT: Small Collapsed Tab Menu -->
+            <div class="infinite-scroll-container scrolled-mode" id="scrollContainer">
                 <div class="scrolling-wrapper" id="scrollWrapper">
-                    <div class="skill-card-large scrolled-mode" data-key="unity">
+                    <div class="skill-card-large" data-key="unity">
                         <div class="card-icon">🎮</div>
                         <h3>Unity Engine</h3>
                     </div>
-                    <div class="skill-card-large scrolled-mode" data-key="csharp">
+                    <div class="skill-card-large" data-key="csharp">
                         <div class="card-icon">💻</div>
                         <h3>C# Scripting</h3>
                     </div>
-                    <div class="skill-card-large scrolled-mode" data-key="blender">
+                    <div class="skill-card-large" data-key="blender">
                         <div class="card-icon">🎨</div>
                         <h3>Blender</h3>
                     </div>
-                    <div class="skill-card-large scrolled-mode" data-key="env">
+                    <div class="skill-card-large" data-key="env">
                         <div class="card-icon">🏰</div>
                         <h3>Environment Art</h3>
                     </div>
-                    <div class="skill-card-large scrolled-mode" data-key="version">
+                    <div class="skill-card-large" data-key="version">
                         <div class="card-icon">🔄</div>
                         <h3>Version Control</h3>
                     </div>
-                    <div class="skill-card-large scrolled-mode achievement" data-key="cert">
+                    <div class="skill-card-large achievement" data-key="cert">
                         <div class="card-icon">🏆</div>
                         <h3>Unity Certified</h3>
                     </div>
                 </div>
             </div>
 
+            <!-- Details Area -->
             <div id="detailsArea" class="details-display-area">
                 <div id="dynamicContent" class="detail-content"></div>
             </div>

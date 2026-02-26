@@ -423,6 +423,71 @@ function filterProjects(status) {
     });
 }
 
+/* --- STACK PAGE LIGHTBOX --- */
+function initStackLightbox() {
+    // Create lightbox elements
+    const lightbox = document.createElement('div');
+    lightbox.id = 'stack-lightbox';
+    lightbox.style.cssText = `
+        display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.9); z-index:9999; justify-content:center;
+        align-items:center; cursor:pointer;
+    `;
+
+    const lightboxImg = document.createElement('img');
+    lightboxImg.style.cssText = `
+        max-width:90%; max-height:90vh; border-radius:12px;
+        box-shadow:0 0 40px rgba(0,0,0,0.8); object-fit:contain;
+        transition: transform 0.3s ease;
+    `;
+
+    const closeBtn = document.createElement('div');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = `
+        position:fixed; top:1.5rem; right:1.5rem; color:#fff;
+        font-size:1.5rem; font-weight:700; cursor:pointer;
+        background:rgba(255,255,255,0.1); border-radius:50%;
+        width:40px; height:40px; display:flex;
+        align-items:center; justify-content:center;
+        transition: background 0.2s ease;
+    `;
+    closeBtn.addEventListener('mouseenter', () => closeBtn.style.background = 'rgba(255,255,255,0.25)');
+    closeBtn.addEventListener('mouseleave', () => closeBtn.style.background = 'rgba(255,255,255,0.1)');
+
+    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(closeBtn);
+    document.body.appendChild(lightbox);
+
+    // Open lightbox on image click
+    document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'IMG' && e.target.closest('.project-row')) {
+            lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    // Close lightbox
+    const closeLightbox = () => {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+    };
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+}
+
+// Initialize lightbox
+document.addEventListener('DOMContentLoaded', initStackLightbox);
+
 /* --- 7. MOBILE STACK LOGIC --- */
 function initMobileStack() {
     if (window.innerWidth <= 768) {

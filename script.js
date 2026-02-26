@@ -1,59 +1,69 @@
 /* --- 1. CONTENT LIBRARY --- */
 const contentLibrary = {
     'unity': `
-        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">Unity Project Showcase</h3>
-        <div class="project-grid">
-            <div>
-                <div class="project-thumbnail">🏃</div>
-                <h4 style="margin-top:1rem;">Ruin Runner Reborn</h4>
-                <p style="font-size:0.9rem;">FPS parkour & puzzle solving | Remake of one of my oldest projects - Ruin Runner.</p>
-                <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-top:0.5rem;">(Paused Development)</p>
-            </div>
+        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:2rem;">Unity Project Showcase</h3>
 
-            <div>
-                <h4 style="margin-bottom:1rem; font-size:1.3rem;">✨ The Ember Express</h4>
-                
-                <!-- 2 Image Row -->
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
-                    <img src="Images/Stack/EmberExpress_1.png" alt="Ember Express Screenshot 1" 
-                        style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
-                    <img src="Images/Stack/EmberExpress_2.png" alt="Ember Express Screenshot 2" 
-                        style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
-                </div>
-
-                <!-- Description -->
-                <p style="font-size:0.9rem; line-height:1.7; color:var(--text-secondary); margin-bottom:0.75rem;">
-                    In the world of Ember Express, the elite thrive in the sunlit <strong style="color:var(--text-primary);">"Above,"</strong> 
-                    while the rest of humanity toils in the rusted, steam-choked <strong style="color:var(--text-primary);">"Below."</strong> 
-                    You are a jack-of-all-trades contractor—part firefighter, part scavenger—operating out of a 
-                    <strong style="color:var(--text-primary);">customizable, modular rail-car.</strong>
-                </p>
-                <p style="font-size:0.9rem; line-height:1.7; color:var(--text-secondary); margin-bottom:0.75rem;">
-                    The game challenges players to balance <strong style="color:var(--text-primary);">greed against survival.</strong> 
-                    Using a variety of steampunk gadgets—from <em>Pressure Hoses</em> to <em>"Sticky Sprinklers"</em>—you'll explore 
-                    <strong style="color:var(--text-primary);">nine unique tunnel environments,</strong> from sunken cities to pitch-black voids. 
-                    Every room is <strong style="color:var(--text-primary);">procedurally generated,</strong> ensuring that no two "shifts" are ever the same.
-                </p>
-                <p style="font-size:0.9rem; line-height:1.7; color:var(--text-secondary);">
-                    Between runs, return to your <strong style="color:var(--text-primary);">mobile hub</strong> to install new modules, 
-                    upgrade your <em>Flamebreaker suit,</em> and trade scrap for the gear you need to survive one more day in the deep.
-                </p>
-
-                <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-top:0.75rem;">(In Development)</p>
+        <!-- ROW 1: Ember Express (Featured) -->
+        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.4rem; margin-bottom:1.25rem;">✨ The Ember Express
+                <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(In Development)</span>
+            </h4>
+            <!-- 2 Images Side by Side -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+                <img src="Images/Stack/EmberExpress_1.png" alt="Ember Express Screenshot 1"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+                <img src="Images/Stack/EmberExpress_2.png" alt="Ember Express Screenshot 2"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
             </div>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
+                Steampunk Procedural Dungeon Crawler | Job-Based Extraction Looter | Co-op Firefighting Survival | Resource Management
+            </p>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:0.75rem;">
+                In the world of Ember Express, the elite thrive in the sunlit <strong style="color:var(--text-primary);">"Above,"</strong>
+                while the rest of humanity toils in the rusted, steam-choked <strong style="color:var(--text-primary);">"Below."</strong>
+                You are a jack-of-all-trades contractor—part firefighter, part scavenger—operating out of a
+                <strong style="color:var(--text-primary);">customizable, modular rail-car.</strong>
+            </p>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:0.75rem;">
+                The game challenges players to balance <strong style="color:var(--text-primary);">greed against survival.</strong>
+                Using a variety of steampunk gadgets—from <em>Pressure Hoses</em> to <em>"Sticky Sprinklers"</em>—you'll explore
+                <strong style="color:var(--text-primary);">nine unique tunnel environments,</strong> from sunken cities to pitch-black voids.
+                Every room is <strong style="color:var(--text-primary);">procedurally generated,</strong> ensuring that no two "shifts" are ever the same.
+            </p>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
+                Between runs, return to your <strong style="color:var(--text-primary);">mobile hub</strong> to install new modules,
+                upgrade your <em>Flamebreaker suit,</em> and trade scrap for the gear you need to survive one more day in the deep.
+            </p>
+        </div>
 
-            <div>
-                <div class="project-thumbnail">💌</div>
-                <h4 style="margin-top:1rem;">Yooha's Game</h4>
-                <p style="font-size:0.9rem;">Narrative dating sim | Client work for Amsterdam University.</p>
-                <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-top:0.5rem;">(Released)</p>
-            </div>
-            <div>
-                <div class="project-thumbnail">✨</div>
-                <h4 style="margin-top:1rem;">Star Tale</h4>
-                <p style="font-size:0.9rem;">Co-op adventure with rune collection systems.</p>
-                <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-top:0.5rem;">(Paused Development)</p>
-            </div>
+        <!-- ROW 2: Ruin Runner Reborn -->
+        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">🏃 Ruin Runner Reborn
+                <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
+            </h4>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
+                FPS parkour & puzzle solving | Remake of one of my oldest projects - Ruin Runner.
+            </p>
+        </div>
+
+        <!-- ROW 3: Yooha's Game -->
+        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">💌 Yooha's Game
+                <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Released)</span>
+            </h4>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
+                Narrative dating sim | Client work for Amsterdam University.
+            </p>
+        </div>
+
+        <!-- ROW 4: Star Tale -->
+        <div style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.4rem; margin-bottom:0.75rem;">✨ Star Tale
+                <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
+            </h4>
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
+                Co-op adventure with rune collection systems.
+            </p>
         </div>`,
     
     'csharp': `

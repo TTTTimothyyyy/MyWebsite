@@ -131,13 +131,37 @@ const contentLibrary = {
             <h4 style="font-size:1.4rem; margin-bottom:0.5rem;">✨ Star Tale
                 <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; margin-left:1rem;">(Paused Development)</span>
             </h4>
-            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:0.75rem; text-transform:uppercase;">
-                Co-op &nbsp;|&nbsp; Adventure &nbsp;|&nbsp; Rune Collection &nbsp;|&nbsp; Multiplayer
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Co-op &nbsp;|&nbsp; Adventure &nbsp;|&nbsp; Rune Collection &nbsp;|&nbsp; Village Rebuilding &nbsp;|&nbsp; Multiplayer
             </p>
-            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary);">
-                A co-op adventure game built around a <strong style="color:var(--text-primary);">rune collection and crafting system,</strong> 
-                with multiplayer support using Photon PUN 2.
+
+            <!-- 2 Images Side by Side -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+                <img src="Images/Stack/StarTale_1.png" alt="Star Tale Screenshot 1"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+                <img src="Images/Stack/StarTale_2.png" alt="Star Tale Screenshot 2"
+                    style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:16/9; border:1px solid var(--card-border);">
+            </div>
+
+            <!-- Description -->
+            <p style="font-size:0.9rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1.25rem;">
+                A <strong style="color:var(--text-primary);">co-op adventure game</strong> where you journey through peaceful landscapes to recover 
+                <strong style="color:var(--text-primary);">8 lost Relics</strong> and rebuild your village. 
+                Trade <strong style="color:var(--text-primary);">Essence of Wonder & Nature</strong> to upgrade your 
+                <strong style="color:var(--text-primary);">Glider and Grappling Hook</strong>, while navigating a 
+                <strong style="color:var(--text-primary);">dynamic economy</strong> where locals charge tax based on the time of day and your relationship with them.
             </p>
+
+            <!-- GitHub Request Notice -->
+            <div style="border-left:3px solid var(--text-secondary); padding:0.75rem 1rem; background:var(--bg-secondary); border-radius:0 8px 8px 0;">
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+                    🐙 <strong style="color:var(--text-secondary);">Project Files Available on Request</strong> — 
+                    The source files for this project are available via GitHub upon request. 
+                    <a href="contact.html" style="color:var(--accent-primary); text-decoration:underline; font-weight:600;">
+                        Get in Touch →
+                    </a>
+                </p>
+            </div>
         </div>`,
     
     'csharp': `

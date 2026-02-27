@@ -165,12 +165,133 @@ const contentLibrary = {
         </div>`,
     
     'csharp': `
-        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">C# Architecture</h3>
-        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-            <li><strong>Tower Defense Logic:</strong> Wave spawning and economy systems.</li>
-            <li><strong>FPS Controllers:</strong> Custom movement physics and parkour mechanics.</li>
-            <li><strong>Networking:</strong> Multiplayer synchronization using Photon PUN 2.</li>
-        </ul>`,
+        <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:0.5rem;">C# Scripting & Architecture</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.8; margin-bottom:1.5rem;">
+            Specializing in Unity C# Game Development, I engineer scalable architectures, custom performance tools, and dynamic gameplay systems. 
+            My focus is on writing clean, object-oriented code that brings complex mechanics to life while maintaining strict memory and thread optimization.
+        </p>
+
+        <!-- Core Competency Pills -->
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Object-Oriented Programming</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Performance Optimization</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Procedural Generation</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Multiplayer Networking</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Custom Editor Tools</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Resource Pooling</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Custom Shaders</span>
+            <span style="padding:0.35rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); color:var(--accent-primary); font-size:0.78rem; font-weight:700;">Event-Driven Architecture</span>
+        </div>
+
+        <!-- BLOCK 1: Performance & Optimization -->
+        <div class="project-row" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.3rem; margin-bottom:0.4rem; color:var(--text-primary);">⚡ Performance & Optimization</h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Memory Management &nbsp;|&nbsp; CPU Threading &nbsp;|&nbsp; Object Pooling &nbsp;|&nbsp; Global Tick Systems
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Memory & CPU-Thread Tools</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Developed custom profiling and optimization tools to manage thread loads and streamline memory allocation across complex scenes.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Resource Pooling Systems</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Implemented robust object pooling architectures to reuse game assets dynamically, drastically reducing garbage collection spikes during heavy gameplay.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Global Update Management</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Designed centralized tick-based managers — separating 1-second job stat ticks from 0.5-second life support ticks — to avoid MonoBehaviour Update() overhead.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCK 2: Procedural & Dynamic Systems -->
+        <div class="project-row" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.3rem; margin-bottom:0.4rem; color:var(--text-primary);">🌐 Procedural & Dynamic Systems</h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Procedural Generation &nbsp;|&nbsp; State Machines &nbsp;|&nbsp; Dynamic Spread Mechanics
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Advanced Procedural Environment Generation</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Built algorithm-driven systems to dynamically generate complex environments — including networked, branching underground industrial complexes with modular room logic.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">The Blaze System</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Engineered a dynamic, organic fire-spreading mechanic that tracks room states, manages connected door paths, and calculates real-time resource drains (oxygen/steam) across the grid.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCK 3: Core Gameplay Logic -->
+        <div class="project-row" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.3rem; margin-bottom:0.4rem; color:var(--text-primary);">🎮 Core Gameplay Logic</h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                FPS Controllers &nbsp;|&nbsp; Wave Systems &nbsp;|&nbsp; State Machines &nbsp;|&nbsp; Gadget Frameworks
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Enemy Wave & Economy Systems</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Coded robust tower-defense logic handling continuous enemy wave spawning, pathfinding, and dynamic in-game currency and upgrade economies.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">FPS Controllers & Custom Physics</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Developed custom first-person movement physics featuring advanced parkour mechanics including wall-runs, triple-dashes, and responsive player traversal.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Gadget & Tool State Machines</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Scripted modular frameworks for diverse item interactions — ranging from consumable area-of-effect tools to active physics-manipulation gadgets.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCK 4: Multiplayer & Graphics -->
+        <div class="project-row" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.3rem; margin-bottom:0.4rem; color:var(--text-primary);">🌐 Multiplayer Networking & Graphics</h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Unity Netcode &nbsp;|&nbsp; Photon PUN 2 &nbsp;|&nbsp; HLSL Shaders &nbsp;|&nbsp; Rendering Optimization
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Network Synchronization</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Integrated multiplayer logic using <strong style="color:var(--text-primary);">Unity Netcode</strong> and <strong style="color:var(--text-primary);">Photon PUN 2</strong> for co-op mechanics, state synchronization, and procedural level matching across clients.</p>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.8rem; color:var(--accent-primary); font-weight:700; text-transform:uppercase; margin-bottom:0.5rem;">Custom Shaders</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">Wrote custom <strong style="color:var(--text-primary);">HLSL shaders</strong> to achieve specific visual targets and improve rendering performance for specialized environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCK 5: Featured Projects -->
+        <div class="project-row" style="background:var(--bg-primary); border-radius:12px; border:1px solid var(--card-border); padding:1.5rem; margin-bottom:1.5rem;">
+            <h4 style="font-size:1.3rem; margin-bottom:0.4rem; color:var(--text-primary);">📁 C# Featured Projects</h4>
+            <p style="font-size:0.85rem; color:var(--accent-comp); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; text-transform:uppercase;">
+                Projects Highlighting Heavy Scripting & Architecture
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:0.4rem;">✨ The Ember Express</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-bottom:0.75rem;">Advanced procedural generation, Unity Netcode multiplayer integration, and highly complex resource and environmental hazard managers.</p>
+                    <a href="stack.html?filter=unity&status=in-development" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; text-decoration:none;">View in Unity Stack →</a>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:0.4rem;">🏃 Ruin Runner Reborn</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-bottom:0.75rem;">Custom FPS movement physics, HLSL shaders, and event-driven puzzle mechanics with a Metroidvania hub world system.</p>
+                    <a href="stack.html?filter=unity&status=paused" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; text-decoration:none;">View in Unity Stack →</a>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:0.4rem;">✨ Star Tale</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-bottom:0.75rem;">Network synchronization and co-op architecture built using Photon PUN 2 with a dynamic economy system.</p>
+                    <a href="stack.html?filter=unity&status=paused" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; text-decoration:none;">View in Unity Stack →</a>
+                </div>
+                <div style="background:var(--bg-secondary); border-radius:8px; border:1px solid var(--card-border); padding:1.25rem;">
+                    <p style="font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:0.4rem;">🏰 Electro Bunker</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-bottom:0.75rem;">Wave-spawning algorithms, tower defense logic, economy management, and custom pathfinding systems.</p>
+                    <a href="stack.html?filter=unity" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; text-decoration:none;">View in Unity Stack →</a>
+                </div>
+            </div>
+        </div>`,
     
     'blender': `
         <h3 style="color:var(--accent-primary); font-size:2rem; margin-bottom:1rem;">3D Art & Assets</h3>

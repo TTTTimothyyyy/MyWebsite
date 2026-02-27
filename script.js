@@ -564,22 +564,18 @@ window.addEventListener('resize', initMobileStack);
 
 /* --- AUTO-SELECT DEFAULT CARD ON STACK PAGE --- */
 function initStackPage() {
-    // Only run if we're on the stack page (detailsArea exists)
     if (!detailsArea) return;
 
     const params = new URLSearchParams(window.location.search);
-    const filterParam = params.get('filter') || 'unity'; // Default to 'unity'
+    const filterParam = params.get('filter') || 'unity';
     const statusParam = params.get('status') || null;
 
-    // Find the card matching the filter key
     const targetCard = document.querySelector(`.skill-card-large[data-key="${filterParam}"]`);
 
     if (targetCard && contentLibrary[filterParam]) {
-        // Select the card
         document.querySelectorAll('.skill-card-large').forEach(c => c.classList.remove('selected-card'));
         targetCard.classList.add('selected-card');
 
-        // Inject content and open panel
         dynamicContent.innerHTML = contentLibrary[filterParam];
         detailsArea.classList.add('open');
 

@@ -16,7 +16,7 @@
     --bg-primary: #101c33;
     --bg-secondary: #172540;
     --card-bg: rgba(18,30,56,0.8);
-    --nav-bg: rgba(10,16,32,0.55);
+    --nav-bg: #101c33;   /* fully opaque, matches bg-primary */
     /* rest unchanged */
 }
 

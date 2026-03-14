@@ -144,15 +144,15 @@
     min-width: unset;
     padding: 0.4rem 1.1rem;
     border-radius: 999px;
-    background: transparent;
-    border: 1px solid var(--card-border);
+    background: rgba(16, 28, 51, 0.6);        /* subtle dark navy fill */
+    border: 1px solid rgba(255,255,255,0.2);   /* was 0.08 — much more visible */
     display: flex;
     align-items: center;
     gap: 0.4rem;
     white-space: nowrap;
     font-size: 0.82rem;
     font-weight: 700;
-    color: var(--text-secondary);
+    color: var(--text-primary);               /* was text-secondary — brighter */
     transition: all 0.2s ease;
 }
 
@@ -161,6 +161,7 @@
     color: var(--accent-primary);
     transform: none;
     box-shadow: none;
+    background: rgba(0,201,167,0.08);
 }
 
 .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card {

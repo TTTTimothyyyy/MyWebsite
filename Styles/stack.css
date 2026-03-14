@@ -117,25 +117,17 @@
     position: sticky;
     top: 65px;
     z-index: 100;
-    background: rgba(10,16,32,0.45);       /* more transparent than nav */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: linear-gradient(to bottom, rgba(16,45,100,0.45), transparent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
     padding: 0.6rem 0;
     overflow-x: auto;
     scrollbar-width: none;
 }
 
 .infinite-scroll-container.scrolled-mode::after {
-    content: '';
-    position: fixed;
-    top: 65px;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(10,16,32,0.3), transparent);
-    pointer-events: none;
-    z-index: 99;
+    display: none;
 }
 
 .infinite-scroll-container.scrolled-mode::-webkit-scrollbar { display: none; }

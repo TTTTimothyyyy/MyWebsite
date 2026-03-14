@@ -265,50 +265,35 @@
 
             <div class="demos-grid">
 
-                <!-- DEMO CARD 1: Yooha's Game -->
-                <div class="demo-card">
-                    <div class="demo-card-info">
-                        <h3>💌 Yooha's Game</h3>
-                        <p>A narrative dating sim created for a university art installation project in Amsterdam. Guide your character through choices that shape the story.</p>
-                        <div class="demo-card-tags">
-                            <span class="demo-tag">Narrative</span>
-                            <span class="demo-tag">Dating Sim</span>
-                            <span class="demo-tag">Unity</span>
-                            <span class="demo-tag">WebGL</span>
-                        </div>
-                        <div class="demo-card-actions">
-                            <button class="play-btn" onclick="openEmbed('yooha', 'Yooha\'s Game')">
-                                <i class="fas fa-play"></i> Play in Browser
-                            </button>
-                            <a href="https://beyondadventures.itch.io/" target="_blank" class="itchio-btn">
-                                <i class="fab fa-itch-io"></i> Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ADD MORE DEMO CARDS BELOW AS YOU RELEASE MORE GAMES -->
-                <!-- Template:
-                <div class="demo-card">
-                    <div class="demo-card-info">
-                        <h3>🎮 Game Title</h3>
-                        <p>Short description of your game.</p>
-                        <div class="demo-card-tags">
-                            <span class="demo-tag">Genre</span>
-                            <span class="demo-tag">Unity</span>
-                            <span class="demo-tag">WebGL</span>
-                        </div>
-                        <div class="demo-card-actions">
-                            <button class="play-btn" onclick="openEmbed('game-key', 'Game Title')">
-                                <i class="fas fa-play"></i> Play in Browser
-                            </button>
-                            <a href="https://beyondadventures.itch.io/your-game" target="_blank" class="itchio-btn">
-                                <i class="fab fa-itch-io"></i> Itch.io
-                            </a>
+                <div class="demo-card" style="background-image: url('Images/LooseTheHeat.png'); background-size: cover; background-position: center;">
+                    <div style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.88)); padding: 1.5rem; height: 100%;">
+                        <div class="demo-card-info">
+                            <h3>🔥 Loose The Heat</h3>
+                            <p>A single level 2D platformer with a unique twist. The main mechanic revolves around a malfunctioning-overheating weapon. Created for our first Game Jam.</p>
+                            <div class="demo-card-tags">
+                                <span class="demo-tag">Platformer</span>
+                                <span class="demo-tag">Action</span>
+                                <span class="demo-tag">2D</span>
+                                <span class="demo-tag">Pixel Art</span>
+                                <span class="demo-tag">Unity</span>
+                                <span class="demo-tag">HTML5</span>
+                            </div>
+                            <div style="font-size:0.78rem; color:var(--text-secondary); margin-bottom:1rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
+                                <span><i class="fas fa-calendar-alt" style="color:var(--accent-primary);"></i> Feb 23, 2025</span>
+                                <span><i class="fas fa-users" style="color:var(--accent-primary);"></i> Timothy & Liam</span>
+                                <span><i class="fas fa-check-circle" style="color:#4ade80;"></i> Released</span>
+                            </div>
+                            <div class="demo-card-actions">
+                                <button class="play-btn" onclick="openEmbed('loosetheheat', 'Loose The Heat')">
+                                    <i class="fas fa-play"></i> Play in Browser
+                                </button>
+                                <a href="https://beyondadventures.itch.io/" target="_blank" class="itchio-btn">
+                                    <i class="fab fa-itch-io"></i> Itch.io
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                -->
 
             </div>
         </section>
@@ -328,7 +313,7 @@
                 <iframe id="embedFrame" allowfullscreen></iframe>
             </div>
             <div class="embed-notice">
-                <p>Game not loading? <a id="embedExternalLink" href="https://itch.io/embed-upload/12899041?color=282828" target="_blank">Open on Itch.io →</a></p>
+                <p>Game not loading? <a id="embedExternalLink" href="https://beyondadventures.itch.io/" target="_blank">Open on Itch.io →</a></p>
             </div>
         </div>
     </div>
@@ -378,11 +363,10 @@
                 src: 'https://itch.io/embed-upload/YOUR_YOOHA_GAME_ID?color=2dd4bf',
                 external: 'https://beyondadventures.itch.io/'
             },
-            // Add more games here:
-            // 'game-key': {
-            //     src: 'https://itch.io/embed-upload/YOUR_GAME_ID?color=2dd4bf',
-            //     external: 'https://beyondadventures.itch.io/your-game'
-            // }
+            'loosetheheat': {
+                src: 'https://itch.io/embed-upload/YOUR_LOOSETHEHEAT_GAME_ID?color=2dd4bf',
+                external: 'https://beyondadventures.itch.io/'
+            }
         };
 
         function openEmbed(key, title) {

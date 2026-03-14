@@ -1,0 +1,5 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "fullscreen=*, gamepad=*"
+    Content-Security-Policy = "frame-src https://itch.io https://*.itch.io;"

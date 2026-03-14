@@ -1,28 +1,28 @@
 /* --- VARIABLES --- */
 :root {
-    --bg-primary: #0d1526;   /* was #0f1117 */
-    --bg-secondary: #1a1d2e;
+    --bg-primary: #0b1120;
+    --bg-secondary: #131e35;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent-primary: #00c9a7;
     --accent-comp: #ff6b35;
     --card-border: rgba(255,255,255,0.08);
-    --card-bg: rgba(26,29,46,0.8);
+    --card-bg: rgba(15,22,40,0.8);
     --accent-glow: rgba(0,201,167,0.1);
-    --nav-bg: rgba(15,17,23,0.95);
+    --nav-bg: rgba(8,12,24,0.97);
 }
 
 [data-theme="dark"] {
-    --bg-primary: #0d1526;   /* was #0f1117 */
-    --bg-secondary: #1a1d2e;
+    --bg-primary: #0b1120;
+    --bg-secondary: #131e35;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent-primary: #00c9a7;
     --accent-comp: #ff6b35;
     --card-border: rgba(255,255,255,0.08);
-    --card-bg: rgba(26,29,46,0.8);
+    --card-bg: rgba(15,22,40,0.8);
     --accent-glow: rgba(0,201,167,0.1);
-    --nav-bg: rgba(15,17,23,0.95);
+    --nav-bg: rgba(8,12,24,0.97);
 }
 
 [data-theme="light"] {

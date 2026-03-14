@@ -1576,7 +1576,7 @@ footer {
 .embed-modal-body {
     position: relative;
     width: 100%;
-    padding-top: 66.66%; /* 3:2 ratio - matches itch.io 900x600 */
+    padding-top: 100%; /* 3:2 ratio - matches itch.io 900x600 */
     overflow: visible;
 }
 

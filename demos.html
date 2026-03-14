@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos | Timothy Dunn</title>
+    <link rel="icon" type="image/png" href="Images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .demo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .demo-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background-color: var(--accent-primary);
+            transition: background-color 0.3s;
+        }
+
+        .demo-card:hover::after { background-color: var(--accent-comp); }
+        .demo-card:hover { border-color: var(--accent-comp); transform: translateY(-5px); }
+
+        .demo-card-info {
+            padding: 1.5rem;
+        }
+
+        .demo-card-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-card-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .demo-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-tag {
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .demo-card-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent-primary);
+            color: #111827;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .play-btn:hover {
+            background: var(--accent-comp);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .itchio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .itchio-btn:hover {
+            border-color: var(--accent-comp);
+            color: var(--accent-comp);
+        }
+
+        /* --- EMBED MODAL --- */
+        .embed-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(6px);
+        }
+
+        .embed-modal.active { display: flex; }
+
+        .embed-modal-inner {
+            position: relative;
+            width: 90vw;
+            max-width: 960px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .embed-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--card-border);
+            background: var(--bg-primary);
+        }
+
+        .embed-modal-header h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .embed-modal-header span {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .close-embed {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .close-embed:hover { background: var(--accent-glow); color: var(--accent-comp); }
+
+        .embed-modal-body {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 */
+        }
+
+        .embed-modal-body iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .embed-notice {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .embed-notice p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .embed-notice a {
+            color: var(--accent-primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .embed-notice a:hover { color: var(--accent-comp); }
+
+        /* No demos fallback */
+        .no-embed-notice {
+            background: var(--bg-secondary);
+            border: 1px dashed var(--card-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .embed-modal-inner { width: 98vw; }
+            .embed-modal-body { padding-top: 75%; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">TD<div class="logo-dot"></div><span>Portfolio</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="demos.html" class="active shine-effect">Demos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="container reveal active">
+            <h2 class="section-title">Playable Demos</h2>
+            <p style="text-align:center; color:var(--text-secondary); max-width:600px; margin:0 auto 3rem; font-size:1.05rem;">
+                Try out my publicly released game projects directly in your browser — no download required.
+            </p>
+
+            <div class="demos-grid">
+
+                <!-- DEMO CARD 1: Yooha's Game -->
+                <div class="demo-card">
+                    <div class="demo-card-info">
+                        <h3>💌 Yooha's Game</h3>
+                        <p>A narrative dating sim created for a university art installation project in Amsterdam. Guide your character through choices that shape the story.</p>
+                        <div class="demo-card-tags">
+                            <span class="demo-tag">Narrative</span>
+                            <span class="demo-tag">Dating Sim</span>
+                            <span class="demo-tag">Unity</span>
+                            <span class="demo-tag">WebGL</span>
+                        </div>
+                        <div class="demo-card-actions">
+                            <button class="play-btn" onclick="openEmbed('yooha', 'Yooha\'s Game')">
+                                <i class="fas fa-play"></i> Play in Browser
+                            </button>
+                            <a href="https://beyondadventures.itch.io/" target="_blank" class="itchio-btn">
+                                <i class="fab fa-itch-io"></i> Itch.io
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADD MORE DEMO CARDS BELOW AS YOU RELEASE MORE GAMES -->
+                <!-- Template:
+                <div class="demo-card">
+                    <div class="demo-card-info">
+                        <h3>🎮 Game Title</h3>
+                        <p>Short description of your game.</p>
+                        <div class="demo-card-tags">
+                            <span class="demo-tag">Genre</span>
+                            <span class="demo-tag">Unity</span>
+                            <span class="demo-tag">WebGL</span>
+                        </div>
+                        <div class="demo-card-actions">
+                            <button class="play-btn" onclick="openEmbed('game-key', 'Game Title')">
+                                <i class="fas fa-play"></i> Play in Browser
+                            </button>
+                            <a href="https://beyondadventures.itch.io/your-game" target="_blank" class="itchio-btn">
+                                <i class="fab fa-itch-io"></i> Itch.io
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Embed Modal -->
+    <div class="embed-modal" id="embedModal">
+        <div class="embed-modal-inner">
+            <div class="embed-modal-header">
+                <div>
+                    <h4 id="embedTitle">Game Title</h4>
+                    <span>Playing via Itch.io embed</span>
+                </div>
+                <button class="close-embed" onclick="closeEmbed()" aria-label="Close">✕</button>
+            </div>
+            <div class="embed-modal-body">
+                <iframe id="embedFrame" allowfullscreen></iframe>
+            </div>
+            <div class="embed-notice">
+                <p>Game not loading? <a id="embedExternalLink" href="https://beyondadventures.itch.io/" target="_blank">Open on Itch.io →</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Timothy Dunn Game Development. All rights reserved.</p>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+        <a href="stack.html" class="mobile-nav-link">
+            <i class="fas fa-layer-group"></i>
+            <span>Stack</span>
+        </a>
+        <a href="history.html" class="mobile-nav-link">
+            <i class="fas fa-history"></i>
+            <span>Histor</span>
+        </a>
+        <a href="gallery.html" class="mobile-nav-link">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+        <a href="demos.html" class="mobile-nav-link active">
+            <i class="fas fa-gamepad"></i>
+            <span>Demos</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // --- Itch.io Embed URLs ---
+        // Replace the iframe src values with your actual itch.io embed URLs
+        // Get these from: itch.io game page > Edit > Embed
+        const demoEmbeds = {
+            'yooha': {
+                src: 'https://itch.io/embed-upload/YOUR_YOOHA_GAME_ID?color=2dd4bf',
+                external: 'https://beyondadventures.itch.io/'
+            },
+            // Add more games here:
+            // 'game-key': {
+            //     src: 'https://itch.io/embed-upload/YOUR_GAME_ID?color=2dd4bf',
+            //     external: 'https://beyondadventures.itch.io/your-game'
+            // }
+        };
+
+        function openEmbed(key, title) {
+            const game = demoEmbeds[key];
+            if (!game) return;
+
+            document.getElementById('embedTitle').textContent = title;
+            document.getElementById('embedFrame').src = game.src;
+            document.getElementById('embedExternalLink').href = game.external;
+            document.getElementById('embedModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEmbed() {
+            document.getElementById('embedModal').classList.remove('active');
+            document.getElementById('embedFrame').src = ''; // Stop game/audio
+            document.body.style.overflow = '';
+        }
+
+        // Close on backdrop click
+        document.getElementById('embedModal').addEventListener('click', function(e) {
+            if (e.target === this) closeEmbed();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeEmbed();
+        });
+    </script>
+</body>
+</html>

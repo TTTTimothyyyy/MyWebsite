@@ -7,231 +7,6 @@
     <link rel="icon" type="image/png" href="Images/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .demos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .demo-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .demo-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px; height: 100%;
-            background-color: var(--accent-primary);
-            transition: background-color 0.3s;
-        }
-
-        .demo-card:hover::after { background-color: var(--accent-comp); }
-        .demo-card:hover { border-color: var(--accent-comp); transform: translateY(-5px); }
-
-        .demo-card-info {
-            padding: 1.5rem;
-        }
-
-        .demo-card-info h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .demo-card-info p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .demo-card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .demo-tag {
-            padding: 0.2rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--accent-primary);
-            color: var(--accent-primary);
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .demo-card-actions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .play-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: var(--accent-primary);
-            color: #111827;
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            font-family: inherit;
-        }
-
-        .play-btn:hover {
-            background: var(--accent-comp);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .itchio-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--card-border);
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .itchio-btn:hover {
-            border-color: var(--accent-comp);
-            color: var(--accent-comp);
-        }
-
-        /* --- EMBED MODAL --- */
-        .embed-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            backdrop-filter: blur(6px);
-        }
-
-        .embed-modal.active { display: flex; }
-
-        .embed-modal-inner {
-            position: relative;
-            width: 90vw;
-            max-width: 960px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-        }
-
-        .embed-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.85rem 1.25rem;
-            border-bottom: 1px solid var(--card-border);
-            background: var(--bg-primary);
-        }
-
-        .embed-modal-header h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .embed-modal-header span {
-            font-size: 0.8rem;
-            color: var(--accent-primary);
-            font-weight: 600;
-        }
-
-        .close-embed {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.4rem;
-            cursor: pointer;
-            line-height: 1;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-
-        .close-embed:hover { background: var(--accent-glow); color: var(--accent-comp); }
-
-        .embed-modal-body {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 */
-        }
-
-        .embed-modal-body iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .embed-notice {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border-top: 1px solid var(--card-border);
-        }
-
-        .embed-notice p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .embed-notice a {
-            color: var(--accent-primary);
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .embed-notice a:hover { color: var(--accent-comp); }
-
-        /* No demos fallback */
-        .no-embed-notice {
-            background: var(--bg-secondary);
-            border: 1px dashed var(--card-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .embed-modal-inner { width: 98vw; }
-            .embed-modal-body { padding-top: 75%; }
-        }
-    </style>
 </head>
 <body>
 
@@ -265,34 +40,32 @@
 
             <div class="demos-grid">
 
-                <div class="demo-card" style="background-image: url('Images/Demos/LooseTheHeat.png'); background-size: cover; background-position: center;">
-                    <div style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.88)); padding: 1.5rem; height: 100%;">
-                        <div class="demo-card-info">
-                            <h3>🔥 Loose The Heat</h3>
-                            <p>A single level 2D platformer with a unique twist. The main mechanic revolves around a malfunctioning-overheating weapon. Created for <strong style="color:var(--accent-primary);">Brackeys Game Jam 2025.1</strong>.</p>
-                            <div class="demo-card-tags">
-                                <span class="demo-tag">Platformer</span>
-                                <span class="demo-tag">Action</span>
-                                <span class="demo-tag">2D</span>
-                                <span class="demo-tag">Pixel Art</span>
-                                <span class="demo-tag">Unity</span>
-                                <span class="demo-tag">HTML5</span>
-                                <span class="demo-tag">Game Jam</span>
-                            </div>
-                            <div style="font-size:0.78rem; color:var(--text-secondary); margin-bottom:1rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
-                                <span><i class="fas fa-calendar-alt" style="color:var(--accent-primary);"></i> Feb 23, 2025</span>
-                                <span><i class="fas fa-trophy" style="color:var(--accent-primary);"></i> Brackeys Game Jam 2025.1</span>
-                                <span><i class="fas fa-users" style="color:var(--accent-primary);"></i> Timothy & Liam</span>
-                                <span><i class="fas fa-check-circle" style="color:#4ade80;"></i> Released</span>
-                            </div>
-                            <div class="demo-card-actions">
-                                <button class="play-btn" onclick="openEmbed('loosetheheat', 'Loose The Heat')">
-                                    <i class="fas fa-play"></i> Play in Browser
-                                </button>
-                                <a href="https://beyondadventures.itch.io/" target="_blank" class="itchio-btn">
-                                    <i class="fab fa-itch-io"></i> Itch.io
-                                </a>
-                            </div>
+                <div class="card" style="background-image: url('Images/Demos/LooseTheHeat.png'); background-size: cover; background-position: center; padding: 0;">
+                    <div class="demo-card-info">
+                        <h3>🔥 Loose The Heat</h3>
+                        <p>A single level 2D platformer with a unique twist. The main mechanic revolves around a malfunctioning-overheating weapon. Created for <strong style="color:var(--accent-primary);">Brackeys Game Jam 2025.1</strong>.</p>
+                        <div class="demo-card-tags">
+                            <span class="card-tag">Platformer</span>
+                            <span class="card-tag">Action</span>
+                            <span class="card-tag">2D</span>
+                            <span class="card-tag">Pixel Art</span>
+                            <span class="card-tag">Unity</span>
+                            <span class="card-tag">HTML5</span>
+                            <span class="card-tag">Game Jam</span>
+                        </div>
+                        <div class="demo-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Feb 23, 2025</span>
+                            <span><i class="fas fa-trophy"></i> Brackeys Game Jam 2025.1</span>
+                            <span><i class="fas fa-users"></i> Timothy & Liam</span>
+                            <span><i class="fas fa-check-circle" style="color:#4ade80;"></i> Released</span>
+                        </div>
+                        <div class="demo-card-actions">
+                            <button class="btn" onclick="openEmbed('loosetheheat', 'Loose The Heat')">
+                                <i class="fas fa-play"></i> Play in Browser
+                            </button>
+                            <a href="https://beyondadventures.itch.io/" target="_blank" class="itchio-btn">
+                                <i class="fab fa-itch-io"></i> Itch.io
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -337,17 +110,13 @@
             <i class="fas fa-layer-group"></i>
             <span>Stack</span>
         </a>
-        <a href="history.html" class="mobile-nav-link">
-            <i class="fas fa-history"></i>
-            <span>Histor</span>
+        <a href="demos.html" class="mobile-nav-link active">
+            <i class="fas fa-gamepad"></i>
+            <span>Demos</span>
         </a>
         <a href="gallery.html" class="mobile-nav-link">
             <i class="fas fa-images"></i>
             <span>Gallery</span>
-        </a>
-        <a href="demos.html" class="mobile-nav-link active">
-            <i class="fas fa-gamepad"></i>
-            <span>Demos</span>
         </a>
         <a href="contact.html" class="mobile-nav-link">
             <i class="fas fa-envelope"></i>
@@ -357,24 +126,16 @@
 
     <script src="script.js"></script>
     <script>
-        // --- Itch.io Embed URLs ---
-        // Replace the iframe src values with your actual itch.io embed URLs
-        // Get these from: itch.io game page > Edit > Embed
         const demoEmbeds = {
-            'yooha': {
-                src: 'https://itch.io/embed-upload/YOUR_YOOHA_GAME_ID?color=2dd4bf',
+            'loosetheheat': {
+                src: 'https://itch.io/embed-upload/12899041?color=282828',
                 external: 'https://beyondadventures.itch.io/'
             },
-            'loosetheheat': {
-                src: 'https://itch.io/embed-upload/YOUR_LOOSETHEHEAT_GAME_ID?color=2dd4bf',
-                external: 'https://beyondadventures.itch.io/'
-            }
         };
 
         function openEmbed(key, title) {
             const game = demoEmbeds[key];
             if (!game) return;
-
             document.getElementById('embedTitle').textContent = title;
             document.getElementById('embedFrame').src = game.src;
             document.getElementById('embedExternalLink').href = game.external;
@@ -384,16 +145,14 @@
 
         function closeEmbed() {
             document.getElementById('embedModal').classList.remove('active');
-            document.getElementById('embedFrame').src = ''; // Stop game/audio
+            document.getElementById('embedFrame').src = '';
             document.body.style.overflow = '';
         }
 
-        // Close on backdrop click
         document.getElementById('embedModal').addEventListener('click', function(e) {
             if (e.target === this) closeEmbed();
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeEmbed();
         });

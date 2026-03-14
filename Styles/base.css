@@ -1,28 +1,23 @@
 /* --- VARIABLES --- */
 :root {
-    --bg-primary: #0b1120;
-    --bg-secondary: #131e35;
+    --bg-primary: #101c33;      /* was #0b1120 — lighter navy */
+    --bg-secondary: #172540;    /* was #131e35 — richer blue */
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent-primary: #00c9a7;
     --accent-comp: #ff6b35;
     --card-border: rgba(255,255,255,0.08);
-    --card-bg: rgba(15,22,40,0.8);
+    --card-bg: rgba(18,30,56,0.8); /* was rgba(15,22,40,0.8) */
     --accent-glow: rgba(0,201,167,0.1);
-    --nav-bg: rgba(8,12,24,0.97);
+    --nav-bg: rgba(10,16,32,0.97); /* was rgba(8,12,24,0.97) */
 }
 
 [data-theme="dark"] {
-    --bg-primary: #0b1120;
-    --bg-secondary: #131e35;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent-primary: #00c9a7;
-    --accent-comp: #ff6b35;
-    --card-border: rgba(255,255,255,0.08);
-    --card-bg: rgba(15,22,40,0.8);
-    --accent-glow: rgba(0,201,167,0.1);
-    --nav-bg: rgba(8,12,24,0.97);
+    --bg-primary: #101c33;
+    --bg-secondary: #172540;
+    --card-bg: rgba(18,30,56,0.8);
+    --nav-bg: rgba(10,16,32,0.97);
+    /* rest unchanged */
 }
 
 [data-theme="light"] {

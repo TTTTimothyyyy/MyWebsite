@@ -23,7 +23,7 @@
 }
 
 .nav-links a.active.shine-effect {
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-comp), var(--accent-primary));
+    background: linear-gradient(90deg, var(--accent-primary), #ffffff, var(--accent-primary));
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -32,7 +32,7 @@
 }
 
 .nav-links a.active.shine-effect::after {
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-comp));
+    background: linear-gradient(90deg, var(--accent-primary), #ffffff, var(--accent-primary));
 }
 
 /* --- TICKER --- */

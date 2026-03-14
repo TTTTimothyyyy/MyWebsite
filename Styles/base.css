@@ -1,6 +1,6 @@
 /* --- VARIABLES --- */
 :root {
-    --bg-primary: #0f1117;
+    --bg-primary: #0d1526;   /* was #0f1117 */
     --bg-secondary: #1a1d2e;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
@@ -13,7 +13,7 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary: #0f1117;
+    --bg-primary: #0d1526;   /* was #0f1117 */
     --bg-secondary: #1a1d2e;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;

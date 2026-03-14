@@ -38,9 +38,20 @@
                 Try out my publicly released game projects directly in your browser — no download required.
             </p>
 
-            <div class="demos-grid">
+            <!-- Filter Buttons -->
+            <div class="demo-filters">
+                <button class="demo-filter-btn active" onclick="filterDemos('all')" id="demo-filter-all">All</button>
+                <button class="demo-filter-btn" onclick="filterDemos('game-jam')" id="demo-filter-game-jam">Game Jam</button>
+                <button class="demo-filter-btn" onclick="filterDemos('prototype')" id="demo-filter-prototype">Prototype</button>
+                <button class="demo-filter-btn" onclick="filterDemos('2d')" id="demo-filter-2d">2D</button>
+                <button class="demo-filter-btn" onclick="filterDemos('3d')" id="demo-filter-3d">3D</button>
+            </div>
 
-                <div class="card" style="background-image: url('Images/Demos/LooseTheHeat.png'); background-size: cover; background-position: center; padding: 0;">
+            <div class="demos-grid" id="demosGrid">
+
+                <div class="card demo-item"
+                    data-tags="game-jam 2d released"
+                    style="background-image: url('Images/Demos/LooseTheHeat.png'); background-size: cover; background-position: center; padding: 0;">
                     <div class="demo-card-info">
                         <h3>🔥 Loose The Heat</h3>
                         <p>A single level 2D platformer with a unique twist. The main mechanic revolves around a malfunctioning-overheating weapon. Created for <strong style="color:var(--accent-primary);">Brackeys Game Jam 2025.1</strong>.</p>
@@ -70,7 +81,9 @@
                     </div>
                 </div>
 
-                <div class="card" style="background-image: url('Images/Demos/FloorIsLava.png'); background-size: cover; background-position: center; padding: 0;">
+                <div class="card demo-item"
+                    data-tags="prototype 3d released"
+                    style="background-image: url('Images/Demos/TheFloorIsLava.png'); background-size: cover; background-position: center; padding: 0;">
                     <div class="demo-card-info">
                         <h3>🌋 The Floor is Lava</h3>
                         <p>A small demo project built as part of the <strong style="color:var(--accent-primary);">Unity Essentials Pathway</strong> — a quick one-day prototype showcasing fundamental Unity game mechanics.</p>
@@ -99,6 +112,12 @@
                 </div>
 
             </div>
+
+            <!-- No results message -->
+            <div id="noResults" style="display:none; text-align:center; padding:3rem; color:var(--text-secondary);">
+                <p style="font-size:1.1rem;">No demos found for this filter.</p>
+            </div>
+
         </section>
     </main>
 
@@ -194,6 +213,33 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeEmbed();
         });
+
+        function filterDemos(tag) {
+            const items = document.querySelectorAll('.demo-item');
+            const buttons = document.querySelectorAll('.demo-filter-btn');
+            const noResults = document.getElementById('noResults');
+
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`demo-filter-${tag}`).classList.add('active');
+
+            // Filter cards
+            let visibleCount = 0;
+            items.forEach(item => {
+                const tags = item.getAttribute('data-tags');
+                if (tag === 'all' || tags.includes(tag)) {
+                    item.classList.remove('hide');
+                    item.classList.add('show');
+                    visibleCount++;
+                } else {
+                    item.classList.remove('show');
+                    item.classList.add('hide');
+                }
+            });
+
+            // Show/hide no results message
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>

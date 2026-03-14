@@ -41,8 +41,9 @@ nav {
     width: 100%;
     z-index: 1000;
     background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--card-border);
+    backdrop-filter: blur(16px);          /* was blur(10px) — stronger blur */
+    -webkit-backdrop-filter: blur(16px);  /* Safari */
+    border-bottom: 1px solid rgba(255,255,255,0.07);  /* softer than card-border */
     padding: 1rem 0;
 }
 

@@ -9,14 +9,14 @@
     --card-border: rgba(255,255,255,0.08);
     --card-bg: rgba(18,30,56,0.8); /* was rgba(15,22,40,0.8) */
     --accent-glow: rgba(0,201,167,0.1);
-    --nav-bg: rgba(10,16,32,0.97); /* was rgba(8,12,24,0.97) */
+    --nav-bg: rgba(10,16,32,0.55);   /* was 0.97 — now frosted glass */
 }
 
 [data-theme="dark"] {
     --bg-primary: #101c33;
     --bg-secondary: #172540;
     --card-bg: rgba(18,30,56,0.8);
-    --nav-bg: rgba(10,16,32,0.97);
+    --nav-bg: rgba(10,16,32,0.55);
     /* rest unchanged */
 }
 

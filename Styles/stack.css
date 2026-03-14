@@ -196,3 +196,101 @@
 
 .infinite-scroll-container.scrolled-mode .skill-card-large::after { display: none; }
 .infinite-scroll-container.scrolled-mode .skill-card-large.achievement { border-color: gold; }
+
+/* --- SCROLL PLACEHOLDER --- */
+.scroll-placeholder {
+    display: none;
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+.scroll-placeholder.active {
+    display: block;
+}
+
+/* --- COMPACT MODE --- */
+.infinite-scroll-container.compact {
+    position: fixed;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    width: auto;
+    max-width: 90vw;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.infinite-scroll-container.compact::-webkit-scrollbar { display: none; }
+
+.infinite-scroll-container.compact .infinite-clone { display: none; }
+
+.infinite-scroll-container.compact .scrolling-wrapper {
+    width: max-content;
+    padding: 0.25rem 0;
+    gap: 0.5rem;
+    animation: none;
+}
+
+.infinite-scroll-container.compact .skill-card-large {
+    min-width: unset;
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.infinite-scroll-container.compact .skill-card-large.selected-card {
+    border-color: var(--accent-primary);
+}
+
+[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card,
+[data-theme="dark"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
+    background: var(--accent-primary);
+    color: #000;
+}
+
+[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card,
+[data-theme="light"] .infinite-scroll-container.compact .skill-card-large.selected-card h3 {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+.infinite-scroll-container.compact .card-icon {
+    font-size: 1rem;
+    margin: 0;
+    display: inline;
+}
+
+.infinite-scroll-container.compact h3 {
+    font-size: 0.82rem;
+    margin: 0;
+    display: inline;
+    font-weight: 700;
+}
+
+.infinite-scroll-container.compact p,
+.infinite-scroll-container.compact small,
+.infinite-scroll-container.compact div[style*="margin-top"],
+.infinite-scroll-container.compact .skill-card-large::after {
+    display: none;
+}
+
+/* --- SHIFTED UP --- */
+.details-display-area.shifted-up {
+    margin-top: 0;
+}

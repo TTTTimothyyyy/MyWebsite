@@ -66,3 +66,42 @@
 }
 
 .view-link:hover { color: var(--accent-comp); }
+
+/* --- SKILLS GRID --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.skill-tag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    cursor: default;
+    transition: all 0.2s ease;
+    min-width: 80px;
+    text-align: center;
+}
+
+.skill-tag span {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.skill-tag small {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+}
+
+.skill-tag:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--accent-glow);
+}

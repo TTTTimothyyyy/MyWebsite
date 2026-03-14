@@ -106,6 +106,20 @@
 .close-lightbox:hover,
 .close-lightbox:focus { color: var(--accent-comp); }
 
+/* --- GALLERY OVERLAY --- */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover .gallery-overlay {
+    background: rgba(0,201,167,0.08);
+}
+
 @media only screen and (max-width: 700px) {
     .lightbox-content { max-width: 98vw; }
 }

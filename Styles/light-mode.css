@@ -1,0 +1,119 @@
+/* --- LIGHT MODE: GENERAL --- */
+[data-theme="light"] .page-content {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+[data-theme="light"] .section-title {
+    background: linear-gradient(135deg, var(--accent-primary), #0f172a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] nav {
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+/* --- LIGHT MODE: STACK PAGE --- */
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large {
+    color: var(--text-secondary);
+    border-color: var(--card-border);
+    background: transparent;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card,
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card h3 {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large.achievement.selected-card {
+    background: #b8860b;
+    border-color: #b8860b;
+    color: #fff;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode .skill-card-large h3 {
+    color: inherit;
+}
+
+[data-theme="light"] .infinite-scroll-container.scrolled-mode::after {
+    background: linear-gradient(to bottom, var(--nav-bg), transparent);
+}
+
+[data-theme="light"] .detail-content {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .project-row {
+    background: var(--bg-secondary) !important;
+    border-color: rgba(0,0,0,0.1) !important;
+}
+
+[data-theme="light"] .project-row:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] [id^="filter-"] {
+    background: var(--bg-primary);
+    border-color: var(--card-border);
+}
+
+[data-theme="light"] .project-row div[style*="border-left"] {
+    background: var(--bg-primary) !important;
+}
+
+[data-theme="light"] .project-grid > div {
+    background: var(--bg-primary);
+    border-color: rgba(0,0,0,0.1);
+}
+
+/* --- LIGHT MODE: DEMOS PAGE --- */
+[data-theme="light"] .demo-card-info {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92));
+}
+
+[data-theme="light"] .demo-card-info h3 { color: #ffffff; }
+
+[data-theme="light"] .demo-card-info p { color: rgba(255,255,255,0.85); }
+
+[data-theme="light"] .demo-meta { color: rgba(255,255,255,0.75); }
+
+[data-theme="light"] .demo-meta i { color: var(--accent-primary); }
+
+[data-theme="light"] .demo-card-info strong { color: #ffffff; }
+
+[data-theme="light"] .card-tag {
+    background: rgba(0,0,0,0.5);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.4);
+}
+
+[data-theme="light"] .demo-filter-btn {
+    border-color: var(--card-border);
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .demo-filter-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+}
+
+[data-theme="light"] .itchio-btn {
+    border-color: rgba(255,255,255,0.4);
+    color: #ffffff;
+    background: rgba(0,0,0,0.3);
+}
+
+[data-theme="light"] .itchio-btn:hover {
+    border-color: var(--accent-comp);
+    color: var(--accent-comp);
+}

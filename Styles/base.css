@@ -1,0 +1,68 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-primary: #0f1117;
+    --bg-secondary: #1a1d2e;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-primary: #00c9a7;
+    --accent-comp: #ff6b35;
+    --card-border: rgba(255,255,255,0.08);
+    --card-bg: rgba(26,29,46,0.8);
+    --accent-glow: rgba(0,201,167,0.1);
+    --nav-bg: rgba(15,17,23,0.95);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f1117;
+    --bg-secondary: #1a1d2e;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-primary: #00c9a7;
+    --accent-comp: #ff6b35;
+    --card-border: rgba(255,255,255,0.08);
+    --card-bg: rgba(26,29,46,0.8);
+    --accent-glow: rgba(0,201,167,0.1);
+    --nav-bg: rgba(15,17,23,0.95);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f0fdfa;
+    --bg-secondary: #ccfbf1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-primary: #0d9488;
+    --accent-comp: #ea580c;
+    --card-border: rgba(0,0,0,0.1);
+    --card-bg: rgba(255,255,255,0.85);
+    --accent-glow: rgba(13,148,136,0.1);
+    --nav-bg: rgba(240,253,250,0.95);
+}
+
+/* --- GLOBAL RESETS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* --- CANVAS --- */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}

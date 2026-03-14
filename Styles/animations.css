@@ -1,0 +1,69 @@
+/* --- REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- FADE IN --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- SHINE EFFECT --- */
+@keyframes textShine {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.nav-links a.active.shine-effect {
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-comp), var(--accent-primary));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 2s linear infinite;
+}
+
+.nav-links a.active.shine-effect::after {
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-comp));
+}
+
+/* --- TICKER --- */
+@keyframes ticker-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.tech-ticker {
+    margin-top: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.ticker-wrapper {
+    display: inline-flex;
+    gap: 2rem;
+    animation: ticker-scroll 20s linear infinite;
+}
+
+.ticker-wrapper span {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* --- ZOOM IN (Lightbox) --- */
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}

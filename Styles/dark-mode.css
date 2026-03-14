@@ -1,0 +1,8 @@
+/* --- DARK MODE: GENERAL OVERRIDES --- */
+[data-theme="dark"] .btn { color: #000; }
+
+[data-theme="dark"] .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card,
+[data-theme="dark"] .infinite-scroll-container.scrolled-mode .skill-card-large.selected-card h3 {
+    background: var(--accent-primary);
+    color: #000;
+}

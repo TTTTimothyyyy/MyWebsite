@@ -118,12 +118,32 @@
     top: 65px;
     z-index: 100;
     background: transparent;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: none;        /* remove from container */
+    -webkit-backdrop-filter: none;
     border-bottom: none;
     padding: 0.6rem 0;
     overflow-x: auto;
     scrollbar-width: none;
+}
+
+.infinite-scroll-container.scrolled-mode::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.infinite-scroll-container.scrolled-mode .scrolling-wrapper {
+    position: relative;
+    z-index: 1;       /* keeps pills above the blur layer */
+    width: max-content;
+    padding: 0.25rem 1rem;
+    gap: 0.6rem;
 }
 
 .infinite-scroll-container.scrolled-mode::after {
@@ -131,12 +151,6 @@
 }
 
 .infinite-scroll-container.scrolled-mode::-webkit-scrollbar { display: none; }
-
-.infinite-scroll-container.scrolled-mode .scrolling-wrapper {
-    width: max-content;
-    padding: 0.25rem 1rem;
-    gap: 0.6rem;
-}
 
 .infinite-scroll-container.scrolled-mode .skill-card-large {
     min-width: unset;
